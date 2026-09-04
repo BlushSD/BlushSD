@@ -68,6 +68,61 @@
     justify-self:end;
     width:20px;
   }
+
+  /* NAV MENU OVERLAY */
+  .nav-overlay{
+    position:fixed; inset:0; z-index:100;
+    background:var(--cream);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:34px;
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(-12px);
+    transition:opacity 0.35s ease, transform 0.35s ease, visibility 0.35s;
+  }
+  .nav-overlay.open{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+  }
+  .nav-overlay-close{
+    position:absolute;
+    top:26px; right:40px;
+    background:none;
+    border:none;
+    cursor:pointer;
+    font-size:28px;
+    font-weight:300;
+    color:var(--ink);
+    line-height:1;
+    padding:8px;
+  }
+  .nav-overlay a{
+    font-family:'Cormorant Garamond', serif;
+    font-size:34px;
+    color:var(--ink);
+    text-decoration:none;
+    letter-spacing:0.02em;
+    transition:opacity 0.25s ease;
+  }
+  .nav-overlay a:hover{opacity:0.55;}
+  .nav-overlay-tagline{
+    position:absolute;
+    bottom:36px;
+    font-size:10.5px;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+
+  @media (max-width:900px){
+    .nav-overlay a{font-size:26px;}
+    .nav-overlay{gap:26px;}
+  }
+
   /* HERO */
   .hero{
     position:relative;
@@ -262,4 +317,177 @@
     .offerings{grid-template-columns:1fr; margin-top:44px;}
     .offering-card{aspect-ratio:4/4.2;}
     .offering-title{font-size:26px;}
+  }
+
+  /* PAGE HERO (used on inner pages: about, florals, catering, testimonials, catering-signup) */
+  .page-hero{
+    position:relative;
+    width:100%;
+    aspect-ratio:3/1.1;
+    overflow:hidden;
+  }
+  .page-hero img{
+    width:100%; height:100%;
+    object-fit:cover;
+    object-position:center;
+    display:block;
+  }
+  .page-hero-veil{
+    position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(43,32,32,0.15) 0%, rgba(43,32,32,0.35) 100%);
+  }
+  .page-hero-caption{
+    position:absolute; inset:0;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color:#fff;
+  }
+  .page-hero-eyebrow{
+    font-size:11px;
+    letter-spacing:0.28em;
+    text-transform:uppercase;
+    color:rgba(255,255,255,0.85);
+    margin-bottom:14px;
+    text-shadow:0 1px 8px rgba(0,0,0,0.3);
+  }
+  .page-hero-title{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:400;
+    font-size:52px;
+    text-shadow:0 2px 14px rgba(0,0,0,0.35);
+  }
+
+  /* PAGE CONTENT (placeholder body copy on inner pages) */
+  .page-content{
+    max-width:640px;
+    margin:0 auto;
+    padding:80px 32px 100px;
+    text-align:center;
+  }
+  .page-content p{
+    font-family:'Work Sans', sans-serif;
+    font-weight:300;
+    font-size:15.5px;
+    line-height:1.9;
+    color:var(--ink-soft);
+    margin-bottom:22px;
+  }
+  .page-content-note{
+    display:inline-block;
+    margin-top:10px;
+    font-size:10.5px;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:var(--p5);
+  }
+  .page-back-link{
+    display:inline-block;
+    margin-top:34px;
+    font-size:11px;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--ink);
+    text-decoration:none;
+    border-bottom:1px solid var(--p5);
+    padding-bottom:5px;
+  }
+  .page-back-link:hover{opacity:0.6;}
+
+  /* TESTIMONIAL CARDS */
+  .testimonial{
+    border-top:1px solid var(--hairline);
+    padding-top:28px;
+    margin-top:28px;
+  }
+  .testimonial p{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:19px;
+    color:var(--ink);
+    line-height:1.6;
+    margin-bottom:12px;
+  }
+  .testimonial-name{
+    font-size:10.5px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+
+  /* SIGNUP FORM */
+  .signup-form{
+    max-width:480px;
+    margin:0 auto;
+    padding:0 32px 100px;
+    text-align:left;
+  }
+  .form-field{
+    margin-bottom:20px;
+  }
+  .form-field label{
+    display:block;
+    font-size:10.5px;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:8px;
+  }
+  .form-field input,
+  .form-field textarea{
+    width:100%;
+    font-family:'Work Sans', sans-serif;
+    font-size:14.5px;
+    color:var(--ink);
+    background:var(--p1);
+    border:1px solid var(--hairline);
+    border-radius:2px;
+    padding:12px 14px;
+  }
+  .form-field textarea{
+    min-height:110px;
+    resize:vertical;
+  }
+  .form-submit{
+    width:100%;
+    font-family:'Work Sans', sans-serif;
+    font-size:11px;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:#fff;
+    background:var(--ink);
+    border:none;
+    border-radius:2px;
+    padding:16px;
+    cursor:pointer;
+    transition:opacity 0.3s ease;
+  }
+  .form-submit:hover{opacity:0.85;}
+  .form-note{
+    font-size:12.5px;
+    color:var(--ink-soft);
+    text-align:center;
+    margin-top:18px;
+    line-height:1.6;
+  }
+
+  /* FOOTER */
+  footer{
+    text-align:center;
+    padding:40px 24px;
+    border-top:1px solid var(--hairline);
+  }
+  footer p{
+    font-size:10.5px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+
+  @media (max-width:900px){
+    .page-hero{aspect-ratio:4/3;}
+    .page-hero-title{font-size:36px;}
+    .page-content{padding:56px 24px 70px;}
   }
