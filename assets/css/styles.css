@@ -232,6 +232,14 @@
     text-transform:uppercase;
     color:var(--ink-soft);
   }
+  .story-faq{
+    margin-top:30px;
+    font-family:'Work Sans', sans-serif;
+    font-weight:400;
+    font-size:13px;
+    color:var(--ink-soft);
+    font-style:italic;
+  }
 
   .offerings{
     position:relative; z-index:2;
@@ -405,6 +413,18 @@
     border-top:1px solid var(--hairline);
     padding-top:28px;
     margin-top:28px;
+  }
+  .testimonial-tag{
+    display:inline-block;
+    font-size:9.5px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    background:var(--p1);
+    border:1px solid var(--hairline);
+    border-radius:20px;
+    padding:4px 12px;
+    margin-bottom:14px;
   }
   .testimonial p{
     font-family:'Cormorant Garamond', serif;
