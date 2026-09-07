@@ -44,7 +44,7 @@
     align-items:center;
   }
   .nav-hamburger img{
-    height:20px;
+    height:24px;
     width:auto;
     display:block;
     filter:drop-shadow(0 1px 2px rgba(0,0,0,0.15));
@@ -57,7 +57,7 @@
     align-items:center;
   }
   .nav-mark img{
-    height:36px;
+    height:44px;
     width:auto;
     display:block;
     filter:drop-shadow(0 1px 3px rgba(0,0,0,0.15));
@@ -121,6 +121,8 @@
   @media (max-width:900px){
     .nav-overlay a{font-size:26px;}
     .nav-overlay{gap:26px;}
+    .nav-hamburger img{height:20px;}
+    .nav-mark img{height:36px;}
   }
 
   /* HERO */
@@ -134,7 +136,7 @@
   .hero-img{
     display:block;
     width:100%;
-    aspect-ratio:3/2;
+    aspect-ratio:4/3;
     object-fit:cover;
     object-position:center;
   }
