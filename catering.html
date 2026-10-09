@@ -21,8 +21,11 @@
   }
   .catering-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
     gap: 14px;
+  }
+  @media (max-width: 1000px) {
+    .catering-grid { grid-template-columns: 1fr 1fr; }
   }
   .gallery-tile {
     display: block;
@@ -157,16 +160,22 @@
 <div class="catering-gallery">
   <div class="catering-grid">
     <button class="gallery-tile" type="button">
+      <img src="assets/images/catering-05.jpg" alt="Gold-rimmed platter of bite-size tart cups filled and topped with microgreens" loading="lazy">
+    </button>
+    <button class="gallery-tile" type="button">
       <img src="assets/images/catering-01.jpg" alt="Chocolate tart shells filled with cream, topped with glazed blackberries and fresh mint" loading="lazy">
+    </button>
+    <button class="gallery-tile" type="button">
+      <img src="assets/images/catering-06.jpg" alt="Shot glasses of golden purée topped with toasted crisps, sliced almonds and dried raspberry" loading="lazy">
     </button>
     <button class="gallery-tile" type="button">
       <img src="assets/images/catering-02.jpg" alt="Milky coffee in a white cup on an engraved Blush wooden board, with a sugar-dusted sweet on a skewer" loading="lazy">
     </button>
     <button class="gallery-tile" type="button">
-      <img src="assets/images/catering-03.jpg" alt="Tea served in tulip glasses on pastel coasters, each topped with a pastel teddy-bear sugar cube" loading="lazy">
+      <img src="assets/images/catering-04.jpg" alt="Mint chip and chocolate ice cream served in a coconut shell with red currants and a waffle crisp" loading="lazy">
     </button>
     <button class="gallery-tile" type="button">
-      <img src="assets/images/catering-04.jpg" alt="Mint chip and chocolate ice cream served in a coconut shell with red currants and a waffle crisp" loading="lazy">
+      <img src="assets/images/catering-03.jpg" alt="Tea served in tulip glasses on pastel coasters, each topped with a pastel teddy-bear sugar cube" loading="lazy">
     </button>
   </div>
 
