@@ -118,17 +118,6 @@
     .lightbox-next { right: 30%; }
   }
 
-  /* Gold wire frame laid over each photo, stretched to the tile's shape */
-  .tile-frame {
-    position: absolute;
-    inset: 0;
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: fill !important;
-    transform: none !important;
-    pointer-events: none;
-    z-index: 1;
-  }
 </style>
 </head>
 <body>
@@ -173,27 +162,21 @@
   <div class="catering-grid">
     <button class="gallery-tile" type="button">
       <img src="assets/images/catering-05.jpg" alt="Gold-rimmed platter of bite-size tart cups filled and topped with microgreens" loading="lazy">
-      <img class="tile-frame" src="assets/images/frame-gold.png" alt="" aria-hidden="true">
     </button>
     <button class="gallery-tile" type="button">
       <img src="assets/images/catering-01.jpg" alt="Chocolate tart shells filled with cream, topped with glazed blackberries and fresh mint" loading="lazy">
-      <img class="tile-frame" src="assets/images/frame-gold.png" alt="" aria-hidden="true">
     </button>
     <button class="gallery-tile" type="button">
       <img src="assets/images/catering-06.jpg" alt="Shot glasses of golden purée topped with toasted crisps, sliced almonds and dried raspberry" loading="lazy">
-      <img class="tile-frame" src="assets/images/frame-gold.png" alt="" aria-hidden="true">
     </button>
     <button class="gallery-tile" type="button">
       <img src="assets/images/catering-02.jpg" alt="Milky coffee in a white cup on an engraved Blush wooden board, with a sugar-dusted sweet on a skewer" loading="lazy">
-      <img class="tile-frame" src="assets/images/frame-gold.png" alt="" aria-hidden="true">
     </button>
     <button class="gallery-tile" type="button">
       <img src="assets/images/catering-04.jpg" alt="Mint chip and chocolate ice cream served in a coconut shell with red currants and a waffle crisp" loading="lazy">
-      <img class="tile-frame" src="assets/images/frame-gold.png" alt="" aria-hidden="true">
     </button>
     <button class="gallery-tile" type="button">
       <img src="assets/images/catering-03.jpg" alt="Tea served in tulip glasses on pastel coasters, each topped with a pastel teddy-bear sugar cube" loading="lazy">
-      <img class="tile-frame" src="assets/images/frame-gold.png" alt="" aria-hidden="true">
     </button>
   </div>
 
@@ -238,7 +221,7 @@
 
     function show(i) {
       current = (i + tiles.length) % tiles.length;
-      var src = tiles[current].querySelector('img:not(.tile-frame)');
+      var src = tiles[current].querySelector('img');
       img.src = src.src;
       img.alt = src.alt;
     }
