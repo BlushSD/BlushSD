@@ -127,17 +127,6 @@
     .lightbox-next { right: 30%; }
   }
 
-  /* Gold wire frame laid over each photo, stretched to the tile's shape */
-  .tile-frame {
-    position: absolute;
-    inset: 0;
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: fill !important;
-    transform: none !important;
-    pointer-events: none;
-    z-index: 1;
-  }
 </style>
 </head>
 <body>
@@ -179,26 +168,21 @@
   <div class="floral-feature">
     <button class="floral-tile tile-landscape" type="button">
       <img src="assets/images/floral-01.jpg" alt="All-white arrangement of calla lilies, tulips, hydrangea and ivory roses with bells of Ireland" loading="lazy">
-      <img class="tile-frame" src="assets/images/frame-gold.png" alt="" aria-hidden="true">
     </button>
     <button class="floral-tile tile-landscape" type="button">
       <img src="assets/images/floral-02.jpg" alt="Low bowl of blush peonies and roses fading from cream to deep magenta, with trailing amaranthus" loading="lazy">
-      <img class="tile-frame" src="assets/images/frame-gold.png" alt="" aria-hidden="true">
     </button>
   </div>
 
   <div class="floral-row">
     <button class="floral-tile tile-landscape" type="button">
       <img src="assets/images/floral-03.jpg" alt="Deep red arrangement with black calla lilies, anthurium, gerberas and roses in a stone vase" loading="lazy">
-      <img class="tile-frame" src="assets/images/frame-gold.png" alt="" aria-hidden="true">
     </button>
     <button class="floral-tile tile-landscape" type="button">
       <img src="assets/images/floral-04.jpg" alt="Coral, fuchsia and marigold garden roses and dahlias in a white footed bowl" loading="lazy">
-      <img class="tile-frame" src="assets/images/frame-gold.png" alt="" aria-hidden="true">
     </button>
     <button class="floral-tile tile-landscape" type="button">
       <img src="assets/images/floral-05.jpg" alt="Red rose and pink carnation arrangement in a burgundy vase draped with red beads" loading="lazy">
-      <img class="tile-frame" src="assets/images/frame-gold.png" alt="" aria-hidden="true">
     </button>
   </div>
 
@@ -243,7 +227,7 @@
 
     function show(i) {
       current = (i + tiles.length) % tiles.length;
-      var src = tiles[current].querySelector('img:not(.tile-frame)');
+      var src = tiles[current].querySelector('img');
       img.src = src.src;
       img.alt = src.alt;
     }
