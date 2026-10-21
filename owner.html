@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Studio Insights | Blush SD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Work+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="icon" href="assets/favicon/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-title" content="Blush Insights">
+<link rel="stylesheet" href="assets/css/styles.css">
+<style>
+  /* Owner dashboard — uses the site's tokens from styles.css */
+  :root{
+    --data:#C7757B;              /* chart mark color (3:1+ on cream) */
+    --data-wash:rgba(199,117,123,0.10);
+    --track:#F6E9E8;
+    --bubble:#FFFFFF;
+    --radius:28px;
+  }
+  body.owner{min-height:100vh;}
+  body.owner nav{background:rgba(255,253,251,0.94); -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px); border-bottom:1px solid var(--hairline);}
+  .od-navlink{
+    justify-self:end;
+    background:none; border:none; cursor:pointer;
+    font-family:'Work Sans', sans-serif;
+    font-size:10.5px; letter-spacing:0.2em; text-transform:uppercase;
+    color:var(--ink-soft); text-decoration:none; padding:6px 0;
+  }
+  .od-navlink:hover{color:var(--ink);}
+  .od-navlink[hidden]{display:none;}
+  .od-navleft{justify-self:start;}
+
+  .od-wrap{max-width:1120px; margin:0 auto; padding:132px 32px 40px;}
+  .od-eyebrow{font-size:11px; letter-spacing:0.26em; text-transform:uppercase; color:var(--ink-soft);}
+  .od-title{font-family:'Cormorant Garamond', serif; font-weight:400; font-size:44px; line-height:1.1; color:var(--ink);}
+  .od-sub{font-weight:300; font-size:14.5px; line-height:1.7; color:var(--ink-soft);}
+
+  /* ---------- Login ---------- */
+  .od-login{max-width:400px; margin:0 auto; padding:170px 28px 120px; text-align:center;}
+  .od-login .od-title{margin:16px 0 14px;}
+  .od-login .od-sub{margin-bottom:36px;}
+  .od-login form{text-align:left;}
+  .od-check{display:flex; align-items:center; gap:10px; font-size:13px; color:var(--ink-soft); margin:-4px 0 22px; cursor:pointer;}
+  .od-check input{width:16px; height:16px; accent-color:var(--ink);}
+  .od-error{min-height:20px; margin-top:16px; text-align:center; font-size:13px; color:var(--ink);}
+  .form-submit[disabled]{opacity:0.55; cursor:default;}
+
+  /* ---------- Dashboard header ---------- */
+  .od-head{display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:22px 32px; margin-bottom:34px;}
+  .od-head .od-title{margin:12px 0 8px;}
+  .od-controls{display:flex; flex-wrap:wrap; align-items:center; gap:14px;}
+  .od-range{display:inline-flex; background:var(--p1); border:1px solid var(--hairline); border-radius:999px; padding:4px;}
+  .od-range button{
+    font-family:'Work Sans', sans-serif; font-size:11px; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--ink-soft); background:none; border:none; border-radius:999px; padding:10px 16px; cursor:pointer;
+    transition:background 0.25s ease, color 0.25s ease;
+  }
+  .od-range button[aria-pressed="true"]{background:var(--bubble); color:var(--ink); box-shadow:0 1px 4px rgba(69,58,55,0.10);}
+  .od-live{
+    display:inline-flex; align-items:center; gap:9px;
+    font-size:12.5px; color:var(--ink); background:var(--bubble);
+    border:1px solid var(--hairline); border-radius:999px; padding:9px 16px;
+  }
+  .od-live-dot{width:8px; height:8px; border-radius:50%; background:var(--data); box-shadow:0 0 0 0 rgba(199,117,123,0.5); animation:od-pulse 2.4s infinite;}
+  .od-live.is-zero .od-live-dot{background:var(--ink-soft); animation:none; opacity:0.5;}
+  @keyframes od-pulse{0%{box-shadow:0 0 0 0 rgba(199,117,123,0.45);}70%{box-shadow:0 0 0 9px rgba(199,117,123,0);}100%{box-shadow:0 0 0 0 rgba(199,117,123,0);}}
+
+  /* ---------- Bubbles ---------- */
+  .od-kpis{display:grid; grid-template-columns:repeat(4, 1fr); gap:18px; margin-bottom:18px;}
+  .od-card{
+    background:var(--bubble);
+    border:1px solid var(--hairline);
+    border-radius:var(--radius);
+    padding:26px 28px;
+    box-shadow:0 10px 30px -18px rgba(69,58,55,0.18);
+  }
+  .od-kpi{background:linear-gradient(180deg, #FFFFFF 0%, var(--p1) 160%);}
+  .od-kpi-label{font-size:10.5px; letter-spacing:0.18em; text-transform:uppercase; color:var(--ink-soft);}
+  .od-kpi-num{font-family:'Cormorant Garamond', serif; font-weight:400; font-size:50px; line-height:1; margin:16px 0 12px; color:var(--ink); font-variant-numeric:lining-nums tabular-nums;}
+  .od-delta{font-size:12.5px; color:var(--ink-soft); line-height:1.4;}
+  .od-delta b{font-weight:500; color:var(--ink);}
+
+  .od-grid{display:grid; grid-template-columns:repeat(2, 1fr); gap:18px; margin-bottom:18px;}
+  .od-card h2{font-family:'Cormorant Garamond', serif; font-weight:400; font-size:26px; line-height:1.15; color:var(--ink);}
+  .od-card-sub{font-size:12.5px; color:var(--ink-soft); margin:6px 0 22px; line-height:1.5;}
+  .od-span{grid-column:1 / -1;}
+
+  /* ---------- Trend chart ---------- */
+  .od-chart{position:relative; width:100%; height:240px;}
+  .od-chart svg{display:block; width:100%; height:100%; overflow:visible;}
+  .od-axis text{font-family:'Work Sans', sans-serif; font-size:11px; fill:var(--ink-soft);}
+  .od-tip{
+    position:absolute; pointer-events:none; z-index:3;
+    background:var(--ink); color:#fff; border-radius:12px; padding:10px 13px;
+    font-size:12px; line-height:1.5; white-space:nowrap;
+    transform:translate(-50%, calc(-100% - 14px)); opacity:0; transition:opacity 0.15s ease;
+  }
+  .od-tip b{font-weight:500;}
+  .od-details{margin-top:18px; font-size:12.5px; color:var(--ink-soft);}
+  .od-details summary{cursor:pointer; letter-spacing:0.14em; text-transform:uppercase; font-size:10.5px;}
+  .od-table{width:100%; border-collapse:collapse; margin-top:12px; font-variant-numeric:tabular-nums;}
+  .od-table th, .od-table td{text-align:left; padding:7px 4px; border-bottom:1px solid var(--hairline); font-weight:400;}
+  .od-table th{font-size:10px; letter-spacing:0.14em; text-transform:uppercase;}
+  .od-table td:not(:first-child), .od-table th:not(:first-child){text-align:right;}
+  .od-table-wrap{max-height:280px; overflow:auto;}
+
+  /* ---------- Bars ---------- */
+  .od-bars{display:flex; flex-direction:column; gap:15px;}
+  .od-bar-row{display:grid; grid-template-columns:minmax(110px, 38%) 1fr auto; align-items:center; gap:14px;}
+  .od-bar-name{font-size:13.5px; color:var(--ink); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+  .od-bar-track{height:10px; background:var(--track); border-radius:0 4px 4px 0;}
+  .od-bar-fill{height:100%; background:var(--data); border-radius:0 4px 4px 0; min-width:3px; transition:width 0.6s cubic-bezier(.19,1,.22,1);}
+  .od-bar-val{font-size:13px; color:var(--ink); min-width:46px; text-align:right; font-variant-numeric:tabular-nums;}
+  .od-bar-val small{color:var(--ink-soft); font-size:11.5px; margin-left:4px;}
+
+  /* ---------- Service split + mini stats ---------- */
+  .od-split{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+  .od-mini{background:var(--p1); border-radius:20px; padding:20px 20px 18px;}
+  .od-mini-label{font-size:10.5px; letter-spacing:0.18em; text-transform:uppercase; color:var(--ink-soft);}
+  .od-mini-num{font-family:'Cormorant Garamond', serif; font-size:40px; line-height:1; margin:12px 0 6px; color:var(--ink); font-variant-numeric:lining-nums tabular-nums;}
+  .od-mini-note{font-size:12px; color:var(--ink-soft); line-height:1.5;}
+  .od-mini-list{margin-top:14px; padding-top:12px; border-top:1px solid var(--hairline); display:flex; flex-direction:column; gap:6px;}
+  .od-mini-list div{display:flex; justify-content:space-between; font-size:12.5px; color:var(--ink-soft);}
+  .od-mini-list span:last-child{color:var(--ink); font-variant-numeric:tabular-nums;}
+
+  .od-empty{font-size:13px; color:var(--ink-soft); font-style:italic; padding:6px 0;}
+  .od-foot{text-align:center; font-size:12px; color:var(--ink-soft); line-height:1.7; margin:34px auto 0; max-width:520px;}
+  .od-banner{display:none; background:var(--p2); border:1px solid var(--hairline); border-radius:18px; padding:14px 18px; margin-bottom:18px; font-size:13px; color:var(--ink);}
+  .od-banner button{margin-left:10px; background:none; border:none; border-bottom:1px solid var(--ink); font:inherit; color:inherit; cursor:pointer; padding:0;}
+  .od-banner.show{display:block;}
+
+  .is-loading .od-kpi-num, .is-loading .od-mini-num{color:transparent; background:var(--p2); border-radius:10px; animation:od-shimmer 1.4s ease-in-out infinite;}
+  @keyframes od-shimmer{0%,100%{opacity:1;}50%{opacity:0.5;}}
+
+  [hidden]{display:none !important;}
+
+  @media (max-width:980px){
+    .od-kpis{grid-template-columns:repeat(2, 1fr);}
+  }
+  @media (max-width:760px){
+    .od-wrap{padding:112px 18px 30px;}
+    .od-title{font-size:34px;}
+    .od-grid{grid-template-columns:1fr;}
+    .od-kpis{gap:12px;}
+    .od-card{padding:22px 20px; border-radius:24px;}
+    .od-kpi-num{font-size:40px; margin:12px 0 10px;}
+    .od-chart{height:200px;}
+    .od-controls{width:100%; justify-content:space-between;}
+    .od-range button{padding:9px 12px;}
+    .od-login{padding-top:140px;}
+  }
+  @media (max-width:420px){
+    .od-split{grid-template-columns:1fr;}
+    .od-kpi-num{font-size:34px;}
+    .od-kpi{padding:20px 16px;}
+  }
+</style>
+</head>
+<body class="owner">
+
+<nav>
+  <a href="index.html" class="od-navlink od-navleft">&larr; Site</a>
+  <a href="index.html" class="nav-mark"><img src="assets/images/logo-wordmark.png" alt="Blush SD"></a>
+  <button type="button" class="od-navlink" id="signOut" hidden>Sign out</button>
+</nav>
+
+<!-- ============ LOGIN ============ -->
+<main id="loginView" class="od-login" hidden>
+  <p class="od-eyebrow">Owner Access</p>
+  <h1 class="od-title">Studio Insights</h1>
+  <p class="od-sub">A private look at who&rsquo;s visiting the Blush site and what they&rsquo;re doing there.</p>
+  <form id="loginForm" class="signup-form" style="padding:0;" autocomplete="on">
+    <input type="text" name="username" value="Blush SD Owner" autocomplete="username" hidden>
+    <div class="form-field">
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" autocomplete="current-password" required>
+    </div>
+    <label class="od-check"><input type="checkbox" id="remember" checked> Keep me signed in on this device</label>
+    <button type="submit" class="form-submit" id="loginBtn">Enter</button>
+    <p class="od-error" id="loginError" role="alert"></p>
+  </form>
+</main>
+
+<!-- ============ DASHBOARD ============ -->
+<main id="dashView" class="od-wrap is-loading" hidden>
+  <header class="od-head">
+    <div>
+      <p class="od-eyebrow">Studio Insights</p>
+      <h1 class="od-title">How the site is doing</h1>
+      <p class="od-sub" id="periodLine">&nbsp;</p>
+    </div>
+    <div class="od-controls">
+      <div class="od-range" role="group" aria-label="Time period">
+        <button type="button" data-range="7">7 days</button>
+        <button type="button" data-range="30">30 days</button>
+        <button type="button" data-range="90">90 days</button>
+      </div>
+      <span class="od-live is-zero" id="live"><span class="od-live-dot"></span><span id="liveText">Checking&hellip;</span></span>
+    </div>
+  </header>
+
+  <div class="od-banner" id="banner" role="status"></div>
+
+  <section class="od-kpis" aria-label="Headline numbers">
+    <div class="od-card od-kpi">
+      <p class="od-kpi-label">Visitors</p>
+      <p class="od-kpi-num" id="kVisitors">0</p>
+      <p class="od-delta" id="dVisitors">&nbsp;</p>
+    </div>
+    <div class="od-card od-kpi">
+      <p class="od-kpi-label">Page views</p>
+      <p class="od-kpi-num" id="kViews">0</p>
+      <p class="od-delta" id="dViews">&nbsp;</p>
+    </div>
+    <div class="od-card od-kpi">
+      <p class="od-kpi-label">Inquiries sent</p>
+      <p class="od-kpi-num" id="kInquiries">0</p>
+      <p class="od-delta" id="dInquiries">&nbsp;</p>
+    </div>
+    <div class="od-card od-kpi">
+      <p class="od-kpi-label">&ldquo;Book&rdquo; clicks</p>
+      <p class="od-kpi-num" id="kBook">0</p>
+      <p class="od-delta" id="dBook">&nbsp;</p>
+    </div>
+  </section>
+
+  <section class="od-grid">
+    <div class="od-card od-span">
+      <h2>Visitors per day</h2>
+      <p class="od-card-sub">Hover or tap the chart to see a single day.</p>
+      <div class="od-chart" id="trendChart"><div class="od-tip" id="trendTip"></div></div>
+      <details class="od-details">
+        <summary>See the daily numbers</summary>
+        <div class="od-table-wrap"><table class="od-table" id="trendTable"></table></div>
+      </details>
+    </div>
+
+    <div class="od-card">
+      <h2>Florals &amp; catering</h2>
+      <p class="od-card-sub">Each service on its own: inquiries sent through its form, and clicks toward booking.</p>
+      <div class="od-split">
+        <div class="od-mini">
+          <p class="od-mini-label">Florals</p>
+          <p class="od-mini-num" id="fInq">0</p>
+          <p class="od-mini-note">inquiries</p>
+          <div class="od-mini-list">
+            <div><span>&ldquo;Book&rdquo; clicks</span><span id="fBook">0</span></div>
+            <div><span>Page views</span><span id="fViews">0</span></div>
+            <div><span>Photos opened</span><span id="fPhotos">0</span></div>
+          </div>
+        </div>
+        <div class="od-mini">
+          <p class="od-mini-label">Catering</p>
+          <p class="od-mini-num" id="cInq">0</p>
+          <p class="od-mini-note">inquiries</p>
+          <div class="od-mini-list">
+            <div><span>&ldquo;Book&rdquo; clicks</span><span id="cBook">0</span></div>
+            <div><span>Page views</span><span id="cViews">0</span></div>
+            <div><span>Photos opened</span><span id="cPhotos">0</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="od-card">
+      <h2>How people find you</h2>
+      <p class="od-card-sub">Where visits started.</p>
+      <div class="od-bars" id="channelBars"></div>
+    </div>
+
+    <div class="od-card">
+      <h2>Most-viewed pages</h2>
+      <p class="od-card-sub">Page views for each page of the site.</p>
+      <div class="od-bars" id="pageBars"></div>
+    </div>
+
+    <div class="od-card">
+      <h2>Phone or computer</h2>
+      <p class="od-card-sub">What visitors used to browse.</p>
+      <div class="od-bars" id="deviceBars"></div>
+    </div>
+
+    <div class="od-card">
+      <h2>Where visitors are</h2>
+      <p class="od-card-sub">Top cities, by number of visitors.</p>
+      <div class="od-bars" id="cityBars"></div>
+    </div>
+
+    <div class="od-card">
+      <h2>Socials &amp; time on site</h2>
+      <p class="od-card-sub">Clicks out to your profiles, and how long a visit lasts.</p>
+      <div class="od-split">
+        <div class="od-mini">
+          <p class="od-mini-label">Instagram</p>
+          <p class="od-mini-num" id="sIg">0</p>
+          <p class="od-mini-note">clicks to @blush.sd</p>
+        </div>
+        <div class="od-mini">
+          <p class="od-mini-label">TikTok</p>
+          <p class="od-mini-num" id="sTt">0</p>
+          <p class="od-mini-note">clicks to TikTok</p>
+        </div>
+        <div class="od-mini">
+          <p class="od-mini-label">Average visit</p>
+          <p class="od-mini-num" id="sTime">0</p>
+          <p class="od-mini-note">minutes : seconds</p>
+        </div>
+        <div class="od-mini">
+          <p class="od-mini-label">First-time visitors</p>
+          <p class="od-mini-num" id="sNew">0</p>
+          <p class="od-mini-note">new to the site</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <p class="od-foot" id="footNote">Numbers come from Google Analytics and refresh about every 10 minutes.</p>
+</main>
+
+<script>
+(function () {
+  // ===== SETTING: the address of your Cloudflare Worker (no slash at the end) =====
+  var API = 'https://blush-analytics.blushsd619.workers.dev';
+
+  var KEY_TOKEN = 'blushOwnerToken', KEY_RANGE = 'blushOwnerRange';
+  var range = 30, lastData = null;
+
+  // ---------- storage (wrapped: private windows can throw) ----------
+  function store(kind) { try { return window[kind]; } catch (e) { return null; } }
+  function getToken() {
+    var t = null;
+    [store('localStorage'), store('sessionStorage')].forEach(function (s) {
+      try { if (!t && s) t = s.getItem(KEY_TOKEN); } catch (e) {}
+    });
+    if (t) {
+      var exp = Number(t.split('.')[1]);
+      if (!exp || exp * 1000 < Date.now()) { clearToken(); return null; }
+    }
+    return t;
+  }
+  function saveToken(t, remember) {
+    clearToken();
+    try { (remember ? store('localStorage') : store('sessionStorage')).setItem(KEY_TOKEN, t); } catch (e) { memToken = t; }
+  }
+  var memToken = null;
+  function clearToken() {
+    memToken = null;
+    [store('localStorage'), store('sessionStorage')].forEach(function (s) { try { s && s.removeItem(KEY_TOKEN); } catch (e) {} });
+  }
+  function token() { return getToken() || memToken; }
+  try { var r = Number(localStorage.getItem(KEY_RANGE)); if ([7, 30, 90].indexOf(r) >= 0) range = r; } catch (e) {}
+
+  // ---------- views ----------
+  var $ = function (id) { return document.getElementById(id); };
+  function showLogin(msg) {
+    $('dashView').hidden = true; $('signOut').hidden = true; $('loginView').hidden = false;
+    $('loginError').textContent = msg || '';
+    setTimeout(function () { $('password').focus(); }, 50);
+  }
+  function showDash() {
+    $('loginView').hidden = true; $('dashView').hidden = false; $('signOut').hidden = false;
+    setRangeButtons(); load();
+  }
+
+  // ---------- login ----------
+  $('loginForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var btn = $('loginBtn'), pw = $('password').value;
+    if (!pw) return;
+    btn.disabled = true; btn.textContent = 'One moment…'; $('loginError').textContent = '';
+    fetch(API + '/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ password: pw }) })
+      .then(function (r) { return r.json().then(function (j) { return { status: r.status, body: j }; }); })
+      .then(function (res) {
+        if (res.status === 200 && res.body.token) {
+          saveToken(res.body.token, $('remember').checked);
+          $('password').value = '';
+          showDash();
+        } else if (res.status === 429) {
+          $('loginError').textContent = 'Too many tries. Please wait 15 minutes and try again.';
+        } else {
+          $('loginError').textContent = 'That password didn’t match. Please try again.';
+        }
+      })
+      .catch(function () { $('loginError').textContent = 'Couldn’t reach the server. Check your connection and try again.'; })
+      .then(function () { btn.disabled = false; btn.textContent = 'Enter'; });
+  });
+  $('signOut').addEventListener('click', function () { clearToken(); showLogin('You’re signed out.'); });
+
+  // ---------- range ----------
+  function setRangeButtons() {
+    document.querySelectorAll('.od-range button').forEach(function (b) {
+      b.setAttribute('aria-pressed', String(Number(b.dataset.range) === range));
+    });
+  }
+  document.querySelectorAll('.od-range button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      range = Number(b.dataset.range);
+      try { localStorage.setItem(KEY_RANGE, String(range)); } catch (e) {}
+      setRangeButtons(); load();
+    });
+  });
+
+  // ---------- data ----------
+  var loadSeq = 0;
+  function load(silent) {
+    var seq = ++loadSeq;
+    if (silent !== true) { $('dashView').classList.add('is-loading'); banner(''); }
+    fetch(API + '/stats?range=' + range, { headers: { Authorization: 'Bearer ' + token() } })
+      .then(function (r) {
+        if (r.status === 401) { clearToken(); showLogin('Please sign in again.'); throw 'auth'; }
+        return r.json().then(function (j) { if (!r.ok) throw j; return j; });
+      })
+      .then(function (d) { if (seq !== loadSeq) return; lastData = d; render(d); })
+      .catch(function (err) {
+        if (err === 'auth' || seq !== loadSeq) return;
+        banner('The numbers couldn’t load just now.', true);
+      })
+      .then(function () { if (seq === loadSeq) $('dashView').classList.remove('is-loading'); });
+  }
+  function banner(text, retry) {
+    var b = $('banner');
+    b.textContent = text;
+    if (retry) {
+      var btn = document.createElement('button'); btn.type = 'button'; btn.textContent = 'Try again';
+      btn.onclick = function () { load(); }; b.appendChild(btn);
+    }
+    b.classList.toggle('show', !!text);
+  }
+
+  // ---------- formatting ----------
+  var nf = new Intl.NumberFormat('en-US');
+  function fmt(n) { return nf.format(Math.round(n || 0)); }
+  function ev(d, which, name, sub) {
+    var e = d.events[which] && d.events[which][name];
+    if (!e) return 0;
+    return sub ? (e[sub] || 0) : (e.total || 0);
+  }
+  function delta(cur, prev) {
+    var label = 'vs. the ' + range + ' days before';
+    if (!prev && !cur) return 'No activity yet';
+    if (!prev) return '<b>New</b> — none the ' + range + ' days before';
+    var pct = Math.round(((cur - prev) / prev) * 100);
+    if (pct === 0) return '<b>Same</b> as the ' + range + ' days before';
+    return '<b>' + (pct > 0 ? '↑ ' : '↓ ') + Math.abs(pct) + '%</b> ' + label;
+  }
+  function mmss(sec) {
+    sec = Math.round(sec || 0);
+    return Math.floor(sec / 60) + ':' + String(sec % 60).padStart(2, '0');
+  }
+  function shortDate(iso, withDay) {
+    var d = new Date(iso + 'T12:00:00');
+    return d.toLocaleDateString('en-US', withDay ? { weekday: 'short', month: 'short', day: 'numeric' } : { month: 'short', day: 'numeric' });
+  }
+
+  var PAGE_NAMES = {
+    'index.html': 'Home', 'about.html': 'About', 'florals.html': 'Florals', 'catering.html': 'Catering',
+    'testimonials.html': 'Testimonials', 'florals-signup.html': 'Book Florals form', 'catering-signup.html': 'Book Catering form'
+  };
+  var CHANNEL_NAMES = {
+    'Direct': 'Direct visit', 'Organic Social': 'Social media', 'Organic Search': 'Google & search',
+    'Referral': 'Links on other sites', 'Unassigned': 'Other', 'Email': 'Email', 'Paid Social': 'Paid social', 'Paid Search': 'Paid search'
+  };
+  var DEVICE_NAMES = { mobile: 'Phone', desktop: 'Computer', tablet: 'Tablet', 'smart tv': 'TV' };
+
+  // ---------- render ----------
+  function render(d) {
+    var c = d.totals.current, p = d.totals.previous;
+    var start = d.trend.length ? d.trend[0].date : null, end = d.trend.length ? d.trend[d.trend.length - 1].date : null;
+    $('periodLine').textContent = start ? shortDate(start) + ' – ' + shortDate(end) + ' · compared with the ' + range + ' days before' : '';
+
+    $('kVisitors').textContent = fmt(c.visitors);  $('dVisitors').innerHTML = delta(c.visitors, p.visitors);
+    $('kViews').textContent = fmt(c.pageViews);    $('dViews').innerHTML = delta(c.pageViews, p.pageViews);
+    var inq = ev(d, 'current', 'inquiry_submit'), inqP = ev(d, 'previous', 'inquiry_submit');
+    var bk = ev(d, 'current', 'book_click'), bkP = ev(d, 'previous', 'book_click');
+    $('kInquiries').textContent = fmt(inq);       $('dInquiries').innerHTML = delta(inq, inqP);
+    $('kBook').textContent = fmt(bk);             $('dBook').innerHTML = delta(bk, bkP);
+
+    // live
+    var live = d.realtime;
+    $('live').classList.toggle('is-zero', !live);
+    $('liveText').textContent = live == null ? 'Live count unavailable' : (live === 1 ? '1 person on the site now' : fmt(live) + ' people on the site now');
+
+    // services
+    var pv = {}; (d.pages || []).forEach(function (x) { pv[x.page] = x.views; });
+    $('fInq').textContent = fmt(ev(d, 'current', 'inquiry_submit', 'florals'));
+    $('cInq').textContent = fmt(ev(d, 'current', 'inquiry_submit', 'catering'));
+    $('fBook').textContent = fmt(ev(d, 'current', 'book_click', 'florals'));
+    $('cBook').textContent = fmt(ev(d, 'current', 'book_click', 'catering'));
+    $('fViews').textContent = fmt(pv['florals.html']);
+    $('cViews').textContent = fmt(pv['catering.html']);
+    $('fPhotos').textContent = fmt(ev(d, 'current', 'photo_view', 'florals'));
+    $('cPhotos').textContent = fmt(ev(d, 'current', 'photo_view', 'catering'));
+
+    // socials & time
+    $('sIg').textContent = fmt(ev(d, 'current', 'social_click', 'instagram'));
+    $('sTt').textContent = fmt(ev(d, 'current', 'social_click', 'tiktok'));
+    $('sTime').textContent = mmss(c.avgVisitSeconds);
+    $('sNew').textContent = fmt(c.newVisitors);
+
+    // bars
+    bars('channelBars', (d.channels || []).map(function (x) { return { name: CHANNEL_NAMES[x.name] || x.name, value: x.sessions }; }), 'visits', true);
+    bars('pageBars', (d.pages || []).map(function (x) { return { name: PAGE_NAMES[x.page] || x.page.replace('.html', ''), value: x.views }; }));
+    bars('deviceBars', (d.devices || []).map(function (x) { return { name: DEVICE_NAMES[x.name] || x.name, value: x.visitors }; }), null, true);
+    bars('cityBars', (d.cities || []).slice(0, 7).map(function (x) { return { name: x.name, value: x.visitors }; }));
+
+    drawTrend(d.trend);
+    trendTable(d.trend);
+
+    var t = new Date(d.generatedAt);
+    $('footNote').textContent = 'Numbers come from Google Analytics and refresh about every 10 minutes. Last updated ' +
+      t.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }) + '.';
+  }
+
+  function bars(id, rows, unit, showPct) {
+    var el = $(id); el.innerHTML = '';
+    rows = rows.filter(function (r) { return r.value > 0 && r.name && r.name !== '(not set)'; });
+    if (!rows.length) { el.innerHTML = '<p class="od-empty">Nothing yet for this period.</p>'; return; }
+    var max = Math.max.apply(null, rows.map(function (r) { return r.value; }));
+    var total = rows.reduce(function (s, r) { return s + r.value; }, 0);
+    rows.slice(0, 7).forEach(function (r) {
+      var row = document.createElement('div'); row.className = 'od-bar-row';
+      var pct = Math.round((r.value / total) * 100);
+      row.innerHTML = '<span class="od-bar-name"></span><span class="od-bar-track"><span class="od-bar-fill" style="display:block;width:0"></span></span>' +
+        '<span class="od-bar-val">' + fmt(r.value) + (showPct ? '<small>' + pct + '%</small>' : '') + '</span>';
+      row.querySelector('.od-bar-name').textContent = r.name;
+      row.title = r.name + ': ' + fmt(r.value) + (unit ? ' ' + unit : '') + (showPct ? ' (' + pct + '%)' : '');
+      el.appendChild(row);
+      requestAnimationFrame(function () { row.querySelector('.od-bar-fill').style.width = Math.max(1, (r.value / max) * 100) + '%'; });
+    });
+  }
+
+  function trendTable(trend) {
+    var html = '<thead><tr><th>Day</th><th>Visitors</th><th>Page views</th></tr></thead><tbody>';
+    trend.slice().reverse().forEach(function (t) {
+      html += '<tr><td>' + shortDate(t.date, true) + '</td><td>' + fmt(t.visitors) + '</td><td>' + fmt(t.views) + '</td></tr>';
+    });
+    $('trendTable').innerHTML = html + '</tbody>';
+  }
+
+  // ---------- line chart ----------
+  function niceMax(v) {
+    if (v <= 4) return 4;
+    var mag = Math.pow(10, Math.floor(Math.log10(v))), n = v / mag;
+    var step = n <= 1 ? 1 : n <= 2 ? 2 : n <= 5 ? 5 : 10;
+    return step * mag;
+  }
+  function drawTrend(trend) {
+    var box = $('trendChart'), tip = $('trendTip');
+    var old = box.querySelector('svg'); if (old) old.remove();
+    var W = box.clientWidth, H = box.clientHeight;
+    if (!W || !trend.length) return;
+    var padL = 34, padR = 34, padT = 14, padB = 30;
+    var iw = W - padL - padR, ih = H - padT - padB;
+    var max = niceMax(Math.max.apply(null, trend.map(function (t) { return t.visitors; })));
+    var n = trend.length;
+    var x = function (i) { return padL + (n === 1 ? iw / 2 : (i / (n - 1)) * iw); };
+    var y = function (v) { return padT + ih - (v / max) * ih; };
+    var NS = 'http://www.w3.org/2000/svg';
+    var svg = document.createElementNS(NS, 'svg');
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+    svg.setAttribute('role', 'img');
+    var totalV = trend.reduce(function (s, t) { return s + t.visitors; }, 0);
+    svg.setAttribute('aria-label', 'Line chart of visitors per day. ' + fmt(totalV) + ' visits over ' + n + ' days.');
+    function el(tag, attrs, parent) {
+      var e = document.createElementNS(NS, tag);
+      for (var k in attrs) e.setAttribute(k, attrs[k]);
+      (parent || svg).appendChild(e); return e;
+    }
+    // grid + y ticks
+    var axis = el('g', { 'class': 'od-axis' });
+    [0, max / 2, max].forEach(function (v) {
+      el('line', { x1: padL, x2: W - padR, y1: y(v), y2: y(v), stroke: 'rgba(69,58,55,0.10)', 'stroke-width': 1 }, axis);
+      var t = el('text', { x: padL - 10, y: y(v) + 4, 'text-anchor': 'end' }, axis); t.textContent = fmt(v);
+    });
+    // x labels: first, middle, last
+    var idx = n > 2 ? [0, Math.floor((n - 1) / 2), n - 1] : n === 2 ? [0, 1] : [0];
+    idx.forEach(function (i, k) {
+      var t = el('text', { x: x(i), y: H - 8, 'text-anchor': k === 0 && n > 1 ? 'start' : k === idx.length - 1 && n > 1 ? 'end' : 'middle' }, axis);
+      t.textContent = shortDate(trend[i].date);
+    });
+    // area + line
+    var pts = trend.map(function (t, i) { return [x(i), y(t.visitors)]; });
+    var line = pts.map(function (p, i) { return (i ? 'L' : 'M') + p[0].toFixed(1) + ' ' + p[1].toFixed(1); }).join(' ');
+    el('path', { d: line + ' L' + x(n - 1) + ' ' + y(0) + ' L' + x(0) + ' ' + y(0) + ' Z', fill: 'var(--data-wash)' });
+    el('path', { d: line, fill: 'none', stroke: 'var(--data)', 'stroke-width': 2, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' });
+    // end dot + label
+    var last = pts[n - 1];
+    el('circle', { cx: last[0], cy: last[1], r: 4.5, fill: 'var(--data)', stroke: '#FFFFFF', 'stroke-width': 2 });
+    var lt = el('text', { x: last[0] + 9, y: last[1] + 4, 'class': 'od-endlabel', fill: 'var(--ink)', 'font-size': 12, 'font-family': 'Work Sans, sans-serif' });
+    lt.textContent = fmt(trend[n - 1].visitors);
+    // hover layer
+    var cross = el('line', { y1: padT, y2: padT + ih, stroke: 'rgba(69,58,55,0.28)', 'stroke-width': 1, opacity: 0 });
+    var dot = el('circle', { r: 5, fill: 'var(--data)', stroke: '#FFFFFF', 'stroke-width': 2, opacity: 0 });
+    var hit = el('rect', { x: padL - 10, y: 0, width: iw + 20, height: H, fill: 'transparent' });
+    function move(clientX) {
+      var rect = svg.getBoundingClientRect();
+      var px = (clientX - rect.left) * (W / rect.width);
+      var i = n === 1 ? 0 : Math.round(((px - padL) / iw) * (n - 1));
+      i = Math.max(0, Math.min(n - 1, i));
+      var t = trend[i], cx = x(i), cy = y(t.visitors);
+      cross.setAttribute('x1', cx); cross.setAttribute('x2', cx); cross.setAttribute('opacity', 1);
+      dot.setAttribute('cx', cx); dot.setAttribute('cy', cy); dot.setAttribute('opacity', 1);
+      tip.innerHTML = '<b>' + shortDate(t.date, true) + '</b><br>' + fmt(t.visitors) + (t.visitors === 1 ? ' visitor' : ' visitors') + ' · ' + fmt(t.views) + ' page views';
+      var left = cx * (rect.width / W);
+      left = Math.max(80, Math.min(rect.width - 80, left));
+      tip.style.left = left + 'px'; tip.style.top = (cy * (rect.height / H)) + 'px'; tip.style.opacity = 1;
+    }
+    function hide() { cross.setAttribute('opacity', 0); dot.setAttribute('opacity', 0); tip.style.opacity = 0; }
+    hit.addEventListener('mousemove', function (e) { move(e.clientX); });
+    hit.addEventListener('mouseleave', hide);
+    hit.addEventListener('touchstart', function (e) { move(e.touches[0].clientX); }, { passive: true });
+    hit.addEventListener('touchmove', function (e) { move(e.touches[0].clientX); }, { passive: true });
+    hit.addEventListener('touchend', function () { setTimeout(hide, 1600); });
+    box.appendChild(svg);
+  }
+  var rt; window.addEventListener('resize', function () {
+    clearTimeout(rt); rt = setTimeout(function () { if (lastData) drawTrend(lastData.trend); }, 150);
+  });
+
+  // refresh the live count every 60s while the page is open and visible
+  setInterval(function () { if (!document.hidden && !$('dashView').hidden) load(true); }, 60000);
+
+  // ---------- start ----------
+  if (token()) showDash(); else showLogin();
+})();
+</script>
+</body>
+</html>
