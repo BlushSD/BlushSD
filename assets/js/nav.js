@@ -32,3 +32,20 @@ document.addEventListener('DOMContentLoaded', function () {
     if (e.key === 'Escape') closeMenu();
   });
 });
+
+// Owner entrance: tap the "© 2026 Blush SD" line at the bottom of any page
+// three times quickly to open the private Studio Insights page.
+document.addEventListener('DOMContentLoaded', function () {
+  var line = document.querySelector('footer p');
+  if (!line) return;
+  var taps = 0, timer;
+  line.style.touchAction = 'manipulation'; // stops phones zooming on the quick taps
+  line.style.webkitUserSelect = 'none';
+  line.style.userSelect = 'none';
+  line.addEventListener('click', function () {
+    taps++;
+    clearTimeout(timer);
+    timer = setTimeout(function () { taps = 0; }, 900);
+    if (taps >= 3) { taps = 0; window.location.href = 'owner.html'; }
+  });
+});
