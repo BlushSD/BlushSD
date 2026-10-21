@@ -12,6 +12,110 @@
 <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
 <link rel="stylesheet" href="assets/css/styles.css">
+<style>
+  /* ---------- Testimonial cards with client photos ---------- */
+  .reviews{
+    max-width:1000px;
+    margin:0 auto;
+    padding:0 32px 30px;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:28px;
+  }
+  .review{
+    flex:0 1 calc(50% - 14px);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    background:var(--cream);
+    border:1px solid var(--hairline);
+    padding:44px 40px 40px;
+  }
+  .review-photo{
+    width:112px;
+    height:112px;
+    border-radius:50%;
+    overflow:hidden;
+    margin-bottom:24px;
+    background:var(--p1);
+    /* thin blush ring with a cream gap, like a mat on a frame */
+    box-shadow:0 0 0 4px var(--cream), 0 0 0 5px var(--p4);
+    flex-shrink:0;
+  }
+  .review-photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center 30%;
+    display:block;
+  }
+  /* Empty frame shown until a real photo is added */
+  .review-photo.is-empty{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:9.5px;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:var(--p5);
+  }
+  .review-tag{
+    display:inline-block;
+    font-size:9.5px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    background:var(--p1);
+    border:1px solid var(--hairline);
+    border-radius:20px;
+    padding:4px 12px;
+    margin-bottom:20px;
+  }
+  .review-quote{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-weight:400;
+    font-size:20px;
+    line-height:1.6;
+    color:var(--ink);
+    flex-grow:1;
+  }
+  .review-rule{
+    width:36px;
+    height:1px;
+    background:var(--p5);
+    border:0;
+    margin:26px auto 18px;
+  }
+  .review-name{
+    font-size:11px;
+    font-weight:500;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:var(--ink);
+  }
+  .review-event{
+    margin-top:6px;
+    font-size:12.5px;
+    font-weight:300;
+    color:var(--ink-soft);
+  }
+  .reviews-footer{
+    text-align:center;
+    padding:30px 32px 100px;
+  }
+  .reviews-footer .page-back-link{margin-top:24px;}
+
+  @media (max-width:900px){
+    .reviews{padding:0 24px 20px; gap:22px;}
+    .review{flex-basis:100%; padding:36px 26px 32px;}
+    .review-photo{width:96px; height:96px;}
+    .review-quote{font-size:18.5px;}
+    .reviews-footer{padding:24px 24px 70px;}
+  }
+</style>
 </head>
 <body>
 
@@ -44,28 +148,77 @@
   </div>
 </section>
 
-<section class="page-content">
-  <p>A few words from people we've worked with, tagged by which service they booked — more are on their way as we gather them.</p>
-  <div class="testimonial">
-    <span class="testimonial-tag">Florals + Catering</span>
-    <p>"Working with Blush felt effortless — every detail was considered, from the centerpieces down to the last course."</p>
-    <p class="testimonial-name">Placeholder Client, San Diego</p>
-  </div>
-  <div class="testimonial">
-    <span class="testimonial-tag">Florals Only</span>
-    <p>"Our guests are still talking about the flowers. Exactly the elegant, understated look we wanted."</p>
-    <p class="testimonial-name">Placeholder Client, San Diego</p>
-  </div>
-  <div class="testimonial">
-    <span class="testimonial-tag">Catering Only</span>
-    <p>"We didn't need florals for this one, just the food — and it was some of the best passed bites our guests had at any event this year."</p>
-    <p class="testimonial-name">Placeholder Client, San Diego</p>
-  </div>
+<section class="page-content" style="padding-bottom:50px;">
+  <p>A few words from people we've worked with, tagged by which service they booked.</p>
+</section>
+
+<!--
+  HOW TO ADD A TESTIMONIAL
+  1. Upload the client's photo to assets/images/testimonials/ (e.g. sarah-m.jpg).
+  2. Copy one <article class="review"> block below and paste it inside <div class="reviews">.
+  3. Change the photo file name, alt text, tag (Florals, Catering, or Florals & Catering),
+     the quote, the name, and the event line.
+  To show an empty frame until a photo arrives, use:
+     <div class="review-photo is-empty">Photo</div>
+-->
+
+<div class="reviews">
+
+  <article class="review">
+    <div class="review-photo is-empty">Photo</div>
+    <span class="review-tag">Florals</span>
+    <p class="review-quote">"Placeholder quote. Replace with the client's own words."</p>
+    <hr class="review-rule">
+    <p class="review-name">Client Name</p>
+    <p class="review-event">Event type &middot; San Diego</p>
+  </article>
+
+  <article class="review">
+    <div class="review-photo is-empty">Photo</div>
+    <span class="review-tag">Catering</span>
+    <p class="review-quote">"Placeholder quote. Replace with the client's own words."</p>
+    <hr class="review-rule">
+    <p class="review-name">Client Name</p>
+    <p class="review-event">Event type &middot; San Diego</p>
+  </article>
+
+  <article class="review">
+    <div class="review-photo is-empty">Photo</div>
+    <span class="review-tag">Florals</span>
+    <p class="review-quote">"Placeholder quote. Replace with the client's own words."</p>
+    <hr class="review-rule">
+    <p class="review-name">Client Name</p>
+    <p class="review-event">Event type &middot; San Diego</p>
+  </article>
+
+  <article class="review">
+    <div class="review-photo is-empty">Photo</div>
+    <span class="review-tag">Catering</span>
+    <p class="review-quote">"Placeholder quote. Replace with the client's own words."</p>
+    <hr class="review-rule">
+    <p class="review-name">Client Name</p>
+    <p class="review-event">Event type &middot; San Diego</p>
+  </article>
+
+  <!-- Example of a finished card with a real photo:
+  <article class="review">
+    <div class="review-photo"><img src="assets/images/testimonials/sarah-m.jpg" alt="Sarah M." loading="lazy"></div>
+    <span class="review-tag">Florals</span>
+    <p class="review-quote">"Her exact words go here."</p>
+    <hr class="review-rule">
+    <p class="review-name">Sarah M.</p>
+    <p class="review-event">Bridal Shower &middot; San Diego</p>
+  </article>
+  -->
+
+</div>
+
+<div class="reviews-footer">
   <span class="page-content-note">More reviews coming soon</span>
   <div>
     <a href="index.html" class="page-back-link">Back to Home</a>
   </div>
-</section>
+</div>
 
 <footer>
   <div class="footer-social">
