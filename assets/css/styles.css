@@ -135,10 +135,15 @@
     align-items:center;
     isolation:isolate;
   }
+  .hero-frame{
+    width:100%;
+    max-width:1500px;
+    overflow:hidden;
+    position:relative;
+  }
   .hero-img{
     display:block;
     width:100%;
-    max-width:1500px;
     aspect-ratio:4/3;
     object-fit:cover;
     object-position:center;
@@ -193,7 +198,7 @@
         #FCDFE5 90%,
         #FDE2E7 100%);
     }
-    .hero-img{
+    .hero-frame{
       -webkit-mask-image:linear-gradient(90deg, transparent 0, #000 5%, #000 95%, transparent 100%);
               mask-image:linear-gradient(90deg, transparent 0, #000 5%, #000 95%, transparent 100%);
     }
@@ -293,8 +298,10 @@
   .offering-img--catering{
     background-image:url('../images/catering-card.jpg');
   }
-  .offering-card:hover .offering-img{
-    transform:scale(1.04);
+  @media (hover:hover){
+    .offering-card:hover .offering-img{
+      transform:scale(1.04);
+    }
   }
   .offering-veil{
     position:absolute; inset:0;
@@ -342,8 +349,10 @@
     display:inline-block;
     transition:border-color 0.3s ease, opacity 0.3s ease;
   }
-  .offering-card:hover .offering-link{
-    border-color:#fff;
+  @media (hover:hover){
+    .offering-card:hover .offering-link{
+      border-color:#fff;
+    }
   }
 
 
@@ -813,4 +822,243 @@
     .page-hero{aspect-ratio:4/3;}
     .page-hero-title{font-size:36px;}
     .page-content{padding:56px 24px 70px;}
+  }
+
+  /* ==========================================================================
+     DEPTH + TOUCH LAYER (Nov 2026)
+     Soft rose shadows, paper grain, pressable controls and gentle scroll motion.
+     Interactions use the separate translate / scale properties so they never
+     fight the scroll animations, which use transform.
+     ========================================================================== */
+  :root{
+    --rose-shadow:214,130,140;
+    --spring:cubic-bezier(.34,1.56,.64,1);
+    --ease-out:cubic-bezier(.19,1,.22,1);
+  }
+
+  /* Paper grain: a faint fixed texture so the cream reads as paper stock */
+  body::after{
+    content:"";
+    position:fixed; inset:0;
+    z-index:40;
+    pointer-events:none;
+    opacity:.07;
+    mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* Taps: nav marks give a small spring when pressed */
+  .nav-hamburger, .nav-mark, .offering-card, .footer-social a, .text-us{-webkit-tap-highlight-color:transparent;}
+  .nav-hamburger img, .nav-mark img{transition:opacity .3s ease, scale .25s var(--spring);}
+  .nav-hamburger:active img, .nav-mark:active img{scale:.9;}
+
+  /* Hero: fades in from the studio-wall blush; a soft rose shadow pools under the photo */
+  .hero-frame{
+    background:#FBDCE2;
+    box-shadow:0 40px 70px -48px rgba(var(--rose-shadow),.55);
+  }
+  .hero-headline{text-shadow:0 1px 0 rgba(255,255,255,.9);}
+
+  /* "Discover the Collection" as a pressable pill: raised at rest, lifts on hover, sinks on press */
+  .hero-cta{
+    border:1px solid rgba(255,176,176,.75);
+    border-radius:999px;
+    padding:16px 32px 15px;
+    background:linear-gradient(180deg,#FFFFFF 0%,#FFF3F2 100%);
+    box-shadow:inset 0 1px 0 #fff, inset 0 -2px 0 rgba(255,176,176,.22), 0 1px 2px rgba(var(--rose-shadow),.18), 0 12px 26px -12px rgba(var(--rose-shadow),.55);
+    transition:translate .35s var(--spring), scale .35s var(--spring), box-shadow .35s var(--ease-out), background .2s ease;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .hero-cta:hover{
+    opacity:1;
+    translate:0 -2px;
+    box-shadow:inset 0 1px 0 #fff, inset 0 -2px 0 rgba(255,176,176,.22), 0 2px 4px rgba(var(--rose-shadow),.18), 0 20px 34px -14px rgba(var(--rose-shadow),.6);
+  }
+  .hero-cta:active{
+    translate:0 1px;
+    scale:.985;
+    transition-duration:.08s;
+    background:linear-gradient(180deg,#FFF3F2 0%,#FFFFFF 100%);
+    box-shadow:inset 0 2px 6px rgba(var(--rose-shadow),.25), 0 1px 1px rgba(var(--rose-shadow),.12);
+  }
+
+  /* Letterpress type in the story section */
+  .story-heading{text-shadow:0 1px 0 rgba(255,255,255,.95), 0 -1px 0 rgba(69,58,55,.05);}
+  .story-stat-num{text-shadow:0 1px 0 rgba(255,255,255,.95);}
+
+  /* Stats on two raised paper tiles */
+  .story-stats{gap:22px;}
+  .story-stats > div{
+    min-width:180px;
+    padding:24px 28px 20px;
+    border-radius:6px;
+    background:linear-gradient(180deg,#FFFFFF 0%,#FFF7F6 100%);
+    box-shadow:inset 0 1px 0 #fff, 0 1px 2px rgba(var(--rose-shadow),.12), 0 16px 32px -20px rgba(var(--rose-shadow),.55);
+    transition:translate .4s var(--spring), box-shadow .4s var(--ease-out);
+  }
+  @media (hover:hover){
+    .story-stats > div:hover{
+      translate:0 -3px;
+      box-shadow:inset 0 1px 0 #fff, 0 2px 4px rgba(var(--rose-shadow),.12), 0 24px 40px -22px rgba(var(--rose-shadow),.6);
+    }
+  }
+
+  /* "Do I need to book both?" pressed into the page */
+  .story-faq{
+    display:inline-block;
+    margin-top:28px;
+    padding:12px 24px;
+    border-radius:999px;
+    background:#FFF2F1;
+    box-shadow:inset 0 1px 3px rgba(var(--rose-shadow),.28), 0 1px 0 #fff;
+  }
+
+  /* Offerings lift as one sheet; photo and caption sit on separate planes and drift
+     against the cursor, with a soft blush light following it (mouse only, see depth.js) */
+  .offerings{box-shadow:0 -30px 50px -36px rgba(var(--rose-shadow),.55);}
+  .offering-card{transition:scale .5s var(--spring);}
+  .offering-card:active{scale:.982; transition-duration:.1s;}
+  .offering-img{
+    translate:calc(var(--mx,0) * -22px) calc(var(--my,0) * -16px);
+    scale:1.07;
+    transition:transform .7s var(--ease-out), translate 1s var(--ease-out);
+  }
+  .offering-caption{
+    translate:calc(var(--mx,0) * 10px) calc(var(--my,0) * 8px);
+    transition:translate 1s var(--ease-out);
+  }
+  .offering-veil{
+    background:linear-gradient(180deg, rgba(150,80,92,0) 0%, rgba(150,80,92,0) 48%, rgba(140,72,86,.22) 72%, rgba(120,60,74,.42) 100%);
+  }
+  .offering-veil::after{
+    content:"";
+    position:absolute; inset:0;
+    pointer-events:none;
+    opacity:0;
+    transition:opacity .5s ease;
+    background:radial-gradient(520px circle at var(--lx,50%) var(--ly,40%), rgba(255,226,226,.32), rgba(255,226,226,0) 60%);
+    mix-blend-mode:soft-light;
+  }
+  .offering-title{text-shadow:0 1px 2px rgba(90,40,52,.25), 0 2px 18px rgba(110,50,64,.45);}
+  .offering-eyebrow, .offering-desc{text-shadow:0 1px 2px rgba(90,40,52,.25), 0 1px 14px rgba(110,50,64,.45);}
+  .offering-link{transition:border-color .3s ease, letter-spacing .5s var(--ease-out);}
+  @media (hover:hover){
+    .offering-card:hover .offering-veil::after{opacity:1;}
+    .offering-card:hover .offering-link{letter-spacing:.28em;}
+  }
+
+  /* Footer sits a layer beneath; icons and contact links press like buttons */
+  footer{
+    border-top-color:transparent;
+    box-shadow:inset 0 22px 30px -26px rgba(var(--rose-shadow),.45);
+  }
+  .footer-social a{padding:11px; margin:-11px; border-radius:999px; transition:opacity .3s ease, transform .3s ease, scale .35s var(--spring);}
+  .footer-social a:active{scale:.88; transition-duration:.08s;}
+  .footer-contact a{transition:color .2s ease, border-color .2s ease;}
+  .footer-contact a:active{color:var(--ink); border-color:var(--ink);}
+
+  /* Menu: page links, then a thin rule, then the two bookings as their own pair of buttons */
+  .nav-overlay-main{display:flex; flex-direction:column; align-items:center; gap:30px;}
+  .nav-overlay{gap:28px;}
+  .nav-overlay a{transition:opacity .25s ease, scale .2s var(--spring);}
+  .nav-overlay a:active{scale:.95;}
+  .nav-overlay-rule{display:block; width:56px; height:1px; background:var(--p5); margin:6px 0 2px;}
+  .nav-overlay-label{font-size:10.5px; letter-spacing:.26em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:-10px;}
+  .nav-overlay-book{display:flex; flex-wrap:wrap; justify-content:center; gap:12px; max-width:420px;}
+  .nav-overlay .nav-overlay-book a{
+    font-family:'Work Sans', sans-serif;
+    font-size:11px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    min-height:48px;
+    display:inline-flex;
+    align-items:center;
+    padding:0 24px;
+    border-radius:999px;
+    border:1px solid rgba(255,176,176,.8);
+    background:linear-gradient(180deg,#FFFFFF 0%,#FFF3F2 100%);
+    box-shadow:inset 0 1px 0 #fff, 0 1px 2px rgba(var(--rose-shadow),.15), 0 12px 24px -12px rgba(var(--rose-shadow),.5);
+    transition:translate .35s var(--spring), scale .2s var(--spring), box-shadow .3s var(--ease-out);
+  }
+  .nav-overlay .nav-overlay-book a:hover{opacity:1; translate:0 -2px;}
+  .nav-overlay .nav-overlay-book a:active{scale:.95; transition-duration:.08s; box-shadow:inset 0 2px 6px rgba(var(--rose-shadow),.25);}
+
+  /* "Text us" pill: phones only, one tap to Noor's messages */
+  .text-us{display:none;}
+  @media (max-width:900px){
+    .text-us{
+      display:inline-flex;
+      align-items:center;
+      gap:9px;
+      position:fixed;
+      z-index:60;
+      right:16px;
+      bottom:calc(16px + env(safe-area-inset-bottom, 0px));
+      min-height:48px;
+      padding:0 20px 0 17px;
+      border-radius:999px;
+      border:1px solid rgba(255,176,176,.8);
+      background:linear-gradient(180deg,#FFFFFF 0%,#FFF3F2 100%);
+      color:var(--ink);
+      text-decoration:none;
+      font-family:'Work Sans', sans-serif;
+      font-size:11px;
+      letter-spacing:.2em;
+      text-transform:uppercase;
+      box-shadow:inset 0 1px 0 #fff, inset 0 -2px 0 rgba(255,176,176,.22), 0 2px 4px rgba(var(--rose-shadow),.2), 0 14px 30px -10px rgba(var(--rose-shadow),.6);
+      transition:scale .35s var(--spring), box-shadow .3s var(--ease-out);
+    }
+    .text-us svg{width:17px; height:17px; flex:none;}
+    .text-us:active{scale:.94; transition-duration:.08s; box-shadow:inset 0 2px 6px rgba(var(--rose-shadow),.25), 0 1px 2px rgba(var(--rose-shadow),.15);}
+    body:has(.text-us) footer{padding-bottom:96px;}
+
+    .nav-overlay, .nav-overlay-main{gap:20px;}
+    .story-stats{gap:12px;}
+    .story-stats > div{min-width:0; flex:1 1 0; padding:20px 14px 16px;}
+    .story-faq{border-radius:18px; padding:12px 18px;}
+  }
+
+  /* Motion: load fades and scroll choreography (skipped for reduced-motion users) */
+  @media (prefers-reduced-motion:no-preference){
+    .hero-frame{animation:heroIn 1.2s cubic-bezier(.22,.61,.36,1) both;}
+    .hero-caption{animation:capIn 1s .45s cubic-bezier(.22,.61,.36,1) both;}
+    @keyframes heroIn{from{opacity:0; filter:blur(8px) saturate(.9);} to{opacity:1; filter:none;}}
+    @keyframes capIn{from{opacity:0; transform:translateY(14px);} to{opacity:1; transform:none;}}
+
+    .nav-overlay.open .nav-overlay-main a,
+    .nav-overlay.open .nav-overlay-rule,
+    .nav-overlay.open .nav-overlay-label,
+    .nav-overlay.open .nav-overlay-book{animation:menuIn .7s var(--ease-out) both;}
+    .nav-overlay.open .nav-overlay-main a:nth-child(1){animation-delay:.06s;}
+    .nav-overlay.open .nav-overlay-main a:nth-child(2){animation-delay:.11s;}
+    .nav-overlay.open .nav-overlay-main a:nth-child(3){animation-delay:.16s;}
+    .nav-overlay.open .nav-overlay-main a:nth-child(4){animation-delay:.21s;}
+    .nav-overlay.open .nav-overlay-main a:nth-child(5){animation-delay:.26s;}
+    .nav-overlay.open .nav-overlay-rule{animation-delay:.32s;}
+    .nav-overlay.open .nav-overlay-label{animation-delay:.36s;}
+    .nav-overlay.open .nav-overlay-book{animation-delay:.4s;}
+    @keyframes menuIn{from{opacity:0; transform:translateY(16px);} to{opacity:1; transform:none;}}
+
+    @supports (animation-timeline: view()){
+      nav{animation:navSettle linear both; animation-timeline:scroll(root); animation-range:0 220px;}
+      @keyframes navSettle{
+        from{background:rgba(255,253,251,0); box-shadow:0 0 0 rgba(0,0,0,0);}
+        to{background:rgba(255,253,251,.97); box-shadow:0 1px 0 rgba(69,58,55,.08), 0 14px 30px -22px rgba(214,130,140,.55); padding-top:16px; padding-bottom:16px;}
+      }
+      .hero-img{transform-origin:50% 40%; animation:heroDrift linear both; animation-timeline:scroll(root); animation-range:0 100vh;}
+      @keyframes heroDrift{from{transform:scale(1) translateY(0);} to{transform:scale(1.045) translateY(3%);}}
+
+      .story-eyebrow, .story-heading, .story-body, .story-stats, .hero-headline{
+        animation:rise linear both; animation-timeline:view(); animation-range:entry 0% entry 70%;
+      }
+      .story-faq, .hero-cta{
+        animation:rise linear both; animation-timeline:view(); animation-range:entry 10% entry 85%;
+      }
+      @keyframes rise{from{opacity:0; transform:translateY(26px);} to{opacity:1; transform:none;}}
+      .offering-card{animation:cardRise linear both; animation-timeline:view(); animation-range:entry 0% entry 40%;}
+      @keyframes cardRise{from{opacity:.4; transform:translateY(24px);} to{opacity:1; transform:none;}}
+    }
+  }
+  @media (prefers-reduced-motion:reduce){
+    .offering-img, .offering-caption{translate:none;}
   }
