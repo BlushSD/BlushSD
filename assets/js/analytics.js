@@ -57,6 +57,8 @@ var BLUSH_GA_ID = 'G-NPYPQZMW8L';
       track('email_click', {});
     } else if (/^tel:/.test(href)) {
       track('phone_click', {});
+    } else if (/^sms:/.test(href)) {
+      track('text_click', {});
     }
     // Gallery photos opened
     else if (el.classList.contains('floral-tile') || el.classList.contains('gallery-tile')) {

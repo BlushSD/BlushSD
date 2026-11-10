@@ -769,6 +769,24 @@
     text-transform:uppercase;
     color:var(--ink-soft);
   }
+  .footer-contact{
+    font-size:12.5px;
+    letter-spacing:0.06em;
+    color:var(--ink-soft);
+    margin:-6px 0 16px;
+  }
+  .footer-contact a{
+    color:var(--ink-soft);
+    text-decoration:none;
+    border-bottom:1px solid var(--p5);
+    padding-bottom:1px;
+  }
+  .footer-contact .footer-phone{
+    color:var(--ink);
+    border-bottom:0;
+    margin-left:4px;
+    letter-spacing:0.08em;
+  }
   .footer-social{
     display:flex;
     justify-content:center;
