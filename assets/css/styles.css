@@ -601,6 +601,162 @@
     line-height:1.6;
   }
 
+  /* INQUIRY: sending state, messages and confirmation */
+  .form-turnstile{display:flex; justify-content:center; margin-bottom:20px;}
+  .form-turnstile:empty{display:none;}
+  .form-status{
+    font-size:12.5px;
+    line-height:1.6;
+    color:var(--ink);
+    background:var(--p2);
+    border-left:2px solid var(--p5);
+    border-radius:2px;
+    padding:12px 14px;
+    margin-bottom:20px;
+  }
+  .form-status[hidden],
+  .inquiry-confirm[hidden],
+  .inquiry-confirm [hidden]{display:none;}
+  .inquiry-confirm{
+    max-width:480px;
+    margin:0 auto;
+    padding:80px 32px 100px;
+    text-align:center;
+    outline:none;
+  }
+  .confirm-eyebrow{
+    font-size:11px;
+    letter-spacing:0.28em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:14px;
+  }
+  .confirm-title{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:400;
+    font-size:44px;
+    color:var(--ink);
+    margin-bottom:22px;
+  }
+  .confirm-text{
+    font-weight:300;
+    font-size:15.5px;
+    line-height:1.9;
+    color:var(--ink-soft);
+    margin-bottom:22px;
+  }
+  .confirm-ref{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:10px;
+    background:var(--p1);
+    border:1px solid var(--hairline);
+    border-radius:2px;
+    padding:22px 20px;
+    margin:8px 0 34px;
+  }
+  .confirm-ref-label{
+    font-size:10.5px;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+  .confirm-ref-code{
+    font-family:'Cormorant Garamond', serif;
+    font-size:30px;
+    letter-spacing:0.08em;
+    color:var(--ink);
+    font-variant-numeric:lining-nums tabular-nums;
+    user-select:all;
+  }
+  .confirm-copy{
+    font-family:'Work Sans', sans-serif;
+    font-size:11px;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--ink);
+    background:none;
+    border:none;
+    border-bottom:1px solid var(--p5);
+    padding:0 0 4px;
+    cursor:pointer;
+  }
+  .confirm-copy:hover{opacity:0.6;}
+  .confirm-ig{
+    display:block;
+    text-align:center;
+    text-decoration:none;
+    margin-top:6px;
+  }
+  .ig-help{
+    text-align:left;
+    background:var(--p1);
+    border:1px solid var(--hairline);
+    border-radius:2px;
+    padding:24px 20px;
+    margin-top:6px;
+  }
+  .ig-help-label{
+    font-size:10.5px;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    text-align:center;
+    margin-bottom:12px;
+  }
+  .ig-help-msg{
+    font-size:16px;
+    line-height:1.6;
+    color:var(--ink);
+    background:var(--cream);
+    border:1px solid var(--hairline);
+    border-radius:2px;
+    padding:14px 16px;
+    margin-bottom:22px;
+    user-select:all;
+    -webkit-user-select:all;
+  }
+  .ig-steps{
+    list-style:none;
+    counter-reset:igstep;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    margin:0 0 24px;
+  }
+  .ig-steps li{
+    counter-increment:igstep;
+    display:flex;
+    gap:14px;
+    align-items:baseline;
+    font-size:15.5px;
+    line-height:1.55;
+    color:var(--ink);
+  }
+  .ig-steps li::before{
+    content:counter(igstep);
+    flex:none;
+    font-family:'Cormorant Garamond', serif;
+    font-size:26px;
+    line-height:1;
+    width:18px;
+    color:var(--ink);
+  }
+  .ig-steps li > span{min-width:0;}
+  .ig-steps strong{font-weight:500;}
+  .ig-help .form-submit{
+    display:block;
+    text-align:center;
+    text-decoration:none;
+    font-size:12px;
+    padding:18px;
+  }
+  @media (max-width:900px){
+    .inquiry-confirm{padding:56px 24px 70px;}
+    .confirm-title{font-size:34px;}
+  }
+
   /* FOOTER */
   footer{
     text-align:center;

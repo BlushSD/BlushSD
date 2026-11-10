@@ -61,7 +61,7 @@
   </div>
 </section>
 
-<section class="page-content" style="padding-bottom:40px;">
+<section class="page-content inquiry-intro" style="padding-bottom:40px;">
   <p>Tell us about your event and we'll follow up to talk menu, guest count, and pricing. Booking catering doesn't require florals, too — this is entirely its own service.</p>
 </section>
 <form class="signup-form" action="https://formspree.io/f/xqpkynop" method="POST"
@@ -77,7 +77,7 @@
   </div>
   <div class="form-field">
     <label for="phone">Phone Number</label>
-    <input type="tel" id="phone" name="phone" autocomplete="tel" required>
+    <input type="tel" id="phone" name="phone" autocomplete="tel" inputmode="tel" maxlength="30" required>
   </div>
   <div class="form-field">
     <label for="email">Email <span class="form-optional">(optional)</span></label>
@@ -95,9 +95,37 @@
     <label for="message">Tell Us About Your Event</label>
     <textarea id="message" name="message"></textarea>
   </div>
+  <div class="form-turnstile"></div>
+  <p class="form-status" role="alert" hidden></p>
   <button type="submit" class="form-submit">Send Inquiry</button>
   <p class="form-note">Prefer email? Reach out directly at <strong>noor_peter@yahoo.com</strong>.</p>
 </form>
+
+<section class="inquiry-confirm" tabindex="-1" aria-live="polite" hidden>
+  <p class="confirm-eyebrow">Inquiry Received</p>
+  <h2 class="confirm-title">Thank You</h2>
+  <p class="confirm-text">We&rsquo;ve received your catering inquiry and will be in touch soon, usually by text.</p>
+  <div class="confirm-ref">
+    <span class="confirm-ref-label">Your Reference</span>
+    <span class="confirm-ref-code" data-ref></span>
+    <button type="button" class="confirm-copy" data-copy>Copy</button>
+  </div>
+  <p class="confirm-text">Prefer to chat? Continue your inquiry with us on Instagram. We&rsquo;ll write the first message for you.</p>
+  <button type="button" class="form-submit confirm-ig" data-ig-start>Message Us on Instagram</button>
+
+  <div class="ig-help" data-ig-help hidden>
+    <p class="ig-help-label" data-ig-status>Your message is copied</p>
+    <p class="ig-help-msg" data-ig-msg></p>
+    <ol class="ig-steps">
+      <li><span>Tap <strong>Open Instagram</strong> below.</span></li>
+      <li><span>Press and hold the message box, then tap <strong>Paste</strong>.</span></li>
+      <li><span>Tap <strong>Send</strong>. That&rsquo;s it!</span></li>
+    </ol>
+    <a class="form-submit" href="https://ig.me/m/blush.sd" target="_blank" rel="noopener" data-ig>Open Instagram</a>
+  </div>
+
+  <p class="form-note">On a computer? Message <strong>@blush.sd</strong> from the Instagram app on your phone and include your reference.</p>
+</section>
 
 <footer>
   <div class="footer-social">
@@ -113,6 +141,7 @@
 
 <script src="assets/js/analytics.js"></script>
 <script src="assets/js/nav.js"></script>
+<script src="assets/js/inquiry.js"></script>
 <script src="assets/js/forms.js"></script>
 </body>
 </html>

@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
   Array.prototype.forEach.call(forms, function (form) {
     form.addEventListener('submit', function (e) {
       if (form.dataset.fallback === '1') return; // let the browser submit normally
+      if (form.dataset.managed === '1') return;  // inquiry.js (phone alerts) is sending it
       e.preventDefault();
 
       var button = form.querySelector('[type="submit"]');
