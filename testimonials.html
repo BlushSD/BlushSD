@@ -120,7 +120,11 @@
     font-weight:300;
     color:var(--ink-soft);
   }
+  /* Until the first real review is added, the intro and empty grid hide
+     and the page opens straight onto the invitation below. */
   .reviews:empty{display:none;}
+  .reviews-intro:has(+ .reviews:empty){display:none;}
+  .reviews:empty + .share{padding-top:80px;}
   .reviews:not(:empty) + .share{padding-top:90px;}
 
   /* ---------- Share-your-experience invitation ---------- */
@@ -193,7 +197,7 @@
   </div>
 </section>
 
-<section class="page-content" style="padding-bottom:50px;">
+<section class="page-content reviews-intro" style="padding-bottom:50px;">
   <p>Every event we style is someone's moment. Here is what a few of them had to say, in their own words, tagged by the service they booked.</p>
 </section>
 
