@@ -507,6 +507,7 @@
     margin-bottom:8px;
   }
   .form-field input,
+  .form-field select,
   .form-field textarea{
     width:100%;
     font-family:'Work Sans', sans-serif;
@@ -516,6 +517,62 @@
     border:1px solid var(--hairline);
     border-radius:2px;
     padding:12px 14px;
+  }
+  .form-field select{
+    appearance:none;
+    -webkit-appearance:none;
+    background-image:linear-gradient(45deg, transparent 50%, var(--ink-soft) 50%), linear-gradient(135deg, var(--ink-soft) 50%, transparent 50%);
+    background-position:calc(100% - 20px) 50%, calc(100% - 15px) 50%;
+    background-size:5px 5px, 5px 5px;
+    background-repeat:no-repeat;
+    padding-right:40px;
+  }
+  .form-optional{
+    letter-spacing:0.08em;
+    text-transform:none;
+    color:var(--p5);
+  }
+  .form-check{
+    display:flex;
+    gap:12px;
+    align-items:flex-start;
+    margin:4px 0 26px;
+    font-size:13px;
+    line-height:1.6;
+    color:var(--ink-soft);
+  }
+  .form-check input{
+    margin-top:4px;
+    accent-color:var(--ink);
+    flex-shrink:0;
+  }
+  .form-submit:disabled{opacity:0.6; cursor:default;}
+  .form-thanks{
+    max-width:480px;
+    margin:0 auto;
+    padding:10px 32px 100px;
+    text-align:center;
+  }
+  .form-thanks-eyebrow{
+    font-size:10.5px;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:var(--p5);
+    margin-bottom:14px;
+  }
+  .form-thanks-title{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:400;
+    font-size:32px;
+    line-height:1.25;
+    color:var(--ink);
+    margin-bottom:16px;
+  }
+  .form-thanks-body{
+    font-weight:300;
+    font-size:15px;
+    line-height:1.8;
+    color:var(--ink-soft);
   }
   .form-field textarea{
     min-height:110px;
