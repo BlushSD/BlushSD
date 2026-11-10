@@ -69,6 +69,11 @@ var BLUSH_GA_ID = 'G-NPYPQZMW8L';
     var form = e.target;
     if (!form.classList.contains('signup-form')) return;
     var type = form.querySelector('input[name="form_type"]');
+    // Testimonials are counted separately so they never inflate inquiry numbers.
+    if (type && type.value === 'Testimonial') {
+      track('testimonial_submit', { transport_type: 'beacon' });
+      return;
+    }
     track('inquiry_submit', {
       service: serviceFrom(type ? type.value : location.pathname),
       transport_type: 'beacon'
