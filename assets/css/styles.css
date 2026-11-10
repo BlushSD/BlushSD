@@ -1062,3 +1062,144 @@
   @media (prefers-reduced-motion:reduce){
     .offering-img, .offering-caption{translate:none;}
   }
+
+  /* ==========================================================================
+     DEPTH + TOUCH LAYER — inner pages
+     (about, florals, catering, testimonials, both inquiry forms, 404)
+     ========================================================================== */
+
+  /* Page heroes: fade in from blush, lighter rose veil, soft shadow underneath,
+     slow drift on scroll */
+  .page-hero{
+    background:#FBDCE2;
+    box-shadow:0 34px 60px -44px rgba(var(--rose-shadow),.55);
+  }
+  .page-hero-veil{
+    background:linear-gradient(180deg, rgba(120,60,74,.16) 0%, rgba(120,60,74,.32) 100%);
+  }
+  .page-hero-title{text-shadow:0 1px 2px rgba(90,40,52,.25), 0 2px 18px rgba(110,50,64,.45);}
+  .page-hero-eyebrow{text-shadow:0 1px 2px rgba(90,40,52,.25), 0 1px 12px rgba(110,50,64,.4);}
+
+  /* Main page buttons ("Request a Floral Quote", "Book Catering", "Back to Home")
+     become the same pressable pill as "Discover the Collection" */
+  .page-back-link{
+    border:1px solid rgba(255,176,176,.75);
+    border-radius:999px;
+    padding:16px 30px 15px;
+    background:linear-gradient(180deg,#FFFFFF 0%,#FFF3F2 100%);
+    box-shadow:inset 0 1px 0 #fff, inset 0 -2px 0 rgba(255,176,176,.22), 0 1px 2px rgba(var(--rose-shadow),.18), 0 12px 26px -12px rgba(var(--rose-shadow),.55);
+    transition:translate .35s var(--spring), scale .35s var(--spring), box-shadow .35s var(--ease-out), background .2s ease;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .page-back-link:hover{
+    opacity:1;
+    translate:0 -2px;
+    box-shadow:inset 0 1px 0 #fff, inset 0 -2px 0 rgba(255,176,176,.22), 0 2px 4px rgba(var(--rose-shadow),.18), 0 20px 34px -14px rgba(var(--rose-shadow),.6);
+  }
+  .page-back-link:active{
+    translate:0 1px;
+    scale:.985;
+    transition-duration:.08s;
+    background:linear-gradient(180deg,#FFF3F2 0%,#FFFFFF 100%);
+    box-shadow:inset 0 2px 6px rgba(var(--rose-shadow),.25), 0 1px 1px rgba(var(--rose-shadow),.12);
+  }
+
+  /* Photo galleries (florals + catering): each photo is a raised print that
+     lifts on hover and presses in on tap */
+  .floral-tile, .gallery-tile{
+    box-shadow:0 1px 2px rgba(var(--rose-shadow),.14), 0 18px 34px -22px rgba(var(--rose-shadow),.6);
+    transition:translate .45s var(--spring), scale .3s var(--spring), box-shadow .45s var(--ease-out);
+    -webkit-tap-highlight-color:transparent;
+  }
+  @media (hover:hover){
+    .floral-tile:hover, .gallery-tile:hover{
+      translate:0 -4px;
+      box-shadow:0 2px 4px rgba(var(--rose-shadow),.14), 0 28px 44px -24px rgba(var(--rose-shadow),.65);
+    }
+  }
+  .floral-tile:active, .gallery-tile:active{scale:.985; transition-duration:.1s;}
+  .floral-gallery-note a, .gallery-note a{display:inline-block; transition:opacity .25s ease, scale .2s var(--spring);}
+  .floral-gallery-note a:active, .gallery-note a:active{scale:.95;}
+
+  /* Photo viewer: the photo settles in instead of appearing; arrows press */
+  .floral-lightbox button, .gallery-lightbox button{transition:opacity .25s ease, scale .2s var(--spring); -webkit-tap-highlight-color:transparent;}
+  .floral-lightbox button:active, .gallery-lightbox button:active{scale:.88;}
+  .floral-lightbox img, .gallery-lightbox img{box-shadow:0 2px 6px rgba(var(--rose-shadow),.15), 0 30px 70px -20px rgba(var(--rose-shadow),.45);}
+
+  /* Testimonials: each card is a raised sheet of paper; the tag is pressed in */
+  .reviews .review{
+    border-color:transparent;
+    background:linear-gradient(180deg,#FFFFFF 0%,#FFFAF9 100%);
+    box-shadow:inset 0 1px 0 #fff, 0 1px 2px rgba(var(--rose-shadow),.12), 0 22px 40px -26px rgba(var(--rose-shadow),.6);
+    transition:translate .45s var(--spring), box-shadow .45s var(--ease-out);
+  }
+  @media (hover:hover){
+    .reviews .review:hover{
+      translate:0 -4px;
+      box-shadow:inset 0 1px 0 #fff, 0 2px 4px rgba(var(--rose-shadow),.12), 0 30px 50px -28px rgba(var(--rose-shadow),.65);
+    }
+  }
+  .reviews .review-photo{box-shadow:0 0 0 4px var(--cream), 0 0 0 5px var(--p4), 0 12px 22px -12px rgba(var(--rose-shadow),.6);}
+  .reviews .review-tag{border-color:transparent; background:#FFF2F1; box-shadow:inset 0 1px 3px rgba(var(--rose-shadow),.28), 0 1px 0 #fff;}
+  .reviews .review-quote{text-shadow:0 1px 0 rgba(255,255,255,.95);}
+
+  /* Inquiry forms: fields are pressed into the page and glow softly when tapped;
+     the Send button is a raised object that sinks when pressed */
+  .form-field input,
+  .form-field select,
+  .form-field textarea{
+    border-color:rgba(255,176,176,.45);
+    border-radius:4px;
+    box-shadow:inset 0 1px 3px rgba(var(--rose-shadow),.22), 0 1px 0 #fff;
+    transition:border-color .2s ease, box-shadow .25s ease, background-color .2s ease;
+  }
+  .form-field input:focus,
+  .form-field select:focus,
+  .form-field textarea:focus{
+    outline:none;
+    border-color:var(--p5);
+    background-color:#FFF4F3;
+    box-shadow:inset 0 1px 3px rgba(var(--rose-shadow),.18), 0 0 0 3px rgba(255,176,176,.35);
+  }
+  .form-submit{
+    border-radius:4px;
+    background:linear-gradient(180deg,#54473F 0%,var(--ink) 100%);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.14), 0 2px 4px rgba(69,58,55,.18), 0 14px 26px -14px rgba(69,58,55,.55);
+    transition:opacity .3s ease, translate .3s var(--spring), scale .3s var(--spring), box-shadow .3s var(--ease-out);
+    -webkit-tap-highlight-color:transparent;
+  }
+  .form-submit:hover{opacity:1; translate:0 -2px; box-shadow:inset 0 1px 0 rgba(255,255,255,.14), 0 3px 6px rgba(69,58,55,.18), 0 20px 32px -16px rgba(69,58,55,.6);}
+  .form-submit:active{translate:0 1px; scale:.985; transition-duration:.08s; box-shadow:inset 0 2px 6px rgba(0,0,0,.25), 0 1px 1px rgba(69,58,55,.15);}
+  .form-submit:disabled{translate:none; scale:1;}
+  .form-status{border-radius:4px; box-shadow:inset 0 1px 3px rgba(var(--rose-shadow),.2);}
+
+  /* After sending: the reference code sits on a raised tile; the Instagram
+     message is pressed in; Copy springs when tapped */
+  .confirm-title, .form-thanks-title{text-shadow:0 1px 0 rgba(255,255,255,.95);}
+  .confirm-ref{
+    border-color:transparent;
+    border-radius:6px;
+    background:linear-gradient(180deg,#FFFFFF 0%,#FFF7F6 100%);
+    box-shadow:inset 0 1px 0 #fff, 0 1px 2px rgba(var(--rose-shadow),.12), 0 18px 34px -22px rgba(var(--rose-shadow),.6);
+  }
+  .confirm-copy{transition:opacity .25s ease, scale .2s var(--spring);}
+  .confirm-copy:active{scale:.92;}
+  .ig-help{border-color:transparent; border-radius:6px; box-shadow:inset 0 1px 0 #fff, 0 1px 2px rgba(var(--rose-shadow),.12), 0 18px 34px -22px rgba(var(--rose-shadow),.55);}
+  .ig-help-msg{border-color:transparent; border-radius:4px; box-shadow:inset 0 1px 3px rgba(var(--rose-shadow),.25), 0 1px 0 #fff;}
+
+  @media (prefers-reduced-motion:no-preference){
+    .page-hero{animation:heroIn 1.2s cubic-bezier(.22,.61,.36,1) both;}
+    .page-hero-caption{animation:capIn 1s .4s cubic-bezier(.22,.61,.36,1) both;}
+    .floral-lightbox.is-open img, .gallery-lightbox.is-open img{animation:viewerIn .5s var(--ease-out) both;}
+    @keyframes viewerIn{from{opacity:0; transform:scale(.97);} to{opacity:1; transform:none;}}
+    .inquiry-confirm:not([hidden]){animation:capIn .7s var(--ease-out) both;}
+
+    @supports (animation-timeline: view()){
+      .page-hero img{transform-origin:50% 40%; animation:heroDrift linear both; animation-timeline:scroll(root); animation-range:0 80vh;}
+      .page-content > p, .page-content > h1, .page-content > div,
+      .floral-tile, .gallery-tile, .floral-gallery-note, .gallery-note,
+      .reviews .review, .reviews-footer{
+        animation:rise linear both; animation-timeline:view(); animation-range:entry 0% entry 60%;
+      }
+    }
+  }

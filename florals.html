@@ -64,9 +64,11 @@
     object-fit: cover;
     transition: transform 0.9s ease, opacity 0.6s ease;
   }
-  .floral-tile:hover img,
   .floral-tile:focus-visible img {
     transform: scale(1.03);
+  }
+  @media (hover: hover) {
+    .floral-tile:hover img { transform: scale(1.03); }
   }
   .floral-tile:focus-visible {
     outline: 1px solid var(--ink, #3a2a2a);
