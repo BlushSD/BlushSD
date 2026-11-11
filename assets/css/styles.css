@@ -1225,3 +1225,46 @@
   .gallery-note a::before,
   .form-note a::before,
   .page-content p a::before{content:""; position:absolute; inset:-13px -6px;}
+
+  /* ==========================================================================
+     BLUSH VEIL — page transition (see assets/js/transitions.js)
+     ========================================================================== */
+  .page-veil{
+    position:fixed; left:0; right:0; top:0;
+    height:100vh; height:100lvh;
+    z-index:500;
+    pointer-events:none;
+    display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(180deg,#FCE4E8 0%,#F9D6DC 100%);
+    transform:translateY(115%);
+    will-change:transform;
+  }
+  .page-veil::before, .page-veil::after{
+    content:""; position:absolute; left:-15%; right:-15%; height:140px; border-radius:50%;
+  }
+  .page-veil::before{top:-68px; background:#FCE4E8;}
+  .page-veil::after{bottom:-68px; background:#F9D6DC;}
+  .page-veil img{position:relative; height:54px; width:auto; opacity:0; filter:drop-shadow(0 1px 3px rgba(0,0,0,.12));}
+  @media (max-width:900px){ .page-veil img{height:44px;} }
+
+  /* Leaving: the sheet rises and the logo appears */
+  .page-veil.is-cover{animation:pageVeilUp .62s cubic-bezier(.7,0,.25,1) forwards;}
+  .page-veil.is-cover img{animation:pageVeilMarkIn .45s .3s ease forwards;}
+
+  /* Arriving: page starts covered (logo showing). The delayed lift is a
+     safety net in case the script doesn't run. */
+  html.veil-arriving .page-veil{transform:none; animation:pageVeilAway .66s cubic-bezier(.65,0,.3,1) 2.5s forwards;}
+  html.veil-arriving .page-veil img{opacity:1;}
+
+  /* Lifting away once the page is ready */
+  .page-veil.is-reveal{transform:none; animation:pageVeilAway .66s cubic-bezier(.65,0,.3,1) forwards;}
+  .page-veil.is-reveal img{opacity:1; animation:pageVeilMarkOut .3s ease forwards;}
+
+  @keyframes pageVeilUp{from{transform:translateY(115%);} to{transform:translateY(0);}}
+  @keyframes pageVeilAway{from{transform:translateY(0);} to{transform:translateY(-115%);}}
+  @keyframes pageVeilMarkIn{from{opacity:0; transform:scale(.92);} to{opacity:1; transform:none;}}
+  @keyframes pageVeilMarkOut{from{opacity:1;} to{opacity:0; transform:scale(1.04);}}
+
+  @media (prefers-reduced-motion:reduce){
+    .page-veil{display:none;}
+  }
