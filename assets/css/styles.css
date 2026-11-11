@@ -1244,7 +1244,12 @@
   }
   .page-veil::before{top:-68px; background:#FCE4E8;}
   .page-veil::after{bottom:-68px; background:#F9D6DC;}
-  .page-veil img{position:relative; height:104px; width:auto; opacity:0; filter:drop-shadow(0 2px 5px rgba(0,0,0,.12));}
+  .page-veil img{
+    position:absolute; left:50%; top:50%;
+    top:50dvh; /* middle of the part of the screen you can actually see (phones) */
+    translate:-50% -50%;
+    height:104px; width:auto; opacity:0; filter:drop-shadow(0 2px 5px rgba(0,0,0,.12));
+  }
   @media (max-width:900px){ .page-veil img{height:44px;} }
 
   /* Leaving: the sheet rises and the logo appears */
