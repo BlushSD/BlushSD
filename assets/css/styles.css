@@ -442,6 +442,15 @@
     padding-bottom:5px;
   }
   .page-back-link:hover{opacity:0.6;}
+  .page-content p.about-closing{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-weight:400;
+    font-size:22px;
+    line-height:1.5;
+    color:var(--ink);
+    margin-top:34px;
+  }
 
   /* TESTIMONIAL CARDS */
   .testimonial{
