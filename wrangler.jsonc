@@ -1,0 +1,18 @@
+// Cloudflare hosting for blushsd.com
+// Cloudflare watches this GitHub repo: every push to main redeploys the site
+// automatically (usually within a minute). No build step; the files are served as-is.
+{
+  "name": "blushsd",
+  "main": "site-worker.js",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": "./",
+    "binding": "ASSETS",
+    // Keep URLs exactly as they are today (about.html, florals.html, ...)
+    "html_handling": "none",
+    // Unknown addresses show the "This page has wilted." page
+    "not_found_handling": "404-page",
+    // The helper script only runs for the homepage address
+    "run_worker_first": ["/"]
+  }
+}

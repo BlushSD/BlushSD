@@ -1,0 +1,11 @@
+# Files in the repo that should NOT be published as part of the website
+.git
+.github
+.assetsignore
+wrangler.jsonc
+wrangler.toml
+CNAME
+worker
+README*
+node_modules
+site-worker.js
