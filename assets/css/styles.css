@@ -1212,3 +1212,16 @@
       }
     }
   }
+
+  /* Bigger tap areas (invisible) so small text links are easy to hit on a phone */
+  .nav-hamburger{padding:12px; margin:-12px;}
+  .footer-contact a,
+  .floral-gallery-note a,
+  .gallery-note a,
+  .form-note a,
+  .page-content p a{position:relative;}
+  .footer-contact a::before,
+  .floral-gallery-note a::before,
+  .gallery-note a::before,
+  .form-note a::before,
+  .page-content p a::before{content:""; position:absolute; inset:-13px -6px;}
