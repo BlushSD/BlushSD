@@ -1139,7 +1139,7 @@
       box-shadow:inset 0 1px 0 #fff, 0 2px 4px rgba(var(--rose-shadow),.12), 0 30px 50px -28px rgba(var(--rose-shadow),.65);
     }
   }
-  .reviews .review-photo{box-shadow:0 0 0 4px var(--cream), 0 0 0 5px var(--p4), 0 12px 22px -12px rgba(var(--rose-shadow),.6);}
+  .reviews .review-photo{box-shadow:inset 0 -1px 0 rgba(var(--rose-shadow),.18);}
   .reviews .review-tag{border-color:transparent; background:#FFF2F1; box-shadow:inset 0 1px 3px rgba(var(--rose-shadow),.28), 0 1px 0 #fff;}
   .reviews .review-quote{text-shadow:0 1px 0 rgba(255,255,255,.95);}
 
