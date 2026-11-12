@@ -10,12 +10,15 @@
  *   TURNSTILE_SECRET   secret — Turnstile secret key
  *   IP_HASH_SALT       secret — any long random string
  *   TELEGRAM_BOT_TOKEN secret — from @BotFather
- *   TELEGRAM_CHAT_IDS  variable — who gets alerts, comma-separated chat IDs (e.g. Noor's)
+ *   TELEGRAM_CHAT_IDS_FLORALS   variable — who gets FLORAL alerts, comma-separated chat IDs (Noor)
+ *   TELEGRAM_CHAT_IDS_CATERING  variable — who gets CATERING alerts, comma-separated chat IDs (Noor, Aseel)
+ *   TELEGRAM_CHAT_IDS           variable — optional fallback for any type without its own list
  *   ALLOWED_ORIGINS    variable — comma-separated, e.g. https://blushsd.com,https://www.blushsd.com
  *   IG_USERNAME        variable — blush.sd
  *   RETENTION_DAYS     variable — optional, default 365
  *
- * Phone alerts: each new inquiry is sent to Noor's phone through a Telegram bot
+ * Phone alerts: each new inquiry is sent through a Telegram bot to the phones on
+ * that service's list (florals → Noor; catering → Noor and Aseel)
  * (free). If that fails, the scheduled job retries. The email copy is sent by the
  * website itself through Formspree, so either channel works without the other.
  *
@@ -254,7 +257,7 @@ async function notifyOwner(env, reference) {
   ).bind(reference).first();
   if (!row) return true;
 
-  const ok = await sendTelegram(env, formatAlert(row));
+  const ok = await sendTelegram(env, formatAlert(row), row.service);
   if (ok) {
     await env.DB.prepare(
       `UPDATE inquiries SET notified_at = strftime('%Y-%m-%dT%H:%M:%SZ', 'now'), notify_attempts = notify_attempts + 1
@@ -279,11 +282,21 @@ async function retryNotifications(env) {
   }
 }
 
-// Sends to every chat in TELEGRAM_CHAT_IDS. Succeeds if at least one arrives,
-// so a second recipient (e.g. Aiden) being unreachable never blocks Noor's alert.
-async function sendTelegram(env, html) {
+// Who gets an alert: the service's own list (TELEGRAM_CHAT_IDS_FLORALS or
+// TELEGRAM_CHAT_IDS_CATERING), else the shared TELEGRAM_CHAT_IDS list.
+function chatsFor(env, service) {
+  const own = service === 'florals' ? env.TELEGRAM_CHAT_IDS_FLORALS
+    : service === 'catering' ? env.TELEGRAM_CHAT_IDS_CATERING
+    : '';
+  const list = String(own || env.TELEGRAM_CHAT_IDS || '');
+  return [...new Set(list.split(',').map((s) => s.trim()).filter(Boolean))];
+}
+
+// Sends to every chat on the list. Succeeds if at least one arrives, so one
+// person's phone being unreachable never blocks the other's alert.
+async function sendTelegram(env, html, service) {
   const token = env.TELEGRAM_BOT_TOKEN;
-  const chats = String(env.TELEGRAM_CHAT_IDS || '').split(',').map((s) => s.trim()).filter(Boolean);
+  const chats = chatsFor(env, service);
   if (!token || !chats.length) {
     console.error('Telegram is not configured');
     return false;

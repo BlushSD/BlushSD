@@ -42,7 +42,17 @@ If anything ever goes wrong later, Part H turns the new system off in one edit.
     That number is **Noor's chat ID**. Write it down.
     (Empty result? Send the bot another message from Noor's phone and refresh.)
 
-*Want alerts too?* Do step 8 from your own Telegram and note your chat ID as well.
+**Link Aseel's phone too** (she gets every catering inquiry)
+11. Aseel does step 8 on her phone: open Telegram, search the bot's username, tap **Start**,
+    send "hi".
+12. Refresh the `getUpdates` page from step 9. There's now a second `"chat":{"id":` number,
+    next to Aseel's name (`"first_name"`). That's **Aseel's chat ID**. Write it down.
+
+Who gets what:
+- **Floral inquiries** → Noor
+- **Catering inquiries** → Noor and Aseel
+
+*Want alerts too?* Do step 8 from your own Telegram and add your chat ID to either list.
 
 ## Part B — Spam check (Turnstile) · Cloudflare dashboard
 
@@ -71,7 +81,8 @@ If anything ever goes wrong later, Part H turns the new system off in one edit.
 | Text   | `ALLOWED_ORIGINS`    | `https://blushsd.com,https://www.blushsd.com` |
 | Text   | `IG_USERNAME`        | `blush.sd` |
 | Text   | `RETENTION_DAYS`     | `365` |
-| Text   | `TELEGRAM_CHAT_IDS`  | Noor's chat ID from Part A (add yours after a comma if you want alerts too: `7123456789, 5550001111`) |
+| Text   | `TELEGRAM_CHAT_IDS_FLORALS`  | Noor's chat ID, e.g. `7123456789` |
+| Text   | `TELEGRAM_CHAT_IDS_CATERING` | Noor's and Aseel's chat IDs, comma between: `7123456789, 5550001111` |
 | Secret | `TELEGRAM_BOT_TOKEN` | the bot token from Part A |
 | Secret | `TURNSTILE_SECRET`   | the Turnstile secret key from Part B |
 | Secret | `IP_HASH_SALT`       | any long random string, 32+ characters (a password generator works) |
@@ -105,6 +116,7 @@ name, email and phone number. Check each box:
 
 - [ ] The Blush "Thank You" page appears with a reference number
 - [ ] Noor's phone buzzes with the Telegram alert, details correct, phone number tappable
+- [ ] Aseel's phone does **not** buzz for florals (it should for the catering test)
 - [ ] The email arrives with "New Florals Inquiry BL-…" in the subject
 - [ ] "Message Us on Instagram" shows the copied message and steps; "Open Instagram"
       opens a chat with @blush.sd and Paste works
@@ -115,7 +127,7 @@ name, email and phone number. Check each box:
 Repeat with **Book Catering**. Then delete the test rows if you like:
 `DELETE FROM inquiries WHERE email = 'your@email.com';`
 
-**If the alert doesn't arrive:** re-check the chat ID and token, and that Noor tapped Start.
+**If the alert doesn't arrive:** re-check the chat IDs and token, and that Noor (and Aseel) tapped Start.
 **If the email doesn't arrive:** re-check Part E (reCAPTCHA off).
 
 ## Part H — Turning it off (if ever needed)
