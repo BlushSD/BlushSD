@@ -1273,3 +1273,17 @@
   @media (prefers-reduced-motion:reduce){
     .page-veil{display:none;}
   }
+
+  /* iPhone: date picker field was wider and taller than the other fields */
+  .form-field input[type="date"]{
+    -webkit-appearance:none;
+    appearance:none;
+    display:block;
+    width:100%;
+    max-width:100%;
+    min-width:0;
+    min-height:42px;
+    line-height:1.2;
+    text-align:left;
+  }
+  .form-field input[type="date"]::-webkit-date-and-time-value{text-align:left;}

@@ -116,11 +116,11 @@
       var field = form.elements[first === 'event_date' ? 'event-date' : first];
       if (field && field.focus) field.focus();
     } else if (status === 429) {
-      showStatus('We’ve received several inquiries from you already. Please text us directly at (619) 504-2175.');
+      showStatus('We’ve received several inquiries from you already. Please email us directly at blushsd619@gmail.com.');
     } else if (status === 403) {
       showStatus('We couldn’t confirm your submission. Please try again in a moment.');
     } else {
-      showStatus('Something went wrong. Please try again, or text us at (619) 504-2175.');
+      showStatus('Something went wrong. Please try again, or email us at blushsd619@gmail.com.');
     }
   }
 
