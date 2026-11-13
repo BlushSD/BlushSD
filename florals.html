@@ -77,16 +77,6 @@
   }
   .tile-landscape { aspect-ratio: 3 / 2; }
 
-  /* Third block: two wide photos stacked on the left, one tall photo on the right */
-  .floral-trio {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto;
-    gap: 14px;
-    margin-top: 14px;
-  }
-  .floral-trio .tile-portrait { grid-column: 2; grid-row: 1 / span 2; }
-  .tile-portrait { aspect-ratio: 3 / 4; height: 100%; }
 
   .floral-gallery-note {
     text-align: center;
@@ -106,13 +96,11 @@
   @media (max-width: 760px) {
     .floral-gallery { padding: 0 16px; }
     .floral-feature,
-    .floral-row,
-    .floral-trio {
+    .floral-row {
       grid-template-columns: 1fr;
       gap: 12px;
     }
-    .floral-row, .floral-trio { margin-top: 12px; }
-    .floral-trio .tile-portrait { grid-column: auto; grid-row: auto; height: auto; }
+    .floral-row { margin-top: 12px; }
   }
 
   /* ---------- Lightbox (light blush backdrop, no dark overlay) ---------- */
@@ -227,11 +215,11 @@
     </button>
   </div>
 
-  <div class="floral-trio">
+  <div class="floral-row">
     <button class="floral-tile tile-landscape" type="button">
       <img src="assets/images/floral-06.jpg" alt="Bright mix of pink, yellow and lavender roses with peach gerberas and magenta dahlias in a cream ceramic vase" loading="lazy">
     </button>
-    <button class="floral-tile tile-portrait" type="button">
+    <button class="floral-tile tile-landscape" type="button">
       <img src="assets/images/floral-07.jpg" alt="Tall arrangement of red and lavender roses, pink anthurium, green hydrangea, apples and artichoke beside a figurine holding a golden apple" loading="lazy">
     </button>
     <button class="floral-tile tile-landscape" type="button">
