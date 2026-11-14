@@ -12,7 +12,7 @@
   // ===== SETTING: the Turnstile site key (public — safe to be in this file) =====
   // While this says REPLACE_ME the new system stays OFF and the forms keep
   // using Formspree exactly as before. Fill it in last (worker/SETUP.md, Part F).
-  var TURNSTILE_SITE_KEY = 'REPLACE_ME';
+  var TURNSTILE_SITE_KEY = '0x4AAAAAAF-ye9RkbMsUHUEL';
 
   var form = document.querySelector('form.signup-form');
   if (!form || /REPLACE_ME/.test(API + TURNSTILE_SITE_KEY) || !window.fetch || !window.JSON || !window.Promise) return;
