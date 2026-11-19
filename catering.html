@@ -42,8 +42,19 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 14px;
   }
+  /* A lone photo on the last row sits centered instead of hanging left */
+  @media (min-width: 1001px) {
+    .catering-grid > .gallery-tile:last-child:nth-child(3n+1) { grid-column: 2; }
+  }
   @media (max-width: 1000px) {
     .catering-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (min-width: 761px) and (max-width: 1000px) {
+    .catering-grid > .gallery-tile:last-child:nth-child(odd) {
+      grid-column: 1 / -1;
+      justify-self: center;
+      width: calc(50% - 7px);
+    }
   }
   .gallery-tile {
     display: block;
@@ -214,6 +225,18 @@
     </button>
     <button class="gallery-tile" type="button">
       <img src="assets/images/catering-09.jpg" alt="Chocolate drizzled over a dessert cup of banana, pistachio crumble, strawberry and a blue macaron" loading="lazy">
+    </button>
+    <button class="gallery-tile" type="button">
+      <img src="assets/images/catering-10.jpg" alt="Edible garden scene with a cottage, trees and flowers on a gold tray, set with layered dessert cups" loading="lazy">
+    </button>
+    <button class="gallery-tile" type="button">
+      <img src="assets/images/catering-11.jpg" alt="Mint scalloped tray of bite-size falafel on clear tasting spoons, each with a gold Blush pick" loading="lazy">
+    </button>
+    <button class="gallery-tile" type="button">
+      <img src="assets/images/catering-12.jpg" alt="Iced coffee in tilted glass tubes resting in crushed ice in martini glasses on a black tray" loading="lazy">
+    </button>
+    <button class="gallery-tile" type="button">
+      <img src="assets/images/catering-13.jpg" alt="Long black tray of grilled chicken skewers surrounded by glowing faux firewood logs" loading="lazy">
     </button>
   </div>
 
