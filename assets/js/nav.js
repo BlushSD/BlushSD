@@ -49,3 +49,20 @@ document.addEventListener('DOMContentLoaded', function () {
     if (taps >= 3) { taps = 0; window.location.href = 'owner.html'; }
   });
 });
+
+// Image protection: blocks right-click "Save Image" and dragging photos
+// off the page. Works for photos added later too (galleries, lightboxes).
+(function () {
+  function isImg(t) { return t && t.tagName === 'IMG'; }
+  document.addEventListener('contextmenu', function (e) {
+    if (isImg(e.target)) e.preventDefault();
+  });
+  document.addEventListener('dragstart', function (e) {
+    if (isImg(e.target)) e.preventDefault();
+  });
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('img').forEach(function (img) {
+      img.setAttribute('draggable', 'false');
+    });
+  });
+})();
