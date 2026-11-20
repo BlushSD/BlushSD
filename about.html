@@ -30,6 +30,32 @@
 <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
 <link rel="stylesheet" href="assets/css/styles.css">
 <script>try{if(sessionStorage.getItem("blushVeil"))document.documentElement.classList.add("veil-arriving")}catch(e){}</script>
+<style>
+/* ── About page: owners portrait ── */
+.about-portrait{
+  margin:0 auto 40px;
+  max-width:420px;
+}
+.about-portrait img{
+  display:block;
+  width:100%;
+  height:auto;
+  aspect-ratio:1/1;
+  object-fit:cover;
+  box-shadow:0 1px 2px rgba(var(--rose-shadow),.12), 0 24px 44px -26px rgba(var(--rose-shadow),.6);
+}
+.about-portrait figcaption{
+  margin-top:16px;
+  text-align:center;
+  font-size:10.5px;
+  letter-spacing:0.22em;
+  text-transform:uppercase;
+  color:var(--p5);
+}
+@media (max-width:760px){
+  .about-portrait{max-width:320px;margin-bottom:32px;}
+}
+</style>
 </head>
 <body>
 <div class="page-veil" aria-hidden="true"><img src="assets/images/logo-wordmark.png" alt=""></div>
@@ -71,7 +97,7 @@
 
 <section class="page-content">
   <figure class="about-portrait">
-    <img src="assets/images/about-owners.jpg" alt="The two owners of Blush SD smiling together in black blazers" width="1000" height="1000">
+    <img src="assets/images/about-owners.jpg" alt="The two owners of Blush SD smiling together in black blazers" width="1000" height="1000" style="max-width:100%;height:auto;">
     <figcaption>The women behind Blush</figcaption>
   </figure>
   <p>At Blush, we believe life&rsquo;s most meaningful moments deserve to be celebrated beautifully. What began as a dream fueled by passion, creativity, and a love for bringing people together has blossomed into a catering experience centered around thoughtful details and unforgettable memories.</p>
