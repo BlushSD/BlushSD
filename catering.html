@@ -28,7 +28,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
-<link rel="stylesheet" href="assets/css/styles.css?v=20261120b">
+<link rel="stylesheet" href="assets/css/styles.css?v=20261120c">
 <script>try{if(sessionStorage.getItem("blushVeil"))document.documentElement.classList.add("veil-arriving")}catch(e){}</script>
 <style>
   /* ---------- Catering gallery ---------- */
@@ -149,6 +149,36 @@
     .lightbox-next { right: 30%; }
   }
 
+  /* ---------- How We Serve ---------- */
+  .serve{ padding-top:76px; padding-bottom:0; }
+  .serve-eyebrow{
+    font-size:11px; letter-spacing:0.28em; text-transform:uppercase;
+    color:var(--ink-soft); margin-bottom:12px !important;
+  }
+  .serve-heading{
+    font-family:'Cormorant Garamond', serif; font-weight:400;
+    font-size:38px; line-height:1.2; color:var(--ink); margin-bottom:8px;
+  }
+  .serve-lede{
+    font-family:'Cormorant Garamond', serif !important; font-style:italic;
+    font-size:20px !important; line-height:1.5 !important; color:var(--ink-soft);
+  }
+  .serve-item{ margin-top:40px; }
+  .serve-item h3{
+    font-family:'Cormorant Garamond', serif; font-weight:400;
+    font-size:26px; color:var(--ink); margin-bottom:12px;
+  }
+  .serve-item p{ margin-bottom:0; }
+  .serve-rule{
+    display:block; width:44px; height:1px; margin:40px auto 0;
+    background:var(--p5); opacity:.7;
+  }
+  @media (max-width: 900px){
+    .serve{ padding-top:56px; }
+    .serve-heading{ font-size:30px; }
+    .serve-item h3{ font-size:23px; }
+  }
+
 </style>
 </head>
 <body>
@@ -186,6 +216,7 @@
   <div class="page-hero-caption">
     <p class="page-hero-eyebrow">Catering</p>
     <h1 class="page-hero-title">Blush Catering</h1>
+    <p class="page-hero-sub">Your tray-passed experience</p>
   </div>
 </section>
 
@@ -251,6 +282,24 @@
   <img src="" alt="">
   <button class="lightbox-next" type="button" aria-label="Next photo">&rsaquo;</button>
 </div>
+
+<section class="page-content serve" aria-labelledby="serveHeading">
+  <p class="serve-eyebrow">The Service</p>
+  <h2 class="serve-heading" id="serveHeading">How We Serve</h2>
+  <p class="serve-lede">Passed, stationed, or both. You decide how your guests are served.</p>
+
+  <div class="serve-item">
+    <h3>Tray-Passed Service</h3>
+    <p>Our signature. Our team moves through your event with each course on a tray, so guests never leave the conversation to find a plate.</p>
+  </div>
+
+  <div><span class="serve-rule" aria-hidden="true"></span></div>
+
+  <div class="serve-item">
+    <h3>Stations</h3>
+    <p>Prefer a station your guests can visit? Choose one of our curated stations, such as a gelato station or a cr&ecirc;pe station, or tell us what you have in mind and we'll design one around your event.</p>
+  </div>
+</section>
 
 <section class="page-content" style="padding-top:30px;">
   <div>
