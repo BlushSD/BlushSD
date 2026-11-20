@@ -298,6 +298,11 @@
   .offering-img--catering{
     background-image:url('../images/catering-card.jpg');
   }
+  .offering-card--full{ grid-column:1 / -1; aspect-ratio:2/1; }
+  .offering-img--full{
+    background-image:url('../images/catering-07.jpg');
+    background-position:center 22%;
+  }
   @media (hover:hover){
     .offering-card:hover .offering-img{
       transform:scale(1.04);
@@ -363,6 +368,7 @@
     .story-stats{gap:32px;}
     .offerings{grid-template-columns:1fr; margin-top:44px;}
     .offering-card{aspect-ratio:4/4.2;}
+    .offering-card--full{aspect-ratio:4/4.2;}
     .offering-title{font-size:26px;}
   }
 
