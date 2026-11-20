@@ -299,10 +299,7 @@
     background-image:url('../images/catering-card.jpg');
   }
   .offering-card--full{ grid-column:1 / -1; aspect-ratio:12/5; }
-  .offering-img--full{ display:flex; gap:3px; background:#FBDCE2; }
-  .offering-img--full > span{ flex:1 1 0; background-size:cover; background-position:center; }
-  .offering-img--full .half-florals{ background-image:url('../images/floral-13.jpg'); }
-  .offering-img--full .half-catering{ background-image:url('../images/catering-08.jpg'); }
+  .offering-img--full{ background-image:url('../images/full-experience-table.jpg'); background-position:center; }
   @media (hover:hover){
     .offering-card:hover .offering-img{
       transform:scale(1.04);
@@ -369,7 +366,6 @@
     .offerings{grid-template-columns:1fr; margin-top:44px;}
     .offering-card{aspect-ratio:4/4.2;}
     .offering-card--full{aspect-ratio:4/4.2;}
-    .offering-img--full{ flex-direction:column; }
     .offering-title{font-size:26px;}
   }
 
