@@ -73,7 +73,7 @@
       event_date: val('event-date'),
       venue: val('venue'),
       guests: val('guests'),
-      message: val('message'),
+      message: (val('package') === 'The Full Experience' ? 'Booking: The Full Experience\n\n' : '') + val('message'),
       _gotcha: val('_gotcha'),
       turnstile_token: token
     };
