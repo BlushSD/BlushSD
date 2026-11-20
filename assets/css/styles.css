@@ -948,8 +948,19 @@
     background:radial-gradient(520px circle at var(--lx,50%) var(--ly,40%), rgba(255,226,226,.32), rgba(255,226,226,0) 60%);
     mix-blend-mode:soft-light;
   }
-  .offering-title{text-shadow:0 1px 2px rgba(90,40,52,.25), 0 2px 18px rgba(110,50,64,.45);}
-  .offering-eyebrow, .offering-desc{text-shadow:0 1px 2px rgba(90,40,52,.25), 0 1px 14px rgba(110,50,64,.45);}
+  .offering-title{text-shadow:0 1px 2px rgba(90,40,52,.3), 0 2px 22px rgba(110,50,64,.55);}
+  .offering-eyebrow, .offering-desc, .offering-link{text-shadow:0 1px 2px rgba(90,40,52,.3), 0 1px 14px rgba(110,50,64,.5);}
+  /* Same soft diffused glow as the page titles, behind the card text */
+  .offering-caption{isolation:isolate;}
+  .offering-caption::before{
+    content:"";
+    position:absolute;
+    left:-4%; right:8%; top:-10%; bottom:-6%;
+    background:radial-gradient(ellipse at 34% 56%, rgba(96,42,56,.36) 0%, rgba(96,42,56,.21) 40%, rgba(96,42,56,0) 72%);
+    filter:blur(8px);
+    z-index:-1;
+    pointer-events:none;
+  }
   .offering-link{transition:border-color .3s ease, letter-spacing .5s var(--ease-out);}
   @media (hover:hover){
     .offering-card:hover .offering-veil::after{opacity:1;}
