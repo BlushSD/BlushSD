@@ -298,11 +298,11 @@
   .offering-img--catering{
     background-image:url('../images/catering-card.jpg');
   }
-  .offering-card--full{ grid-column:1 / -1; aspect-ratio:2/1; }
-  .offering-img--full{
-    background-image:url('../images/catering-07.jpg');
-    background-position:center 22%;
-  }
+  .offering-card--full{ grid-column:1 / -1; aspect-ratio:12/5; }
+  .offering-img--full{ display:flex; gap:3px; background:#FBDCE2; }
+  .offering-img--full > span{ flex:1 1 0; background-size:cover; background-position:center; }
+  .offering-img--full .half-florals{ background-image:url('../images/floral-13.jpg'); }
+  .offering-img--full .half-catering{ background-image:url('../images/catering-08.jpg'); }
   @media (hover:hover){
     .offering-card:hover .offering-img{
       transform:scale(1.04);
@@ -369,6 +369,7 @@
     .offerings{grid-template-columns:1fr; margin-top:44px;}
     .offering-card{aspect-ratio:4/4.2;}
     .offering-card--full{aspect-ratio:4/4.2;}
+    .offering-img--full{ flex-direction:column; }
     .offering-title{font-size:26px;}
   }
 
@@ -411,6 +412,14 @@
     font-weight:400;
     font-size:52px;
     text-shadow:0 2px 14px rgba(0,0,0,0.35);
+  }
+  /* Hero made of side-by-side photos (Full Experience, Moments) */
+  .page-hero-panels{ position:absolute; inset:0; display:flex; gap:3px; background:#FBDCE2; }
+  .page-hero-panels > div{ flex:1 1 0; overflow:hidden; }
+  @media (max-width:900px){
+    .page-hero.page-hero--split{ aspect-ratio:4/5; }
+    .page-hero--split .page-hero-panels{ flex-direction:column; }
+    .page-hero--trio .page-hero-panels > div:not(:first-child){ display:none; }
   }
   /* Short italic caption under a page title (catering, florals) */
   .page-hero-sub{

@@ -28,24 +28,11 @@
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
-<link rel="stylesheet" href="assets/css/styles.css?v=20261120d">
+<link rel="stylesheet" href="assets/css/styles.css?v=20261120g">
 <script>try{if(sessionStorage.getItem("blushVeil"))document.documentElement.classList.add("veil-arriving")}catch(e){}</script>
 <style>
-  .moments-intro{ padding-top:150px; padding-bottom:36px; }
-  .moments-eyebrow{
-    font-size:11px; letter-spacing:0.28em; text-transform:uppercase;
-    color:var(--ink-soft); margin-bottom:12px !important;
-  }
-  .moments-title{
-    font-family:'Cormorant Garamond', serif; font-weight:400;
-    font-size:52px; line-height:1.1; color:var(--ink); margin-bottom:10px;
-  }
-  .moments-sub{
-    font-family:'Cormorant Garamond', serif !important; font-style:italic;
-    font-size:22px !important; line-height:1.5 !important; color:var(--ink-soft);
-  }
   .moments-grid{
-    max-width:1120px; margin:0 auto; padding:0 24px 90px;
+    max-width:1120px; margin:0 auto; padding:0 24px 30px;
     display:grid; gap:18px; justify-content:center;
     grid-template-columns:repeat(auto-fit, minmax(240px, 340px));
   }
@@ -55,11 +42,10 @@
     box-shadow:0 30px 50px -36px rgba(var(--rose-shadow),.6);
   }
   .moment video{ display:block; width:100%; height:100%; object-fit:cover; }
+  .moments-book-links{ display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+  .moments-book-links .page-back-link{ margin-top:0; }
   @media (max-width: 900px){
-    .moments-intro{ padding-top:120px; }
-    .moments-title{ font-size:38px; }
-    .moments-sub{ font-size:19px !important; }
-    .moments-grid{ padding:0 16px 70px; grid-template-columns:minmax(0, 420px); }
+    .moments-grid{ padding:0 16px 20px; grid-template-columns:minmax(0, 420px); }
   }
 </style>
 </head>
@@ -94,10 +80,22 @@
   <p class="nav-overlay-tagline">San Diego, California</p>
 </div>
 
-<section class="page-content moments-intro">
-  <p class="moments-eyebrow">Blush in Motion</p>
-  <h1 class="moments-title">Moments</h1>
-  <p class="moments-sub">See it for yourself</p>
+<section class="page-hero page-hero--trio">
+  <div class="page-hero-panels">
+    <div><img src="assets/images/testimonials/tm-03.jpg" alt="Garden-rose arrangement on a table at a Blush event"></div>
+    <div><img src="assets/images/testimonials/tm-08.jpg" alt="Pink drinks served at a Blush event"></div>
+    <div><img src="assets/images/testimonials/tm-02.jpg" alt="Pink floral arrangement at a Blush event"></div>
+  </div>
+  <div class="page-hero-veil"></div>
+  <div class="page-hero-caption">
+    <p class="page-hero-eyebrow">Blush in Motion</p>
+    <h1 class="page-hero-title">Moments</h1>
+    <p class="page-hero-sub">See it for yourself</p>
+  </div>
+</section>
+
+<section class="page-content" style="padding-bottom:40px;">
+  <p>Real events, real guests. A few moments from recent Blush celebrations.</p>
 </section>
 
 <section class="moments-grid" aria-label="Event videos">
@@ -105,6 +103,13 @@
     <video src="assets/videos/moment-01.mp4" poster="assets/videos/moment-01.jpg"
            muted loop playsinline controls preload="metadata"
            aria-label="A Blush server carrying a tray of pretty little bites through an event"></video>
+  </div>
+</section>
+
+<section class="page-content moments-book" style="padding-top:0;">
+  <div class="moments-book-links">
+    <a href="florals-signup.html" class="page-back-link">Book Florals</a>
+    <a href="catering-signup.html" class="page-back-link">Book Catering</a>
   </div>
 </section>
 
