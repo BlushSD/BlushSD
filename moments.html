@@ -33,9 +33,10 @@
 <style>
   .moments-grid{
     max-width:1120px; margin:0 auto; padding:0 24px 30px;
-    display:grid; gap:18px; grid-template-columns:repeat(4, 1fr);
+    display:flex; flex-wrap:wrap; gap:18px; justify-content:center;
   }
-  @media (max-width: 1100px){ .moments-grid{ grid-template-columns:repeat(2, minmax(0, 340px)); justify-content:center; } }
+  .moments-grid > .moment{ flex:0 1 calc((100% - 36px) / 3); max-width:340px; }
+  @media (max-width: 1100px){ .moments-grid > .moment{ flex-basis:calc((100% - 18px) / 2); } }
   .moment{
     position:relative; aspect-ratio:9 / 16; overflow:hidden;
     background:#FBDCE2;
@@ -60,7 +61,8 @@
   .moments-book-links{ display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
   .moments-book-links .page-back-link{ margin-top:0; }
   @media (max-width: 900px){
-    .moments-grid{ padding:0 16px 20px; grid-template-columns:minmax(0, 420px); justify-content:center; }
+    .moments-grid{ padding:0 16px 20px; }
+    .moments-grid > .moment{ flex-basis:100%; max-width:420px; }
   }
 </style>
 </head>
@@ -150,6 +152,11 @@
       <svg class="on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5h3.5L12 6v12l-4.5-3.5H4z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></svg>
     </button>
   </div>
+  <div class="moment">
+    <video src="assets/videos/moment-05.mp4" poster="assets/videos/moment-05.jpg"
+           muted loop playsinline autoplay preload="metadata"
+           aria-label="Sweet Creamy Caviar: a Blush tin of vanilla cream and chocolate pearls, then a server carrying a tray of tins through an evening garden event"></video>
+  </div>
 </section>
 
 <section class="page-content moments-book" style="padding-top:0;">
@@ -190,8 +197,9 @@
     }
     cards.forEach(function (card) {
       var v = card.querySelector('video'), btn = card.querySelector('.moment-sound');
-      if (!v || !btn) return;
+      if (!v) return;
       vids.push(v);
+      if (!btn) return;
       function toggle(){
         var on = v.muted;
         // only one video plays sound at a time
