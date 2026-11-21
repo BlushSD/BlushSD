@@ -151,8 +151,11 @@
 
   /* ---------- How We Serve ---------- */
   .serve{ padding-top:76px; padding-bottom:0; }
-  .serve--intro{ padding-top:36px; }
-  .serve-after{ padding-top:56px; }
+  .serve--intro{ padding-top:0 !important; padding-bottom:0 !important; }
+  .serve--intro .serve-heading{ font-size:26px; margin-bottom:6px; }
+  .serve--intro .serve-lede{ font-size:18px !important; margin-bottom:0; }
+  .serve--intro .serve-item{ margin-top:26px; }
+  .serve-after{ padding-top:26px !important; }
   .serve--stations .serve-item{ margin-top:0; }
   .station-photos{
     width:min(920px, calc(100vw - 48px));
@@ -184,7 +187,7 @@
   .serve-item{ margin-top:40px; }
   .serve-item h3{
     font-family:'Cormorant Garamond', serif; font-weight:400;
-    font-size:26px; color:var(--ink); margin-bottom:12px;
+    font-size:26px; line-height:1.2; color:var(--ink); margin-bottom:10px;
   }
   .serve-item p{ margin-bottom:0; }
   .serve-rule{
@@ -195,6 +198,9 @@
     .serve{ padding-top:56px; }
     .serve-heading{ font-size:30px; }
     .serve-item h3{ font-size:23px; }
+    .serve--intro .serve-heading{ font-size:23px; }
+    .serve--intro{ padding-top:0 !important; }
+    .serve-after{ padding-top:22px !important; }
   }
 
 </style>
