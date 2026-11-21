@@ -21,7 +21,7 @@ If anything ever goes wrong later, Part H turns the new system off in one edit.
 
 **On Noor's phone**
 1. Install **Telegram** from the App Store / Google Play (free).
-2. Sign up with her phone number, +1 (619) 504-2175.
+2. Sign up with her phone number.
 3. In Telegram settings → Notifications, make sure notifications are on.
 
 **On your phone or computer (Telegram)**
