@@ -34,19 +34,41 @@
   /* ---------- Full Experience video + flanking photos ---------- */
   .fx-media{
     max-width:1120px; margin:0 auto; padding:10px 24px 0;
-    display:grid; grid-template-columns:repeat(3, 1fr); gap:18px; align-items:center;
+    display:grid; grid-template-columns:1fr 1.12fr 1fr; gap:28px; align-items:center;
   }
-  .fx-media figure{
-    margin:0; position:relative; aspect-ratio:9 / 16; overflow:hidden;
-    background:#FBDCE2;
+  .fx-media figure{ margin:0; }
+  .fx-frame{
+    position:relative; overflow:hidden; background:#FBDCE2;
     box-shadow:0 30px 50px -36px rgba(var(--rose-shadow),.6);
   }
-  .fx-media img, .fx-media video{ display:block; width:100%; height:100%; object-fit:cover; }
-  .fx-media .fx-side{ transform:scale(.92); }
+  .fx-main .fx-frame{ aspect-ratio:9 / 16; }
+  .fx-side .fx-frame{ aspect-ratio:3 / 4; }
+  .fx-frame img, .fx-frame video{ display:block; width:100%; height:100%; object-fit:cover; }
+  .fx-media figcaption{
+    margin-top:14px; text-align:center;
+    font-size:10.5px; letter-spacing:0.26em; text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+  /* Minimal sound toggle (replaces the browser's dimming controls) */
+  .fx-sound{
+    position:absolute; right:14px; bottom:14px; z-index:2;
+    width:40px; height:40px; border-radius:50%;
+    border:1px solid rgba(255,255,255,.9); background:rgba(255,253,251,.92);
+    color:var(--ink); display:flex; align-items:center; justify-content:center;
+    cursor:pointer; padding:0;
+    box-shadow:0 6px 18px -8px rgba(var(--rose-shadow),.7);
+    transition:transform .3s ease;
+  }
+  .fx-sound:active{ transform:scale(.94); }
+  .fx-sound svg{ width:18px; height:18px; }
+  .fx-sound .on{ display:none; }
+  .fx-sound[aria-pressed="true"] .on{ display:block; }
+  .fx-sound[aria-pressed="true"] .off{ display:none; }
   @media (max-width: 760px){
-    .fx-media{ max-width:290px; padding:0 16px; box-sizing:content-box; grid-template-columns:1fr 1fr; gap:12px; }
+    .fx-media{ padding:0 24px; grid-template-columns:1fr 1fr; gap:34px 14px; }
     .fx-media .fx-main{ grid-column:1 / -1; order:-1; }
-    .fx-media .fx-side{ transform:none; aspect-ratio:4 / 5; }
+    .fx-main .fx-frame{ aspect-ratio:4 / 5; }
+    .fx-main figcaption{ display:none; }
   }
 
   .fx-included{ padding-top:70px; padding-bottom:0; }
@@ -127,15 +149,24 @@
 
 <div class="fx-media">
   <figure class="fx-side">
-    <img src="assets/images/fx-place-setting.jpg" alt="Place setting from above: sage scalloped charger, satin napkin with pearl ring, gold flatware, a wooden fan and menu beside pink roses and a white mum" loading="lazy">
+    <div class="fx-frame"><img src="assets/images/fx-place-setting.jpg" alt="Place setting from above: sage scalloped charger, satin napkin with pearl ring, gold flatware, a wooden fan and menu beside pink roses and a white mum" loading="lazy"></div>
+    <figcaption>The Place Setting</figcaption>
   </figure>
   <figure class="fx-main">
-    <video src="assets/videos/moment-02.mp4" poster="assets/videos/moment-02.jpg"
-           muted loop playsinline controls preload="metadata"
-           aria-label="A rooftop event styled by Blush: white umbrellas, long tables with pink rose centerpieces, sage place settings and gold flatware"></video>
+    <div class="fx-frame">
+      <video src="assets/videos/moment-02.mp4" poster="assets/videos/moment-02.jpg"
+             muted loop playsinline autoplay preload="metadata"
+             aria-label="A rooftop event styled by Blush: white umbrellas, long tables with pink rose centerpieces, sage place settings and gold flatware"></video>
+      <button class="fx-sound" type="button" aria-pressed="false" aria-label="Turn sound on">
+        <svg class="off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5h3.5L12 6v12l-4.5-3.5H4z"/><path d="M16 9.5l5 5M21 9.5l-5 5"/></svg>
+        <svg class="on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5h3.5L12 6v12l-4.5-3.5H4z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></svg>
+      </button>
+    </div>
+    <figcaption>The Event</figcaption>
   </figure>
   <figure class="fx-side">
-    <img src="assets/images/fx-umbrella-table.jpg" alt="Long table under fringed white umbrellas with a pink rose centerpiece, a small lamp, sage glassware and a green ginger jar" loading="lazy">
+    <div class="fx-frame"><img src="assets/images/fx-umbrella-table.jpg" alt="Long table under fringed white umbrellas with a pink rose centerpiece, a small lamp, sage glassware and a green ginger jar" loading="lazy"></div>
+    <figcaption>The Table</figcaption>
   </figure>
 </div>
 
@@ -190,13 +221,22 @@
 <script>
   (function () {
     var v = document.querySelector('.fx-media video');
-    if (!v || !('IntersectionObserver' in window)) return;
-    new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
-        else if (!v.paused) v.pause();
-      });
-    }, { threshold: 0.5 }).observe(v);
+    var btn = document.querySelector('.fx-sound');
+    if (!v) return;
+    function play(){ var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+    function toggle(){
+      v.muted = !v.muted;
+      btn.setAttribute('aria-pressed', String(!v.muted));
+      btn.setAttribute('aria-label', v.muted ? 'Turn sound on' : 'Turn sound off');
+      play();
+    }
+    btn.addEventListener('click', function (e) { e.stopPropagation(); toggle(); });
+    v.addEventListener('click', toggle);
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) play(); else if (!v.paused) v.pause(); });
+      }, { threshold: 0.4 }).observe(v);
+    } else { play(); }
   })();
 </script>
 </body>
