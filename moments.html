@@ -42,6 +42,21 @@
     box-shadow:0 30px 50px -36px rgba(var(--rose-shadow),.6);
   }
   .moment video{ display:block; width:100%; height:100%; object-fit:cover; }
+  .moment-sound{
+    position:absolute; right:14px; top:14px; z-index:2;
+    width:40px; height:40px; border-radius:50%;
+    border:1px solid rgba(255,255,255,.9); background:rgba(255,253,251,.92);
+    color:var(--ink); display:flex; align-items:center; justify-content:center;
+    cursor:pointer; padding:0;
+    box-shadow:0 6px 18px -8px rgba(var(--rose-shadow),.7);
+    transition:transform .3s ease;
+  }
+  .moment-sound:active{ transform:scale(.94); }
+  .moment-sound svg{ width:18px; height:18px; }
+  .moment-sound .on{ display:none; }
+  .moment-sound[aria-pressed="true"] .on{ display:block; }
+  .moment-sound[aria-pressed="true"] .off{ display:none; }
+  .moment video{ cursor:pointer; }
   .moments-book-links{ display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
   .moments-book-links .page-back-link{ margin-top:0; }
   @media (max-width: 900px){
@@ -101,13 +116,21 @@
 <section class="moments-grid" aria-label="Event videos">
   <div class="moment">
     <video src="assets/videos/moment-01.mp4" poster="assets/videos/moment-01.jpg"
-           muted loop playsinline controls preload="metadata"
+           muted loop playsinline autoplay preload="metadata"
            aria-label="A Blush server carrying a tray of pretty little bites through an event"></video>
+    <button class="moment-sound" type="button" aria-pressed="false" aria-label="Turn sound on">
+      <svg class="off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5h3.5L12 6v12l-4.5-3.5H4z"/><path d="M16 9.5l5 5M21 9.5l-5 5"/></svg>
+      <svg class="on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5h3.5L12 6v12l-4.5-3.5H4z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></svg>
+    </button>
   </div>
   <div class="moment">
     <video src="assets/videos/moment-02.mp4" poster="assets/videos/moment-02.jpg"
-           muted loop playsinline controls preload="metadata"
+           muted loop playsinline autoplay preload="metadata"
            aria-label="A rooftop event styled by Blush: white umbrellas, long tables with pink rose centerpieces, sage place settings and gold flatware"></video>
+    <button class="moment-sound" type="button" aria-pressed="false" aria-label="Turn sound on">
+      <svg class="off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5h3.5L12 6v12l-4.5-3.5H4z"/><path d="M16 9.5l5 5M21 9.5l-5 5"/></svg>
+      <svg class="on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5h3.5L12 6v12l-4.5-3.5H4z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></svg>
+    </button>
   </div>
 </section>
 
@@ -139,15 +162,37 @@
 <script src="assets/js/depth.js"></script>
 <script>
   (function () {
-    var vids = document.querySelectorAll('.moment video');
-    if (!('IntersectionObserver' in window)) return;
+    var cards = document.querySelectorAll('.moment');
+    var vids = [];
+    function play(v){ var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+    function setSound(v, btn, on){
+      v.muted = !on;
+      btn.setAttribute('aria-pressed', String(on));
+      btn.setAttribute('aria-label', on ? 'Turn sound off' : 'Turn sound on');
+    }
+    cards.forEach(function (card) {
+      var v = card.querySelector('video'), btn = card.querySelector('.moment-sound');
+      if (!v || !btn) return;
+      vids.push(v);
+      function toggle(){
+        var on = v.muted;
+        // only one video plays sound at a time
+        cards.forEach(function (c) {
+          var ov = c.querySelector('video'), ob = c.querySelector('.moment-sound');
+          if (ov && ob && ov !== v) setSound(ov, ob, false);
+        });
+        setSound(v, btn, on); play(v);
+      }
+      btn.addEventListener('click', function (e) { e.stopPropagation(); toggle(); });
+      v.addEventListener('click', toggle);
+    });
+    if (!('IntersectionObserver' in window)) { vids.forEach(play); return; }
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
         var v = e.target;
-        if (e.isIntersecting) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
-        else if (!v.paused) v.pause();
+        if (e.isIntersecting) play(v); else if (!v.paused) v.pause();
       });
-    }, { threshold: 0.5 });
+    }, { threshold: 0.4 });
     vids.forEach(function (v) { io.observe(v); });
   })();
 </script>
