@@ -31,123 +31,17 @@
 <link rel="stylesheet" href="assets/css/styles.css?v=20261120h">
 <script>try{if(sessionStorage.getItem("blushVeil"))document.documentElement.classList.add("veil-arriving")}catch(e){}</script>
 <style>
-  /* ---------- Catering gallery ---------- */
-  .catering-gallery {
-    max-width: 1120px;
-    margin: 0 auto;
-    padding: 10px 24px 0;
+  /* ---------- Full Experience video ---------- */
+  .fx-video{
+    max-width:420px; margin:0 auto; padding:10px 24px 0;
   }
-  .catering-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 14px;
+  .fx-video-frame{
+    position:relative; aspect-ratio:9 / 16; overflow:hidden;
+    background:#FBDCE2;
+    box-shadow:0 30px 50px -36px rgba(var(--rose-shadow),.6);
   }
-  /* A lone photo on the last row sits centered instead of hanging left */
-  @media (min-width: 1001px) {
-    .catering-grid > .gallery-tile:last-child:nth-child(3n+1) { grid-column: 2; }
-  }
-  @media (max-width: 1000px) {
-    .catering-grid { grid-template-columns: 1fr 1fr; }
-  }
-  @media (min-width: 761px) and (max-width: 1000px) {
-    .catering-grid > .gallery-tile:last-child:nth-child(odd) {
-      grid-column: 1 / -1;
-      justify-self: center;
-      width: calc(50% - 7px);
-    }
-  }
-  .gallery-tile {
-    display: block;
-    position: relative;
-    overflow: hidden;
-    background: #f6dcdc;
-    cursor: zoom-in;
-    border: 0;
-    padding: 0;
-    width: 100%;
-    aspect-ratio: 3 / 2;
-  }
-  .gallery-tile img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.9s ease;
-  }
-  .gallery-tile:focus-visible img {
-    transform: scale(1.03);
-  }
-  @media (hover: hover) {
-    .gallery-tile:hover img { transform: scale(1.03); }
-  }
-  .gallery-tile:focus-visible {
-    outline: 1px solid var(--ink, #3a2a2a);
-    outline-offset: 3px;
-  }
-
-  .gallery-note {
-    text-align: center;
-    margin: 34px 0 0;
-    font-size: 12px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-  }
-  .gallery-note a {
-    color: var(--ink, #3a2a2a);
-    text-decoration: none;
-    border-bottom: 1px solid currentColor;
-    padding-bottom: 2px;
-  }
-
-  @media (max-width: 760px) {
-    .catering-gallery { padding: 0 16px; }
-    .catering-grid { grid-template-columns: 1fr; gap: 12px; }
-  }
-
-  /* ---------- Lightbox (light blush backdrop, no dark overlay) ---------- */
-  .gallery-lightbox {
-    position: fixed;
-    inset: 0;
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 56px 20px;
-    background: rgba(252, 241, 240, 0.97);
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.4s ease, visibility 0.4s ease;
-  }
-  .gallery-lightbox.is-open {
-    opacity: 1;
-    visibility: visible;
-  }
-  .gallery-lightbox img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-    box-shadow: 0 20px 60px rgba(120, 70, 70, 0.12);
-  }
-  .gallery-lightbox button {
-    position: absolute;
-    background: none;
-    border: 0;
-    color: var(--ink, #3a2a2a);
-    font-family: 'Cormorant Garamond', serif;
-    cursor: pointer;
-    line-height: 1;
-    padding: 10px;
-  }
-  .lightbox-close { top: 14px; right: 18px; font-size: 36px; }
-  .lightbox-prev,
-  .lightbox-next { top: 50%; transform: translateY(-50%); font-size: 42px; }
-  .lightbox-prev { left: 8px; }
-  .lightbox-next { right: 8px; }
-  @media (max-width: 760px) {
-    .lightbox-prev, .lightbox-next { top: auto; bottom: 10px; transform: none; }
-    .lightbox-prev { left: 30%; }
-    .lightbox-next { right: 30%; }
-  }
+  .fx-video-frame video{ display:block; width:100%; height:100%; object-fit:cover; }
+  @media (max-width: 760px){ .fx-video{ padding:0 16px; } }
 
   .fx-included{ padding-top:70px; padding-bottom:0; }
   .fx-eyebrow{
@@ -225,22 +119,12 @@
   <p style="font-size:13.5px;">Available for events across San Diego, Orange County, and Los Angeles.</p>
 </section>
 
-<div class="catering-gallery">
-  <div class="catering-grid">
-    <button class="gallery-tile" type="button"><img src="assets/images/floral-02.jpg" alt="Low bowl of blush peonies and roses fading from cream to deep magenta" loading="lazy"></button>
-    <button class="gallery-tile" type="button"><img src="assets/images/catering-10.jpg" alt="Edible garden scene with a cottage, trees and flowers on a gold tray, set with layered dessert cups" loading="lazy"></button>
-    <button class="gallery-tile" type="button"><img src="assets/images/floral-17.jpg" alt="Long low arrangement of cream and blush roses with greenery" loading="lazy"></button>
-    <button class="gallery-tile" type="button"><img src="assets/images/catering-01.jpg" alt="Chocolate tart shells filled with cream, topped with glazed blackberries and fresh mint" loading="lazy"></button>
-    <button class="gallery-tile" type="button"><img src="assets/images/floral-12.jpg" alt="Pink and green arrangement of roses, hydrangea and tropical leaves" loading="lazy"></button>
-    <button class="gallery-tile" type="button"><img src="assets/images/catering-06.jpg" alt="Shot glasses of golden purée topped with toasted crisps, almonds and dried raspberry" loading="lazy"></button>
+<div class="fx-video">
+  <div class="fx-video-frame">
+    <video src="assets/videos/moment-02.mp4" poster="assets/videos/moment-02.jpg"
+           muted loop playsinline controls preload="metadata"
+           aria-label="A rooftop event styled by Blush: white umbrellas, long tables with pink rose centerpieces, sage place settings and gold flatware"></video>
   </div>
-</div>
-
-<div class="gallery-lightbox" id="galleryLightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
-  <button class="lightbox-close" type="button" aria-label="Close">&times;</button>
-  <button class="lightbox-prev" type="button" aria-label="Previous photo">&lsaquo;</button>
-  <img src="" alt="">
-  <button class="lightbox-next" type="button" aria-label="Next photo">&rsaquo;</button>
 </div>
 
 <section class="page-content fx-included" aria-labelledby="fxHeading">
@@ -293,42 +177,14 @@
 <script src="assets/js/depth.js"></script>
 <script>
   (function () {
-    var tiles = Array.prototype.slice.call(document.querySelectorAll('.gallery-tile'));
-    var box = document.getElementById('galleryLightbox');
-    var img = box.querySelector('img');
-    var current = 0;
-
-    function show(i) {
-      current = (i + tiles.length) % tiles.length;
-      var src = tiles[current].querySelector('img');
-      img.src = src.src;
-      img.alt = src.alt;
-    }
-    function open(i) {
-      show(i);
-      box.classList.add('is-open');
-      document.body.style.overflow = 'hidden';
-      box.querySelector('.lightbox-close').focus();
-    }
-    function close() {
-      box.classList.remove('is-open');
-      document.body.style.overflow = '';
-      tiles[current].focus();
-    }
-
-    tiles.forEach(function (tile, i) {
-      tile.addEventListener('click', function () { open(i); });
-    });
-    box.querySelector('.lightbox-close').addEventListener('click', close);
-    box.querySelector('.lightbox-prev').addEventListener('click', function () { show(current - 1); });
-    box.querySelector('.lightbox-next').addEventListener('click', function () { show(current + 1); });
-    box.addEventListener('click', function (e) { if (e.target === box) close(); });
-    document.addEventListener('keydown', function (e) {
-      if (!box.classList.contains('is-open')) return;
-      if (e.key === 'Escape') close();
-      if (e.key === 'ArrowLeft') show(current - 1);
-      if (e.key === 'ArrowRight') show(current + 1);
-    });
+    var v = document.querySelector('.fx-video video');
+    if (!v || !('IntersectionObserver' in window)) return;
+    new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+        else if (!v.paused) v.pause();
+      });
+    }, { threshold: 0.5 }).observe(v);
   })();
 </script>
 </body>
