@@ -31,17 +31,23 @@
 <link rel="stylesheet" href="assets/css/styles.css?v=20261120h">
 <script>try{if(sessionStorage.getItem("blushVeil"))document.documentElement.classList.add("veil-arriving")}catch(e){}</script>
 <style>
-  /* ---------- Full Experience video ---------- */
-  .fx-video{
-    max-width:420px; margin:0 auto; padding:10px 24px 0;
+  /* ---------- Full Experience video + flanking photos ---------- */
+  .fx-media{
+    max-width:1120px; margin:0 auto; padding:10px 24px 0;
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:18px; align-items:center;
   }
-  .fx-video-frame{
-    position:relative; aspect-ratio:9 / 16; overflow:hidden;
+  .fx-media figure{
+    margin:0; position:relative; aspect-ratio:9 / 16; overflow:hidden;
     background:#FBDCE2;
     box-shadow:0 30px 50px -36px rgba(var(--rose-shadow),.6);
   }
-  .fx-video-frame video{ display:block; width:100%; height:100%; object-fit:cover; }
-  @media (max-width: 760px){ .fx-video{ padding:0 16px; } }
+  .fx-media img, .fx-media video{ display:block; width:100%; height:100%; object-fit:cover; }
+  .fx-media .fx-side{ transform:scale(.92); }
+  @media (max-width: 760px){
+    .fx-media{ padding:0 16px; grid-template-columns:1fr 1fr; gap:12px; }
+    .fx-media .fx-main{ grid-column:1 / -1; order:-1; }
+    .fx-media .fx-side{ transform:none; }
+  }
 
   .fx-included{ padding-top:70px; padding-bottom:0; }
   .fx-eyebrow{
@@ -119,12 +125,18 @@
   <p style="font-size:13.5px;">Available for events across San Diego, Orange County, and Los Angeles.</p>
 </section>
 
-<div class="fx-video">
-  <div class="fx-video-frame">
+<div class="fx-media">
+  <figure class="fx-side">
+    <img src="assets/images/fx-place-setting.jpg" alt="Place setting from above: sage scalloped charger, satin napkin with pearl ring, gold flatware, a wooden fan and menu beside pink roses and a white mum" loading="lazy">
+  </figure>
+  <figure class="fx-main">
     <video src="assets/videos/moment-02.mp4" poster="assets/videos/moment-02.jpg"
            muted loop playsinline controls preload="metadata"
            aria-label="A rooftop event styled by Blush: white umbrellas, long tables with pink rose centerpieces, sage place settings and gold flatware"></video>
-  </div>
+  </figure>
+  <figure class="fx-side">
+    <img src="assets/images/fx-umbrella-table.jpg" alt="Long table under fringed white umbrellas with a pink rose centerpiece, a small lamp, sage glassware and a green ginger jar" loading="lazy">
+  </figure>
 </div>
 
 <section class="page-content fx-included" aria-labelledby="fxHeading">
@@ -177,7 +189,7 @@
 <script src="assets/js/depth.js"></script>
 <script>
   (function () {
-    var v = document.querySelector('.fx-video video');
+    var v = document.querySelector('.fx-media video');
     if (!v || !('IntersectionObserver' in window)) return;
     new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
