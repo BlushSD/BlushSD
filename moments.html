@@ -21,14 +21,14 @@
 <meta name="twitter:description" content="Moments from real Blush SD events: florals, catering and tray-passed service across San Diego, Orange County and Los Angeles.">
 <meta name="twitter:image" content="https://blushsd.com/assets/images/share-home.jpg">
 <meta name="theme-color" content="#FFFDFB">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Work+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preload" href="assets/fonts/cormorant-garamond-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/work-sans-latin-300-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/work-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="assets/favicon/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
-<link rel="stylesheet" href="assets/css/styles.css?v=20261120i">
+<link rel="stylesheet" href="assets/css/styles.css?v=20261120j">
 <script>try{if(sessionStorage.getItem("blushVeil"))document.documentElement.classList.add("veil-arriving")}catch(e){}</script>
 <style>
   .moments-grid{
@@ -99,7 +99,7 @@
 
 <section class="page-hero page-hero--trio">
   <div class="page-hero-panels">
-    <div><picture><source media="(max-width: 900px)" srcset="assets/images/moments-hero-mobile.jpg"><img src="assets/images/testimonials/tm-03.jpg" alt="Garden-rose arrangement on a table at a Blush event"></picture></div>
+    <div><picture><source media="(max-width: 900px)" srcset="assets/images/moments-hero-mobile.jpg"><img fetchpriority="high" src="assets/images/testimonials/tm-03.jpg" alt="Garden-rose arrangement on a table at a Blush event"></picture></div>
     <div><img src="assets/images/testimonials/tm-04.jpg" alt="Tea in tulip glasses on custom pastel coasters, served by a Blush team member"></div>
     <div><img src="assets/images/testimonials/tm-02.jpg" alt="Pink floral arrangement at a Blush event"></div>
   </div>
@@ -111,14 +111,14 @@
   </div>
 </section>
 
-<section class="page-content" style="padding-bottom:40px;">
+<section class="page-content" style="padding-bottom:30px;">
   <p>Real events, real guests. A few moments from recent Blush celebrations.</p>
 </section>
 
 <section class="moments-grid" aria-label="Event videos">
   <div class="moment">
     <video src="assets/videos/moment-01.mp4" poster="assets/videos/moment-01.jpg"
-           muted loop playsinline autoplay preload="metadata"
+           muted loop playsinline preload="none"
            aria-label="A Blush server carrying a tray of pretty little bites through an event"></video>
     <button class="moment-sound" type="button" aria-pressed="false" aria-label="Turn sound on">
       <svg class="off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5h3.5L12 6v12l-4.5-3.5H4z"/><path d="M16 9.5l5 5M21 9.5l-5 5"/></svg>
@@ -127,7 +127,7 @@
   </div>
   <div class="moment">
     <video src="assets/videos/moment-02.mp4" poster="assets/videos/moment-02.jpg"
-           muted loop playsinline autoplay preload="metadata"
+           muted loop playsinline preload="none"
            aria-label="A rooftop event styled by Blush: white umbrellas, long tables with pink rose centerpieces, sage place settings and gold flatware"></video>
     <button class="moment-sound" type="button" aria-pressed="false" aria-label="Turn sound on">
       <svg class="off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5h3.5L12 6v12l-4.5-3.5H4z"/><path d="M16 9.5l5 5M21 9.5l-5 5"/></svg>
@@ -136,7 +136,7 @@
   </div>
   <div class="moment">
     <video src="assets/videos/moment-03.mp4" poster="assets/videos/moment-03.jpg"
-           muted loop playsinline autoplay preload="metadata"
+           muted loop playsinline preload="none"
            aria-label="The Blush coconut dessert station: fresh coconut bowls topped and served from a white seashell cart overlooking the hills"></video>
     <button class="moment-sound" type="button" aria-pressed="false" aria-label="Turn sound on">
       <svg class="off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5h3.5L12 6v12l-4.5-3.5H4z"/><path d="M16 9.5l5 5M21 9.5l-5 5"/></svg>
@@ -144,8 +144,8 @@
     </button>
   </div>
   <div class="moment">
-    <video src="assets/videos/moment-04.mp4" poster="assets/videos/moment-04.jpg"
-           muted loop playsinline autoplay preload="metadata"
+    <video src="assets/videos/fx-garden.mp4" poster="assets/videos/fx-garden.jpg"
+           muted loop playsinline preload="none"
            aria-label="A garden event by Blush: long tables with peach lamps and roses under the palms, and a server carrying a fairy-garden tray"></video>
     <button class="moment-sound" type="button" aria-pressed="false" aria-label="Turn sound on">
       <svg class="off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5h3.5L12 6v12l-4.5-3.5H4z"/><path d="M16 9.5l5 5M21 9.5l-5 5"/></svg>
@@ -154,7 +154,7 @@
   </div>
   <div class="moment">
     <video src="assets/videos/moment-05.mp4" poster="assets/videos/moment-05.jpg"
-           muted loop playsinline autoplay preload="metadata"
+           muted loop playsinline preload="none"
            aria-label="Sweet Creamy Caviar: a Blush tin of vanilla cream and chocolate pearls, then a server carrying a tray of tins through an evening garden event"></video>
   </div>
 </section>

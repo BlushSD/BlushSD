@@ -21,14 +21,14 @@
 <meta name="twitter:description" content="Custom catering menus for events across San Diego, Orange County and Los Angeles, from passed appetizers to full spreads, made fresh. Book catering on its own, no florals required.">
 <meta name="twitter:image" content="https://blushsd.com/assets/images/share-catering.jpg">
 <meta name="theme-color" content="#FFFDFB">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Work+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preload" href="assets/fonts/cormorant-garamond-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/work-sans-latin-300-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/work-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="assets/favicon/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
-<link rel="stylesheet" href="assets/css/styles.css?v=20261120i">
+<link rel="stylesheet" href="assets/css/styles.css?v=20261120j">
 <script>try{if(sessionStorage.getItem("blushVeil"))document.documentElement.classList.add("veil-arriving")}catch(e){}</script>
 <style>
   /* ---------- Catering gallery ---------- */
@@ -100,7 +100,7 @@
   }
 
   @media (max-width: 760px) {
-    .catering-gallery { padding: 0 16px; }
+    .catering-gallery { padding: 10px 16px 0; }
     .catering-grid { grid-template-columns: 1fr; gap: 12px; }
   }
 
@@ -152,7 +152,6 @@
   /* ---------- How We Serve ---------- */
   .serve{ padding-top:76px; padding-bottom:0; }
   .serve--intro{ padding-top:0 !important; padding-bottom:0 !important; }
-  .serve--intro .serve-heading{ font-size:26px; margin-bottom:6px; }
   .serve--intro .serve-lede{ font-size:18px !important; margin-bottom:0; }
   .serve--intro .serve-item{ margin-top:26px; }
   .serve-after{ padding-top:26px !important; }
@@ -172,9 +171,9 @@
     .station-photos{ grid-template-columns:1fr; gap:14px; margin-top:36px; width:calc(100vw - 32px); margin-left:calc(50% - 50vw + 16px); }
   }
 
-  .serve-eyebrow{
-    font-size:11px; letter-spacing:0.28em; text-transform:uppercase;
-    color:var(--ink-soft); margin-bottom:12px !important;
+  .page-content p.serve-eyebrow{
+    font-size:11px; font-weight:400; line-height:normal; letter-spacing:0.28em; text-transform:uppercase;
+    color:var(--ink-soft); margin-bottom:12px;
   }
   .serve-heading{
     font-family:'Cormorant Garamond', serif; font-weight:400;
@@ -198,7 +197,6 @@
     .serve{ padding-top:56px; }
     .serve-heading{ font-size:30px; }
     .serve-item h3{ font-size:23px; }
-    .serve--intro .serve-heading{ font-size:23px; }
     .serve--intro{ padding-top:0 !important; }
     .serve-after{ padding-top:22px !important; }
   }
@@ -237,7 +235,7 @@
 </div>
 
 <section class="page-hero">
-  <img src="assets/images/catering-card.jpg" alt="Blush Catering">
+  <img fetchpriority="high" src="assets/images/catering-card.jpg" alt="Blush Catering">
   <div class="page-hero-veil"></div>
   <div class="page-hero-caption">
     <p class="page-hero-eyebrow">Catering</p>
@@ -271,49 +269,49 @@
 <div class="catering-gallery">
   <div class="catering-grid">
     <button class="gallery-tile" type="button">
-      <img src="assets/images/catering-14.jpg" alt="Round pink platter of pistachio-dipped strawberries and cones finished with red velvet crumble" loading="lazy">
+      <img src="assets/images/catering-14.jpg" srcset="assets/images/thumbs/catering-14.jpg 800w, assets/images/catering-14.jpg 1200w" sizes="(max-width: 760px) calc(100vw - 32px), (max-width: 1000px) 50vw, 360px" alt="Round pink platter of pistachio-dipped strawberries and cones finished with red velvet crumble" loading="lazy">
     </button>
     <button class="gallery-tile" type="button">
-      <img src="assets/images/catering-05.jpg" alt="Gold-rimmed platter of bite-size tart cups filled and topped with microgreens" loading="lazy">
+      <img src="assets/images/catering-05.jpg" srcset="assets/images/thumbs/catering-05.jpg 800w, assets/images/catering-05.jpg 1448w" sizes="(max-width: 760px) calc(100vw - 32px), (max-width: 1000px) 50vw, 360px" alt="Gold-rimmed platter of bite-size tart cups filled and topped with microgreens" loading="lazy">
     </button>
     <button class="gallery-tile" type="button">
-      <img src="assets/images/catering-01.jpg" alt="Chocolate tart shells filled with cream, topped with glazed blackberries and fresh mint" loading="lazy">
+      <img src="assets/images/catering-01.jpg" srcset="assets/images/thumbs/catering-01.jpg 800w, assets/images/catering-01.jpg 1536w" sizes="(max-width: 760px) calc(100vw - 32px), (max-width: 1000px) 50vw, 360px" alt="Chocolate tart shells filled with cream, topped with glazed blackberries and fresh mint" loading="lazy">
     </button>
     <button class="gallery-tile" type="button">
-      <img src="assets/images/catering-06.jpg" alt="Shot glasses of golden purée topped with toasted crisps, sliced almonds and dried raspberry" loading="lazy">
+      <img src="assets/images/catering-06.jpg" srcset="assets/images/thumbs/catering-06.jpg 800w, assets/images/catering-06.jpg 1536w" sizes="(max-width: 760px) calc(100vw - 32px), (max-width: 1000px) 50vw, 360px" alt="Shot glasses of golden purée topped with toasted crisps, sliced almonds and dried raspberry" loading="lazy">
     </button>
     <button class="gallery-tile" type="button">
-      <img src="assets/images/catering-02.jpg" alt="Milky coffee in a white cup on an engraved Blush wooden board, with a sugar-dusted sweet on a skewer" loading="lazy">
+      <img src="assets/images/catering-02.jpg" srcset="assets/images/thumbs/catering-02.jpg 800w, assets/images/catering-02.jpg 1536w" sizes="(max-width: 760px) calc(100vw - 32px), (max-width: 1000px) 50vw, 360px" alt="Milky coffee in a white cup on an engraved Blush wooden board, with a sugar-dusted sweet on a skewer" loading="lazy">
     </button>
     <button class="gallery-tile" type="button">
-      <img src="assets/images/catering-04.jpg" alt="Mint chip and chocolate ice cream served in a coconut shell with red currants and a waffle crisp" loading="lazy">
+      <img src="assets/images/catering-04.jpg" srcset="assets/images/thumbs/catering-04.jpg 800w, assets/images/catering-04.jpg 1448w" sizes="(max-width: 760px) calc(100vw - 32px), (max-width: 1000px) 50vw, 360px" alt="Mint chip and chocolate ice cream served in a coconut shell with red currants and a waffle crisp" loading="lazy">
     </button>
     <button class="gallery-tile" type="button">
-      <img src="assets/images/catering-03.jpg" alt="Tea served in tulip glasses on pastel coasters, each topped with a pastel teddy-bear sugar cube" loading="lazy">
+      <img src="assets/images/catering-03.jpg" srcset="assets/images/thumbs/catering-03.jpg 800w, assets/images/catering-03.jpg 1536w" sizes="(max-width: 760px) calc(100vw - 32px), (max-width: 1000px) 50vw, 360px" alt="Tea served in tulip glasses on pastel coasters, each topped with a pastel teddy-bear sugar cube" loading="lazy">
     </button>
     <button class="gallery-tile" type="button">
-      <img src="assets/images/catering-07.jpg" alt="Sparkling pink drinks in tall flutes topped with orchids, with bite-size falafel on clear tasting spoons" loading="lazy">
+      <img src="assets/images/catering-07.jpg" srcset="assets/images/thumbs/catering-07.jpg 800w, assets/images/catering-07.jpg 1536w" sizes="(max-width: 760px) calc(100vw - 32px), (max-width: 1000px) 50vw, 360px" alt="Sparkling pink drinks in tall flutes topped with orchids, with bite-size falafel on clear tasting spoons" loading="lazy">
     </button>
     <button class="gallery-tile" type="button">
-      <img src="assets/images/catering-08.jpg" alt="Daisy-piped cream tarts with a golden centre, served beside coffee cups wrapped in Blush ribbon on white trays" loading="lazy">
+      <img src="assets/images/catering-08.jpg" srcset="assets/images/thumbs/catering-08.jpg 800w, assets/images/catering-08.jpg 1536w" sizes="(max-width: 760px) calc(100vw - 32px), (max-width: 1000px) 50vw, 360px" alt="Daisy-piped cream tarts with a golden center, served beside coffee cups wrapped in Blush ribbon on white trays" loading="lazy">
     </button>
     <button class="gallery-tile" type="button">
-      <img src="assets/images/catering-09.jpg" alt="Chocolate drizzled over a dessert cup of banana, pistachio crumble, strawberry and a blue macaron" loading="lazy">
+      <img src="assets/images/catering-09.jpg" srcset="assets/images/thumbs/catering-09.jpg 800w, assets/images/catering-09.jpg 1536w" sizes="(max-width: 760px) calc(100vw - 32px), (max-width: 1000px) 50vw, 360px" alt="Chocolate drizzled over a dessert cup of banana, pistachio crumble, strawberry and a blue macaron" loading="lazy">
     </button>
     <button class="gallery-tile" type="button">
-      <img src="assets/images/catering-10.jpg" alt="Edible garden scene with a cottage, trees and flowers on a gold tray, set with layered dessert cups" loading="lazy">
+      <img src="assets/images/catering-10.jpg" srcset="assets/images/thumbs/catering-10.jpg 800w, assets/images/catering-10.jpg 1536w" sizes="(max-width: 760px) calc(100vw - 32px), (max-width: 1000px) 50vw, 360px" alt="Edible garden scene with a cottage, trees and flowers on a gold tray, set with layered dessert cups" loading="lazy">
     </button>
     <button class="gallery-tile" type="button">
-      <img src="assets/images/catering-11.jpg" alt="Mint scalloped tray of bite-size falafel on clear tasting spoons, each with a gold Blush pick" loading="lazy">
+      <img src="assets/images/catering-11.jpg" srcset="assets/images/thumbs/catering-11.jpg 800w, assets/images/catering-11.jpg 1536w" sizes="(max-width: 760px) calc(100vw - 32px), (max-width: 1000px) 50vw, 360px" alt="Mint scalloped tray of bite-size falafel on clear tasting spoons, each with a gold Blush pick" loading="lazy">
     </button>
     <button class="gallery-tile" type="button">
-      <img src="assets/images/catering-12.jpg" alt="Iced coffee in tilted glass tubes resting in crushed ice in martini glasses on a black tray" loading="lazy">
+      <img src="assets/images/catering-12.jpg" srcset="assets/images/thumbs/catering-12.jpg 800w, assets/images/catering-12.jpg 1536w" sizes="(max-width: 760px) calc(100vw - 32px), (max-width: 1000px) 50vw, 360px" alt="Iced coffee in tilted glass tubes resting in crushed ice in martini glasses on a black tray" loading="lazy">
     </button>
     <button class="gallery-tile" type="button">
-      <img src="assets/images/catering-13.jpg" alt="Long black tray of grilled chicken skewers surrounded by glowing faux firewood logs" loading="lazy">
+      <img src="assets/images/catering-13.jpg" srcset="assets/images/thumbs/catering-13.jpg 800w, assets/images/catering-13.jpg 1536w" sizes="(max-width: 760px) calc(100vw - 32px), (max-width: 1000px) 50vw, 360px" alt="Long black tray of grilled chicken skewers surrounded by glowing faux firewood logs" loading="lazy">
     </button>
     <button class="gallery-tile" type="button">
-      <img src="assets/images/catering-15.jpg" alt="Open tin of vanilla cream topped with chocolate pearls beside its gold lid with a pink Blush label" loading="lazy">
+      <img src="assets/images/catering-15.jpg" srcset="assets/images/thumbs/catering-15.jpg 800w, assets/images/catering-15.jpg 1200w" sizes="(max-width: 760px) calc(100vw - 32px), (max-width: 1000px) 50vw, 360px" alt="Open tin of vanilla cream topped with chocolate pearls beside its gold lid with a pink Blush label" loading="lazy">
     </button>
   </div>
 
@@ -345,7 +343,7 @@
   <div>
     <a href="catering-signup.html" class="page-back-link">Book Catering</a>
   </div>
-  <p style="margin-top:36px; font-size:13.5px;">Also want flowers for the same event? Feel free to ask about pairing this with <a href="florals.html" style="color:var(--ink); text-decoration:underline;">Blush Florals</a> &mdash; entirely optional, and never required.</p>
+  <p style="margin-top:36px; font-size:13.5px;">Also want flowers for the same event? Feel free to ask about pairing this with <a href="florals.html" style="color:var(--ink); text-decoration:underline;">Blush Florals</a> &mdash; entirely optional.</p>
 </section>
 
 <footer>

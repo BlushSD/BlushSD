@@ -21,14 +21,14 @@
 <meta name="twitter:description" content="Request a catering quote from Blush SD. Share your event date and guest count and we will follow up about your custom menu. No florals required.">
 <meta name="twitter:image" content="https://blushsd.com/assets/images/share-catering.jpg">
 <meta name="theme-color" content="#FFFDFB">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Work+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preload" href="assets/fonts/cormorant-garamond-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/work-sans-latin-300-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/work-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="assets/favicon/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
-<link rel="stylesheet" href="assets/css/styles.css?v=20261120i">
+<link rel="stylesheet" href="assets/css/styles.css?v=20261120j">
 <script>try{if(sessionStorage.getItem("blushVeil"))document.documentElement.classList.add("veil-arriving")}catch(e){}</script>
 </head>
 <body>
@@ -63,7 +63,7 @@
 </div>
 
 <section class="page-hero">
-  <img src="assets/images/catering-card.jpg" alt="Catering Inquiry">
+  <img fetchpriority="high" src="assets/images/catering-card.jpg" alt="Catering Inquiry">
   <div class="page-hero-veil"></div>
   <div class="page-hero-caption">
     <p class="page-hero-eyebrow">Book Catering</p>
@@ -72,7 +72,7 @@
 </section>
 
 <section class="page-content inquiry-intro" style="padding-bottom:40px;">
-  <p>Tell us about your event and we'll follow up to talk menu, guest count, and pricing. Booking catering doesn't require florals, too — this is entirely its own service. We cater events across San Diego, Orange County, and Los Angeles.</p>
+  <p>Tell us about your event and we'll follow up to talk menu, guest count, and pricing. Catering doesn't require florals &mdash; it's entirely its own service. We cater events across San Diego, Orange County, and Los Angeles.</p>
 </section>
 <form class="signup-form" action="https://formspree.io/f/xqpkynop" method="POST"
       data-thanks="Your inquiry is on its way."
@@ -153,6 +153,9 @@
       <img src="assets/images/tiktok-icon.png" alt="Blush SD on TikTok">
     </a>
   </div>
+  <div class="footer-contact">
+    <a href="mailto:blushsd619@gmail.com">blushsd619@gmail.com</a>
+  </div>
   <p>&copy; 2026 Blush SD &middot; San Diego, California</p>
 </footer>
 
@@ -170,7 +173,7 @@
     } catch (e) {}
   })();
 </script>
-<script src="assets/js/inquiry.js?v=20261120"></script>
+<script src="assets/js/inquiry.js?v=20261120b"></script>
 <script src="assets/js/forms.js"></script>
 </body>
 </html>

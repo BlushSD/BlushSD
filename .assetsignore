@@ -9,3 +9,5 @@ worker
 README*
 node_modules
 site-worker.js
+.wrangler
+.gitignore

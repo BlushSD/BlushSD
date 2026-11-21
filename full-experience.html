@@ -21,14 +21,14 @@
 <meta name="twitter:description" content="Florals, catering, and the full table setting from one team. Blush SD designs the arrangements, serves the menu, and sets every table for events across San Diego, Orange County and Los Angeles.">
 <meta name="twitter:image" content="https://blushsd.com/assets/images/share-home.jpg">
 <meta name="theme-color" content="#FFFDFB">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Work+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preload" href="assets/fonts/cormorant-garamond-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/work-sans-latin-300-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/work-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="assets/favicon/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
-<link rel="stylesheet" href="assets/css/styles.css?v=20261120i">
+<link rel="stylesheet" href="assets/css/styles.css?v=20261120j">
 <script>try{if(sessionStorage.getItem("blushVeil"))document.documentElement.classList.add("veil-arriving")}catch(e){}</script>
 <style>
   /* ---------- Full Experience video + flanking photos ---------- */
@@ -54,7 +54,7 @@
   }
   /* Minimal sound toggle (replaces the browser's dimming controls) */
   .fx-sound{
-    position:absolute; right:14px; bottom:14px; z-index:2;
+    position:absolute; right:14px; top:14px; z-index:2;
     width:40px; height:40px; border-radius:50%;
     border:1px solid rgba(255,255,255,.9); background:rgba(255,253,251,.92);
     color:var(--ink); display:flex; align-items:center; justify-content:center;
@@ -76,9 +76,9 @@
   }
 
   .fx-included{ padding-top:70px; padding-bottom:0; }
-  .fx-eyebrow{
-    font-size:11px; letter-spacing:0.28em; text-transform:uppercase;
-    color:var(--ink-soft); margin-bottom:12px !important;
+  .page-content p.fx-eyebrow{
+    font-size:11px; font-weight:400; line-height:normal; letter-spacing:0.28em; text-transform:uppercase;
+    color:var(--ink-soft); margin-bottom:12px;
   }
   .fx-heading{
     font-family:'Cormorant Garamond', serif; font-weight:400;
@@ -137,7 +137,7 @@
 </div>
 
 <section class="page-hero">
-  <img src="assets/images/full-experience-table.jpg" alt="Garden table set by Blush with linens, sage plates, gold flatware, candles and a pink floral centerpiece, as a server passes a tray of bites">
+  <img fetchpriority="high" src="assets/images/full-experience-table.jpg" alt="Garden table set by Blush with linens, sage plates, gold flatware, candles and a pink floral centerpiece, as a server passes a tray of bites">
   <div class="page-hero-veil"></div>
   <div class="page-hero-caption">
     <p class="page-hero-eyebrow">Florals &middot; Catering &middot; Table</p>
@@ -159,7 +159,7 @@
   <figure class="fx-main">
     <div class="fx-frame">
       <video src="assets/videos/fx-garden.mp4" poster="assets/videos/fx-garden.jpg"
-             muted loop playsinline autoplay preload="metadata"
+             muted loop playsinline preload="none"
              aria-label="A garden event by Blush: long tables with peach lamps and roses under the palms, and a server carrying a fairy-garden tray"></video>
       <button class="fx-sound" type="button" aria-pressed="false" aria-label="Turn sound on">
         <svg class="off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5h3.5L12 6v12l-4.5-3.5H4z"/><path d="M16 9.5l5 5M21 9.5l-5 5"/></svg>
@@ -182,7 +182,7 @@
   <figure class="fx-main">
     <div class="fx-frame">
       <video src="assets/videos/moment-02.mp4" poster="assets/videos/moment-02.jpg"
-             muted loop playsinline autoplay preload="metadata"
+             muted loop playsinline preload="none"
              aria-label="A rooftop event styled by Blush: white umbrellas, long tables with pink rose centerpieces, sage place settings and gold flatware"></video>
       <button class="fx-sound" type="button" aria-pressed="false" aria-label="Turn sound on">
         <svg class="off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5h3.5L12 6v12l-4.5-3.5H4z"/><path d="M16 9.5l5 5M21 9.5l-5 5"/></svg>

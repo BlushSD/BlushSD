@@ -21,14 +21,14 @@
 <meta name="twitter:description" content="Fresh, editorial floral arrangements for weddings, private events and everyday moments, handmade in San Diego. Book florals on their own, no catering required.">
 <meta name="twitter:image" content="https://blushsd.com/assets/images/share-florals.jpg">
 <meta name="theme-color" content="#FFFDFB">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Work+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preload" href="assets/fonts/cormorant-garamond-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/work-sans-latin-300-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/work-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="assets/favicon/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
-<link rel="stylesheet" href="assets/css/styles.css?v=20261120i">
+<link rel="stylesheet" href="assets/css/styles.css?v=20261120j">
 <script>try{if(sessionStorage.getItem("blushVeil"))document.documentElement.classList.add("veil-arriving")}catch(e){}</script>
 <style>
   /* ---------- Floral gallery ---------- */
@@ -94,7 +94,7 @@
 
   /* Tablet / phone: stack everything at natural proportions */
   @media (max-width: 760px) {
-    .floral-gallery { padding: 0 16px; }
+    .floral-gallery { padding: 10px 16px 0; }
     .floral-feature,
     .floral-row {
       grid-template-columns: 1fr;
@@ -182,7 +182,7 @@
 </div>
 
 <section class="page-hero">
-  <img src="assets/images/floral-card.jpg" alt="Blush Florals">
+  <img fetchpriority="high" src="assets/images/floral-card.jpg" alt="Blush Florals">
   <div class="page-hero-veil"></div>
   <div class="page-hero-caption">
     <p class="page-hero-eyebrow">Floral Design</p>
@@ -199,85 +199,85 @@
 <div class="floral-gallery">
   <div class="floral-row" style="margin-top:0;">
     <button class="floral-tile tile-landscape" type="button">
-      <img src="assets/images/floral-01.jpg" alt="All-white arrangement of calla lilies, tulips, hydrangea and ivory roses with bells of Ireland" loading="lazy">
+      <img src="assets/images/floral-01.jpg" srcset="assets/images/thumbs/floral-01.jpg 800w, assets/images/floral-01.jpg 1536w" sizes="(max-width: 760px) calc(100vw - 32px), (max-width: 1120px) 33vw, 360px" alt="All-white arrangement of calla lilies, tulips, hydrangea and ivory roses with bells of Ireland" loading="lazy">
     </button>
     <button class="floral-tile tile-landscape" type="button">
-      <img src="assets/images/floral-02.jpg" alt="Low bowl of blush peonies and roses fading from cream to deep magenta, with trailing amaranthus" loading="lazy">
+      <img src="assets/images/floral-02.jpg" srcset="assets/images/thumbs/floral-02.jpg 800w, assets/images/floral-02.jpg 1536w" sizes="(max-width: 760px) calc(100vw - 32px), (max-width: 1120px) 33vw, 360px" alt="Low bowl of blush peonies and roses fading from cream to deep magenta, with trailing amaranthus" loading="lazy">
     </button>
     <button class="floral-tile tile-landscape" type="button">
-      <img src="assets/images/floral-03.jpg" alt="Deep red arrangement with black calla lilies, anthurium, gerberas and roses in a stone vase" loading="lazy">
-    </button>
-  </div>
-
-  <div class="floral-row">
-    <button class="floral-tile tile-landscape" type="button">
-      <img src="assets/images/floral-04.jpg" alt="Coral, fuchsia and marigold garden roses and dahlias in a white footed bowl" loading="lazy">
-    </button>
-    <button class="floral-tile tile-landscape" type="button">
-      <img src="assets/images/floral-05.jpg" alt="Red rose and pink carnation arrangement in a burgundy vase draped with red beads" loading="lazy">
-    </button>
-    <button class="floral-tile tile-landscape" type="button">
-      <img src="assets/images/floral-06.jpg" alt="Bright mix of pink, yellow and lavender roses with peach gerberas and magenta dahlias in a cream ceramic vase" loading="lazy">
+      <img src="assets/images/floral-03.jpg" srcset="assets/images/thumbs/floral-03.jpg 800w, assets/images/floral-03.jpg 1536w" sizes="(max-width: 760px) calc(100vw - 32px), (max-width: 1120px) 33vw, 360px" alt="Deep red arrangement with black calla lilies, anthurium, gerberas and roses in a stone vase" loading="lazy">
     </button>
   </div>
 
   <div class="floral-row">
     <button class="floral-tile tile-landscape" type="button">
-      <img src="assets/images/floral-09.jpg" alt="Red roses, orange carnations, red chrysanthemums, berries and lily buds in a leaf-lined glass vase on a marble stand" loading="lazy">
+      <img src="assets/images/floral-04.jpg" srcset="assets/images/thumbs/floral-04.jpg 800w, assets/images/floral-04.jpg 1536w" sizes="(max-width: 760px) calc(100vw - 32px), (max-width: 1120px) 33vw, 360px" alt="Coral, fuchsia and marigold garden roses and dahlias in a white footed bowl" loading="lazy">
     </button>
     <button class="floral-tile tile-landscape" type="button">
-      <img src="assets/images/floral-10.jpg" alt="Tall arrangement of red and lavender roses, pink anthurium, green hydrangea, apples and artichoke beside a figurine holding a golden apple" loading="lazy">
+      <img src="assets/images/floral-05.jpg" srcset="assets/images/thumbs/floral-05.jpg 800w, assets/images/floral-05.jpg 1536w" sizes="(max-width: 760px) calc(100vw - 32px), (max-width: 1120px) 33vw, 360px" alt="Red rose and pink carnation arrangement in a burgundy vase draped with red beads" loading="lazy">
     </button>
     <button class="floral-tile tile-landscape" type="button">
-      <img src="assets/images/floral-08.jpg" alt="Pink, orange and lavender roses with gerberas, dahlias and bells of Ireland in a gold footed planter with a Blush plaque" loading="lazy">
-    </button>
-  </div>
-
-  <div class="floral-row">
-    <button class="floral-tile tile-landscape" type="button">
-      <img src="assets/images/floral-11.jpg" alt="Abundant mix of pink dahlias, red and blush roses, yellow and orange chrysanthemums and snapdragons with trailing amaranthus in a stone bowl" loading="lazy">
-    </button>
-    <button class="floral-tile tile-landscape" type="button">
-      <img src="assets/images/floral-12.jpg" alt="Blush and coral peonies, spray roses, gerberas and green hydrangea framed by palm and monstera leaves" loading="lazy">
-    </button>
-    <button class="floral-tile tile-landscape" type="button">
-      <img src="assets/images/floral-13.jpg" alt="Soft pink peonies, garden roses and hydrangea with white orchids and a satin blush ribbon in a cream vase" loading="lazy">
+      <img src="assets/images/floral-06.jpg" srcset="assets/images/thumbs/floral-06.jpg 800w, assets/images/floral-06.jpg 1536w" sizes="(max-width: 760px) calc(100vw - 32px), (max-width: 1120px) 33vw, 360px" alt="Bright mix of pink, yellow and lavender roses with peach gerberas and magenta dahlias in a cream ceramic vase" loading="lazy">
     </button>
   </div>
 
   <div class="floral-row">
     <button class="floral-tile tile-landscape" type="button">
-      <img src="assets/images/floral-14.jpg" alt="Pink roses and hydrangea with burgundy carnations, sunflowers, bells of Ireland and trailing amaranthus in a cream bowl" loading="lazy">
+      <img src="assets/images/floral-09.jpg" srcset="assets/images/thumbs/floral-09.jpg 800w, assets/images/floral-09.jpg 1536w" sizes="(max-width: 760px) calc(100vw - 32px), (max-width: 1120px) 33vw, 360px" alt="Red roses, orange carnations, red chrysanthemums, berries and lily buds in a leaf-lined glass vase on a marble stand" loading="lazy">
     </button>
     <button class="floral-tile tile-landscape" type="button">
-      <img src="assets/images/floral-15.jpg" alt="Hot pink and coral roses, gerberas, tulips and green chrysanthemums under looped leaves in a faceted blush box with a gold plaque" loading="lazy">
+      <img src="assets/images/floral-10.jpg" srcset="assets/images/thumbs/floral-10.jpg 800w, assets/images/floral-10.jpg 1536w" sizes="(max-width: 760px) calc(100vw - 32px), (max-width: 1120px) 33vw, 360px" alt="Tall arrangement of red and lavender roses, pink anthurium, green hydrangea, apples and artichoke beside a figurine holding a golden apple" loading="lazy">
     </button>
     <button class="floral-tile tile-landscape" type="button">
-      <img src="assets/images/floral-16.jpg" alt="Pink and green hydrangea with roses, calla lilies, lily buds and green amaranthus in a slate vase draped with pearls" loading="lazy">
-    </button>
-  </div>
-
-  <div class="floral-row">
-    <button class="floral-tile tile-landscape" type="button">
-      <img src="assets/images/floral-17.jpg" alt="Low winter arrangement of cream and blush roses, peach carnations, green chrysanthemums and pinecones on cedar with ribbons" loading="lazy">
-    </button>
-    <button class="floral-tile tile-landscape" type="button">
-      <img src="assets/images/floral-18.jpg" alt="Red and orange roses with green seeded eucalyptus against monstera leaves in a grey globe vase with a gold tag" loading="lazy">
-    </button>
-    <button class="floral-tile tile-landscape" type="button">
-      <img src="assets/images/floral-19.jpg" alt="Autumn arrangement of sunflowers, burgundy peonies, red roses, antique hydrangea, berries and astilbe in a dark wood box" loading="lazy">
+      <img src="assets/images/floral-08.jpg" srcset="assets/images/thumbs/floral-08.jpg 800w, assets/images/floral-08.jpg 1536w" sizes="(max-width: 760px) calc(100vw - 32px), (max-width: 1120px) 33vw, 360px" alt="Pink, orange and lavender roses with gerberas, dahlias and bells of Ireland in a gold footed planter with a Blush plaque" loading="lazy">
     </button>
   </div>
 
   <div class="floral-row">
     <button class="floral-tile tile-landscape" type="button">
-      <img src="assets/images/floral-20.jpg" alt="White roses and calla lilies with green carnations, looped aspidistra leaves and limonium on a gold leaf tray" loading="lazy">
+      <img src="assets/images/floral-11.jpg" srcset="assets/images/thumbs/floral-11.jpg 800w, assets/images/floral-11.jpg 1536w" sizes="(max-width: 760px) calc(100vw - 32px), (max-width: 1120px) 33vw, 360px" alt="Abundant mix of pink dahlias, red and blush roses, yellow and orange chrysanthemums and snapdragons with trailing amaranthus in a stone bowl" loading="lazy">
     </button>
     <button class="floral-tile tile-landscape" type="button">
-      <img src="assets/images/floral-21.jpg" alt="Calla lilies, red anthurium, roses, hypericum berries and green hydrangea arranged in a black-and-white checkered handbag" loading="lazy">
+      <img src="assets/images/floral-12.jpg" srcset="assets/images/thumbs/floral-12.jpg 800w, assets/images/floral-12.jpg 1536w" sizes="(max-width: 760px) calc(100vw - 32px), (max-width: 1120px) 33vw, 360px" alt="Blush and coral peonies, spray roses, gerberas and green hydrangea framed by palm and monstera leaves" loading="lazy">
     </button>
     <button class="floral-tile tile-landscape" type="button">
-      <img src="assets/images/floral-22.jpg" alt="Tall arrangement of burgundy chrysanthemums, red anthurium, white hydrangea, grapes and calla lilies around a figurine in a black bowl" loading="lazy">
+      <img src="assets/images/floral-13.jpg" srcset="assets/images/thumbs/floral-13.jpg 800w, assets/images/floral-13.jpg 1536w" sizes="(max-width: 760px) calc(100vw - 32px), (max-width: 1120px) 33vw, 360px" alt="Soft pink peonies, garden roses and hydrangea with white orchids and a satin blush ribbon in a cream vase" loading="lazy">
+    </button>
+  </div>
+
+  <div class="floral-row">
+    <button class="floral-tile tile-landscape" type="button">
+      <img src="assets/images/floral-14.jpg" srcset="assets/images/thumbs/floral-14.jpg 800w, assets/images/floral-14.jpg 1536w" sizes="(max-width: 760px) calc(100vw - 32px), (max-width: 1120px) 33vw, 360px" alt="Pink roses and hydrangea with burgundy carnations, sunflowers, bells of Ireland and trailing amaranthus in a cream bowl" loading="lazy">
+    </button>
+    <button class="floral-tile tile-landscape" type="button">
+      <img src="assets/images/floral-15.jpg" srcset="assets/images/thumbs/floral-15.jpg 800w, assets/images/floral-15.jpg 1536w" sizes="(max-width: 760px) calc(100vw - 32px), (max-width: 1120px) 33vw, 360px" alt="Hot pink and coral roses, gerberas, tulips and green chrysanthemums under looped leaves in a faceted blush box with a gold plaque" loading="lazy">
+    </button>
+    <button class="floral-tile tile-landscape" type="button">
+      <img src="assets/images/floral-16.jpg" srcset="assets/images/thumbs/floral-16.jpg 800w, assets/images/floral-16.jpg 1536w" sizes="(max-width: 760px) calc(100vw - 32px), (max-width: 1120px) 33vw, 360px" alt="Pink and green hydrangea with roses, calla lilies, lily buds and green amaranthus in a slate vase draped with pearls" loading="lazy">
+    </button>
+  </div>
+
+  <div class="floral-row">
+    <button class="floral-tile tile-landscape" type="button">
+      <img src="assets/images/floral-17.jpg" srcset="assets/images/thumbs/floral-17.jpg 800w, assets/images/floral-17.jpg 1536w" sizes="(max-width: 760px) calc(100vw - 32px), (max-width: 1120px) 33vw, 360px" alt="Low winter arrangement of cream and blush roses, peach carnations, green chrysanthemums and pinecones on cedar with ribbons" loading="lazy">
+    </button>
+    <button class="floral-tile tile-landscape" type="button">
+      <img src="assets/images/floral-18.jpg" srcset="assets/images/thumbs/floral-18.jpg 800w, assets/images/floral-18.jpg 1536w" sizes="(max-width: 760px) calc(100vw - 32px), (max-width: 1120px) 33vw, 360px" alt="Red and orange roses with green seeded eucalyptus against monstera leaves in a grey globe vase with a gold tag" loading="lazy">
+    </button>
+    <button class="floral-tile tile-landscape" type="button">
+      <img src="assets/images/floral-19.jpg" srcset="assets/images/thumbs/floral-19.jpg 800w, assets/images/floral-19.jpg 1536w" sizes="(max-width: 760px) calc(100vw - 32px), (max-width: 1120px) 33vw, 360px" alt="Autumn arrangement of sunflowers, burgundy peonies, red roses, antique hydrangea, berries and astilbe in a dark wood box" loading="lazy">
+    </button>
+  </div>
+
+  <div class="floral-row">
+    <button class="floral-tile tile-landscape" type="button">
+      <img src="assets/images/floral-20.jpg" srcset="assets/images/thumbs/floral-20.jpg 800w, assets/images/floral-20.jpg 1536w" sizes="(max-width: 760px) calc(100vw - 32px), (max-width: 1120px) 33vw, 360px" alt="White roses and calla lilies with green carnations, looped aspidistra leaves and limonium on a gold leaf tray" loading="lazy">
+    </button>
+    <button class="floral-tile tile-landscape" type="button">
+      <img src="assets/images/floral-21.jpg" srcset="assets/images/thumbs/floral-21.jpg 800w, assets/images/floral-21.jpg 1536w" sizes="(max-width: 760px) calc(100vw - 32px), (max-width: 1120px) 33vw, 360px" alt="Calla lilies, red anthurium, roses, hypericum berries and green hydrangea arranged in a black-and-white checkered handbag" loading="lazy">
+    </button>
+    <button class="floral-tile tile-landscape" type="button">
+      <img src="assets/images/floral-22.jpg" srcset="assets/images/thumbs/floral-22.jpg 800w, assets/images/floral-22.jpg 1536w" sizes="(max-width: 760px) calc(100vw - 32px), (max-width: 1120px) 33vw, 360px" alt="Tall arrangement of burgundy chrysanthemums, red anthurium, white hydrangea, grapes and calla lilies around a figurine in a black bowl" loading="lazy">
     </button>
   </div>
 
@@ -295,9 +295,9 @@
 
 <section class="page-content" style="padding-top:30px;">
   <div>
-    <a href="florals-signup.html" class="page-back-link">Request a Floral Quote</a>
+    <a href="florals-signup.html" class="page-back-link">Book Florals</a>
   </div>
-  <p style="margin-top:36px; font-size:13.5px;">Also hosting the event yourself? You're welcome to ask about pairing this with <a href="catering.html" style="color:var(--ink); text-decoration:underline;">Blush Catering</a> &mdash; optional for San Diego events.</p>
+  <p style="margin-top:36px; font-size:13.5px;">Also want catering for the same event? Feel free to ask about pairing this with <a href="catering.html" style="color:var(--ink); text-decoration:underline;">Blush Catering</a> &mdash; optional for San Diego events.</p>
 </section>
 
 <footer>
