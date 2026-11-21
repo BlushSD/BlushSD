@@ -151,6 +151,9 @@
 
   /* ---------- How We Serve ---------- */
   .serve{ padding-top:76px; padding-bottom:0; }
+  .serve--intro{ padding-top:36px; }
+  .serve-after{ padding-top:56px; }
+  .serve--stations .serve-item{ margin-top:0; }
   .station-photos{
     width:min(920px, calc(100vw - 48px));
     margin-left:calc(50% - min(460px, 50vw - 24px));
@@ -240,6 +243,20 @@
 <section class="page-content" style="padding-bottom:20px;">
   <p>We cater events across San Diego, Orange County, and Los Angeles.</p>
   <p>Every catering menu is built custom for the event &mdash; there's no fixed list to pick from. Signature items show up across our socials, and we'll walk through a full breakdown of what each one is during your consultation.</p>
+</section>
+
+<section class="page-content serve serve--intro" aria-labelledby="serveHeading">
+  <p class="serve-eyebrow">The Service</p>
+  <h2 class="serve-heading" id="serveHeading">How We Serve</h2>
+  <p class="serve-lede">Passed, stationed, or both. You decide how your guests are served.</p>
+
+  <div class="serve-item">
+    <h3>Tray-Passed Service</h3>
+    <p>Our signature. Our team moves through your event with each course on a tray, so guests never leave the conversation to find a plate.</p>
+  </div>
+</section>
+
+<section class="page-content serve-after" style="padding-bottom:20px;">
   <p>Most events lean toward passed appetizers and drinks, but that's a starting point, not a limit. If you can think it, tell us and we'll try to make it happen.</p>
   <p style="font-style:italic;">Pricing is discussed during your inquiry, based on guest count and menu.</p>
   <p>A few recent favorites from the kitchen:</p>
@@ -300,18 +317,7 @@
   <button class="lightbox-next" type="button" aria-label="Next photo">&rsaquo;</button>
 </div>
 
-<section class="page-content serve" aria-labelledby="serveHeading">
-  <p class="serve-eyebrow">The Service</p>
-  <h2 class="serve-heading" id="serveHeading">How We Serve</h2>
-  <p class="serve-lede">Passed, stationed, or both. You decide how your guests are served.</p>
-
-  <div class="serve-item">
-    <h3>Tray-Passed Service</h3>
-    <p>Our signature. Our team moves through your event with each course on a tray, so guests never leave the conversation to find a plate.</p>
-  </div>
-
-  <div><span class="serve-rule" aria-hidden="true"></span></div>
-
+<section class="page-content serve serve--stations" aria-label="Stations">
   <div class="serve-item">
     <h3>Stations</h3>
     <p>Prefer a station your guests can visit? Choose one of our curated stations, such as a gelato station or a cr&ecirc;pe station, or tell us what you have in mind and we'll design one around your event.</p>
