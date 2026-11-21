@@ -37,6 +37,9 @@
     display:grid; grid-template-columns:1fr 1.12fr 1fr; gap:28px; align-items:center;
   }
   .fx-media figure{ margin:0; }
+  .fx-media--next{ margin-top:80px; }
+  .fx-media--next .fx-side img{ object-position:50% 88%; }
+  @media (max-width: 760px){ .fx-media--next{ margin-top:56px; } }
   .fx-frame{
     position:relative; overflow:hidden; background:#FBDCE2;
     box-shadow:0 30px 50px -36px rgba(var(--rose-shadow),.6);
@@ -171,6 +174,29 @@
   </figure>
 </div>
 
+<div class="fx-media fx-media--next">
+  <figure class="fx-side">
+    <div class="fx-frame"><img src="assets/images/fx-garden-table.jpg" alt="Long garden table by a stone waterfall wall: clear chairs, peach lamps and candles, rust napkins and a coral rose centerpiece" loading="lazy"></div>
+    <figcaption>The Long Table</figcaption>
+  </figure>
+  <figure class="fx-main">
+    <div class="fx-frame">
+      <video src="assets/videos/fx-garden.mp4" poster="assets/videos/fx-garden.jpg"
+             muted loop playsinline autoplay preload="metadata"
+             aria-label="A garden event by Blush: long tables with peach lamps and roses under the palms, and a server carrying a fairy-garden tray"></video>
+      <button class="fx-sound" type="button" aria-pressed="false" aria-label="Turn sound on">
+        <svg class="off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5h3.5L12 6v12l-4.5-3.5H4z"/><path d="M16 9.5l5 5M21 9.5l-5 5"/></svg>
+        <svg class="on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5h3.5L12 6v12l-4.5-3.5H4z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></svg>
+      </button>
+    </div>
+    <figcaption>The Garden</figcaption>
+  </figure>
+  <figure class="fx-side">
+    <div class="fx-frame"><img src="assets/images/fx-garden-centerpiece.jpg" alt="Yellow rose centerpiece under a pleated peach lamp, with pink glassware and candlesticks, at a palm-lined garden event" loading="lazy"></div>
+    <figcaption>The Centerpiece</figcaption>
+  </figure>
+</div>
+
 <section class="page-content fx-included" aria-labelledby="fxHeading">
   <p class="fx-eyebrow">What&rsquo;s Included</p>
   <h2 class="fx-heading" id="fxHeading">Everything, Handled</h2>
@@ -221,23 +247,29 @@
 <script src="assets/js/depth.js"></script>
 <script>
   (function () {
-    var v = document.querySelector('.fx-media video');
-    var btn = document.querySelector('.fx-sound');
-    if (!v) return;
-    function play(){ var p = v.play(); if (p && p.catch) p.catch(function () {}); }
-    function toggle(){
-      v.muted = !v.muted;
-      btn.setAttribute('aria-pressed', String(!v.muted));
-      btn.setAttribute('aria-label', v.muted ? 'Turn sound on' : 'Turn sound off');
-      play();
+    var mains = Array.prototype.slice.call(document.querySelectorAll('.fx-main'));
+    function play(v){ var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+    function setSound(m, on){
+      var v = m.querySelector('video'), b = m.querySelector('.fx-sound');
+      v.muted = !on; b.setAttribute('aria-pressed', String(on));
+      b.setAttribute('aria-label', on ? 'Turn sound off' : 'Turn sound on');
     }
-    btn.addEventListener('click', function (e) { e.stopPropagation(); toggle(); });
-    v.addEventListener('click', toggle);
-    if ('IntersectionObserver' in window) {
-      new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) { if (e.isIntersecting) play(); else if (!v.paused) v.pause(); });
-      }, { threshold: 0.4 }).observe(v);
-    } else { play(); }
+    mains.forEach(function (m) {
+      var v = m.querySelector('video'), b = m.querySelector('.fx-sound');
+      if (!v || !b) return;
+      function toggle(){
+        var on = v.muted;
+        mains.forEach(function (o) { if (o !== m) setSound(o, false); });
+        setSound(m, on); play(v);
+      }
+      b.addEventListener('click', function (e) { e.stopPropagation(); toggle(); });
+      v.addEventListener('click', toggle);
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) { if (e.isIntersecting) play(v); else if (!v.paused) v.pause(); });
+        }, { threshold: 0.4 }).observe(v);
+      } else { play(v); }
+    });
   })();
 </script>
 </body>
