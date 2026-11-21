@@ -26,6 +26,7 @@ var BLUSH_GA_ID = 'G-NPYPQZMW8L';
 
   // Which service a link or form belongs to
   function serviceFrom(href) {
+    if (/package=full|full-experience|full experience/i.test(href)) return 'full_experience';
     if (/floral/i.test(href)) return 'florals';
     if (/catering/i.test(href)) return 'catering';
     return 'general';
@@ -38,7 +39,7 @@ var BLUSH_GA_ID = 'G-NPYPQZMW8L';
     var href = el.getAttribute('href') || '';
     var inMenu = !!el.closest('.nav-overlay');
 
-    // "Book Florals" / "Book Catering" / "Request a Floral Quote" links
+    // "Book Florals" / "Book Catering" / "Book The Full Experience" links
     if (/(florals|catering)-signup\.html/.test(href)) {
       track('book_click', { service: serviceFrom(href), location: inMenu ? 'menu' : 'page' });
     }
@@ -77,7 +78,9 @@ var BLUSH_GA_ID = 'G-NPYPQZMW8L';
       return;
     }
     track('inquiry_submit', {
-      service: serviceFrom(type ? type.value : location.pathname),
+      // The catering form also books The Full Experience; count those on their own
+      service: (form.elements['package'] && form.elements['package'].value === 'The Full Experience')
+        ? 'full_experience' : serviceFrom(type ? type.value : location.pathname),
       transport_type: 'beacon'
     });
   });

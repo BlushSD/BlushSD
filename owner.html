@@ -121,6 +121,8 @@
 
   /* ---------- Service split + mini stats ---------- */
   .od-split{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+  .od-split--3{grid-template-columns:repeat(3, 1fr);}
+  .od-split--4{grid-template-columns:repeat(4, 1fr);}
   .od-mini{background:var(--p1); border-radius:20px; padding:20px 20px 18px;}
   .od-mini-label{font-size:10.5px; letter-spacing:0.18em; text-transform:uppercase; color:var(--ink-soft);}
   .od-mini-num{font-family:'Cormorant Garamond', serif; font-size:40px; line-height:1; margin:12px 0 6px; color:var(--ink); font-variant-numeric:lining-nums tabular-nums;}
@@ -154,6 +156,10 @@
     .od-controls{width:100%; justify-content:space-between;}
     .od-range button{padding:9px 12px;}
     .od-login{padding-top:140px;}
+  }
+  @media (max-width:760px){
+    .od-split--3{grid-template-columns:1fr;}
+    .od-split--4{grid-template-columns:1fr 1fr;}
   }
   @media (max-width:420px){
     .od-split{grid-template-columns:1fr;}
@@ -241,10 +247,10 @@
       </details>
     </div>
 
-    <div class="od-card">
-      <h2>Florals &amp; catering</h2>
+    <div class="od-card od-span">
+      <h2>Services</h2>
       <p class="od-card-sub">Each service on its own: inquiries sent through its form, and clicks toward booking.</p>
-      <div class="od-split">
+      <div class="od-split od-split--3">
         <div class="od-mini">
           <p class="od-mini-label">Florals</p>
           <p class="od-mini-num" id="fInq">0</p>
@@ -263,6 +269,16 @@
             <div><span>&ldquo;Book&rdquo; clicks</span><span id="cBook">0</span></div>
             <div><span>Page views</span><span id="cViews">0</span></div>
             <div><span>Photos opened</span><span id="cPhotos">0</span></div>
+          </div>
+        </div>
+        <div class="od-mini">
+          <p class="od-mini-label">The Full Experience</p>
+          <p class="od-mini-num" id="xInq">0</p>
+          <p class="od-mini-note">inquiries</p>
+          <div class="od-mini-list">
+            <div><span>&ldquo;Book&rdquo; clicks</span><span id="xBook">0</span></div>
+            <div><span>Page views</span><span id="xViews">0</span></div>
+            <div><span>Homepage tile clicks</span><span id="xTile">0</span></div>
           </div>
         </div>
       </div>
@@ -292,10 +308,10 @@
       <div class="od-bars" id="cityBars"></div>
     </div>
 
-    <div class="od-card">
+    <div class="od-card od-span">
       <h2>Socials &amp; time on site</h2>
       <p class="od-card-sub">Clicks out to your profiles, and how long a visit lasts.</p>
-      <div class="od-split">
+      <div class="od-split od-split--4">
         <div class="od-mini">
           <p class="od-mini-label">Instagram</p>
           <p class="od-mini-num" id="sIg">0</p>
@@ -460,7 +476,8 @@
 
   var PAGE_NAMES = {
     'index.html': 'Home', 'about.html': 'About', 'florals.html': 'Florals', 'catering.html': 'Catering',
-    'testimonials.html': 'Testimonials', 'florals-signup.html': 'Book Florals form', 'catering-signup.html': 'Book Catering form'
+    'full-experience.html': 'The Full Experience', 'moments.html': 'Moments',
+    'testimonials.html': 'Testimonials', 'florals-signup.html': 'Book Florals form', 'catering-signup.html': 'Book Catering & Full Experience form'
   };
   var CHANNEL_NAMES = {
     'Direct': 'Direct visit', 'Organic Social': 'Social media', 'Organic Search': 'Google & search',
@@ -496,6 +513,10 @@
     $('cViews').textContent = fmt(pv['catering.html']);
     $('fPhotos').textContent = fmt(ev(d, 'current', 'photo_view', 'florals'));
     $('cPhotos').textContent = fmt(ev(d, 'current', 'photo_view', 'catering'));
+    $('xInq').textContent = fmt(ev(d, 'current', 'inquiry_submit', 'full_experience'));
+    $('xBook').textContent = fmt(ev(d, 'current', 'book_click', 'full_experience'));
+    $('xViews').textContent = fmt(pv['full-experience.html']);
+    $('xTile').textContent = fmt(ev(d, 'current', 'service_card_click', 'full_experience'));
 
     // socials & time
     $('sIg').textContent = fmt(ev(d, 'current', 'social_click', 'instagram'));
